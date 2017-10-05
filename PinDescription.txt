@@ -1,0 +1,153 @@
+## Descrição dos pinos da DE2 e as funcionalidades
+
+
+Input {
+	KEY0 = ON (PRESSED) {
+		Display(HEX7, HEX6) = Reg[SW11:SW8]
+		Display(HEX5, HEX4) = Reg[SW7:SW4]
+	}
+
+	KEY3 = ON (PRESSED) {
+		Instruction[SW15:SW0] = {
+			[SW15:SW12]:	OpCode
+			[SW11:SW8]:		$S4 (RegC/Dst)
+			[SW7:SW4]:		$S3 (RegB/Op) or Imm
+			[SW3:SW0]:		$S2 (RegA/Op)
+		}
+	}
+}
+
+Output {
+	Display(HEX3, HEX2, HEX1, HEX0) = Result
+}
+
+Target {
+	Cyclone II EP2C35F672C6N
+}
+
+Pin {
+	CLK:	N2
+
+	KEY0:	G26			//InverseLogic
+	KEY1:	N23			//InverseLogic
+	KEY3:	W26			//InverseLogic
+
+	SW0:	N25
+	SW1:	N26
+	SW2:	P25
+	SW3:	AE14
+	SW4:	AF14
+	SW5:	AD13
+	SW6:	AC13
+	SW7:	C13
+	SW8:	B13
+	SW9:	A13
+	SW10:	N1
+	SW11:	P1
+	SW12:	P2
+	SW13:	T7
+	SW14:	U3
+	SW15:	U4	
+	SW16:	V1
+	SW17:	V2
+
+	HEX0 {
+		D0: AF10
+		D1: AB12
+		D2: AC12
+		D3: AD11
+		D4: AE11
+		D5: V14
+		D6: V13
+	}
+
+	HEX1 {
+		D0: V20
+		D1: V21
+		D2: W21
+		D3: Y22
+		D4: AA24
+		D5: AA23
+		D6: AB24
+	}
+	
+	HEX2 {
+		D0: AB23
+		D1: V22
+		D2: AC25
+		D3: AC26
+		D4: AB26
+		D5: AB25
+		D6: Y24
+	}
+	
+	HEX3 {
+		D0: Y23
+		D1: AA25
+		D2: AA26
+		D3: Y26
+		D4: Y25
+		D5: U22
+		D6: W24
+	}
+
+	HEX4 {
+		D0: U9
+		D1: U1
+		D2: U2
+		D3: T4
+		D4: R7
+		D5: R6
+		D6: T3
+	}
+
+	HEX5 {
+		D0: T2
+		D1: P6
+		D2: P7
+		D3: T9
+		D4: R5
+		D5: R4
+		D6: R3
+	}
+
+	HEX6 {
+		D0: R2
+		D1: P4
+		D2: P3
+		D3: M2
+		D4: M3
+		D5: M5
+		D6: M4
+	}
+
+	HEX7 {
+		D0: L3
+		D1: L2
+		D2: L9
+		D3: L6
+		D4: L7
+		D5: P9
+		D6: N9
+	}
+}
+
+
+force -freeze sim:/WrapperULA/KEY0 1 0
+force -freeze sim:/WrapperULA/KEY3 1 0
+force -freeze sim:/WrapperULA/SW15 1 0
+force -freeze sim:/WrapperULA/SW14 0 0
+force -freeze sim:/WrapperULA/SW13 0 0
+force -freeze sim:/WrapperULA/SW12 1 0
+force -freeze sim:/WrapperULA/SW11 0 0
+force -freeze sim:/WrapperULA/SW10 0 0
+force -freeze sim:/WrapperULA/SW9 0 0
+force -freeze sim:/WrapperULA/SW8 0 0
+force -freeze sim:/WrapperULA/SW7 0 0
+force -freeze sim:/WrapperULA/SW6 0 0
+force -freeze sim:/WrapperULA/SW5 0 0
+force -freeze sim:/WrapperULA/SW4 1 0
+force -freeze sim:/WrapperULA/SW3 0 0
+force -freeze sim:/WrapperULA/SW2 0 0
+force -freeze sim:/WrapperULA/SW1 0 0
+force -freeze sim:/WrapperULA/SW0 0 0

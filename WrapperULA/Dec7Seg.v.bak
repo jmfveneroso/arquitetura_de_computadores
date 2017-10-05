@@ -1,0 +1,13 @@
+
+
+
+module Dec7Seg( Val, A, B, C, D, E, F, G );
+
+	input [3:0] Val;
+	output A, B, C, D, E, F, G;
+
+	always @(Val) begin
+		
+	
+	end
+endmodule

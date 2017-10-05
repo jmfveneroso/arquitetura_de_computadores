@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'CLK'
+Slack : -6.935
+TNS   : -1920.654
+
+Type  : Slow Model Setup 'KEY0'
+Slack : -0.343
+TNS   : -0.469
+
+Type  : Slow Model Setup 'Control:ctrlMicro|Wen'
+Slack : -0.257
+TNS   : -1.144
+
+Type  : Slow Model Hold 'KEY0'
+Slack : -2.126
+TNS   : -3.937
+
+Type  : Slow Model Hold 'CLK'
+Slack : -1.095
+TNS   : -150.867
+
+Type  : Slow Model Hold 'Control:ctrlMicro|Wen'
+Slack : 0.504
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'CLK'
+Slack : -1.380
+TNS   : -317.380
+
+Type  : Slow Model Minimum Pulse Width 'KEY0'
+Slack : -1.222
+TNS   : -1.222
+
+Type  : Slow Model Minimum Pulse Width 'Control:ctrlMicro|Wen'
+Slack : -0.500
+TNS   : -16.000
+
+Type  : Fast Model Setup 'CLK'
+Slack : -3.057
+TNS   : -825.887
+
+Type  : Fast Model Setup 'KEY0'
+Slack : 0.315
+TNS   : 0.000
+
+Type  : Fast Model Setup 'Control:ctrlMicro|Wen'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Fast Model Hold 'CLK'
+Slack : -0.881
+TNS   : -177.922
+
+Type  : Fast Model Hold 'KEY0'
+Slack : -0.660
+TNS   : -2.197
+
+Type  : Fast Model Hold 'Control:ctrlMicro|Wen'
+Slack : 0.280
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'CLK'
+Slack : -1.380
+TNS   : -317.380
+
+Type  : Fast Model Minimum Pulse Width 'KEY0'
+Slack : -1.222
+TNS   : -1.222
+
+Type  : Fast Model Minimum Pulse Width 'Control:ctrlMicro|Wen'
+Slack : -0.500
+TNS   : -16.000
+
+------------------------------------------------------------

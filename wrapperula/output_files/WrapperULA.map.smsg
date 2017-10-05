@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at WrapperULA.v(64): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at Control.v(16): always construct contains both blocking and non-blocking assignments

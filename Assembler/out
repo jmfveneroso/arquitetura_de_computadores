@@ -1,0 +1,31 @@
+# Iniciando máquina
+force -freeze sim:/TesteULA/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/TesteULA/RST 1 0
+run
+force -freeze sim:/TesteULA/RST 0 0
+run
+## Execução de instruções. Forma: INSTR	DST, IMM|REGB, REGA
+# ADDI r[0], 7, r[0]
+force -freeze sim:/TesteULA/Instr 1001000001110000 0
+run 400
+# SUB r[1], r[0], r[15]
+force -freeze sim:/TesteULA/Instr 0001000100001111 0
+run 400
+# SUBI r[3], 10, r[1]
+force -freeze sim:/TesteULA/Instr 1010001110100001 0
+run 400
+# STLI r[4], 7, r[0]
+force -freeze sim:/TesteULA/Instr 0010010001110000 0
+run 400
+# AND r[10], r[1], r[3]
+force -freeze sim:/TesteULA/Instr 0011101000010011 0
+run 400
+# ADDI r[0], 1, r[0]
+force -freeze sim:/TesteULA/Instr 1001000000010000 0
+run 400
+# XOR r[2], r[1], r[3]
+force -freeze sim:/TesteULA/Instr 0101001000010011 0
+run 400
+# OR r[5], r[0], r[2]
+force -freeze sim:/TesteULA/Instr 0100010100000010 0
+run 400
