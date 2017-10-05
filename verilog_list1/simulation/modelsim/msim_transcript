@@ -1,0 +1,100 @@
+# do list_1_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying /home/joao/intelFPGA_lite/17.0/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/exercise7.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:43 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/exercise7.v 
+# -- Compiling module exercise7
+# -- Compiling module exercise7tb
+# 
+# Top level modules:
+# 	exercise7tb
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/exercise4.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:44 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/exercise4.v 
+# -- Compiling module exercise4
+# -- Compiling module exercise4tb
+# 
+# Top level modules:
+# 	exercise4tb
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/exercise6.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:44 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/exercise6.v 
+# -- Compiling module exercise6
+# ** Warning: /home/joao/Code/computer_architecture/list_1/exercise6.v(31): (vlog-2182) 'state' might be read before written in always_comb or always @* block.
+# -- Compiling module exercise6tb
+# 
+# Top level modules:
+# 	exercise6tb
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/exercise5.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:44 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/exercise5.v 
+# -- Compiling module exercise5
+# -- Compiling module exercise5tb
+# 
+# Top level modules:
+# 	exercise5tb
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/list_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:44 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/list_1.v 
+# -- Compiling module list_1
+# 
+# Top level modules:
+# 	list_1
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1 {/home/joao/Code/computer_architecture/list_1/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:00:44 on Oct 03,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/joao/Code/computer_architecture/list_1" /home/joao/Code/computer_architecture/list_1/alu.v 
+# -- Compiling module alu
+# -- Compiling module alutb
+# 
+# Top level modules:
+# 	alutb
+# End time: 17:00:44 on Oct 03,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.alutb
+# vsim work.alutb 
+# Start time: 17:00:47 on Oct 03,2017
+# Loading work.alutb
+# Loading work.exercise7
+# Loading work.alu
+add wave -position insertpoint  \
+sim:/alutb/clk \
+sim:/alutb/enable_write \
+sim:/alutb/instruction \
+sim:/alutb/out \
+sim:/alutb/read_data_1 \
+sim:/alutb/read_data_2 \
+sim:/alutb/write_data \
+sim:/alutb/write_data_reg
+run -all
+# ** Note: $finish    : /home/joao/Code/computer_architecture/list_1/alu.v(93)
+#    Time: 1600 ps  Iteration: 0  Instance: /alutb
+# 1
+# Break in Module alutb at /home/joao/Code/computer_architecture/list_1/alu.v line 93
+# End time: 17:06:50 on Oct 03,2017, Elapsed time: 0:06:03
+# Errors: 0, Warnings: 0

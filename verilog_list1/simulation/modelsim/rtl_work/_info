@@ -1,0 +1,252 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/joao/Code/computer_architecture/list_1/simulation/modelsim
+valu
+Z1 !s110 1507060844
+!i10b 1
+!s100 SJ_`5S[YR:]c8nbAf;nYC3
+I51NkUYR3E?Q]MJ<_6G]mb0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1507060796
+Z4 8/home/joao/Code/computer_architecture/list_1/alu.v
+Z5 F/home/joao/Code/computer_architecture/list_1/alu.v
+L0 4
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1507060844.000000
+Z8 !s107 /home/joao/Code/computer_architecture/list_1/alu.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/alu.v|
+!i113 1
+Z10 o-vlog01compat -work work
+Z11 !s92 -vlog01compat -work work +incdir+/home/joao/Code/computer_architecture/list_1
+Z12 tCvgOpt 0
+valutb
+R1
+!i10b 1
+!s100 2XNY;SzbjRBP`78>QVNLR0
+ILLbkA]5Q<QcLA_G9nmdVH3
+R2
+R0
+R3
+R4
+R5
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vexercise4
+R1
+!i10b 1
+!s100 HUD1OG8f=F5?4Kc6gRZ;63
+IckHO23FYmf[PlfEgR7fT>2
+R2
+R0
+Z13 w1505837807
+Z14 8/home/joao/Code/computer_architecture/list_1/exercise4.v
+Z15 F/home/joao/Code/computer_architecture/list_1/exercise4.v
+L0 9
+R6
+r1
+!s85 0
+31
+R7
+Z16 !s107 /home/joao/Code/computer_architecture/list_1/exercise4.v|
+Z17 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/exercise4.v|
+!i113 1
+R10
+R11
+R12
+vexercise4tb
+R1
+!i10b 1
+!s100 TD_^_?1fL`NMfa[0FeYF73
+II^70]WVnka3fgH=_EK?dz2
+R2
+R0
+R13
+R14
+R15
+L0 65
+R6
+r1
+!s85 0
+31
+R7
+R16
+R17
+!i113 1
+R10
+R11
+R12
+vexercise5
+R1
+!i10b 1
+!s100 JH;e:<JKgc2HSY5OCoPES0
+Ij[UmMVgm`WEfoSg@]RNGo3
+R2
+R0
+R13
+Z18 8/home/joao/Code/computer_architecture/list_1/exercise5.v
+Z19 F/home/joao/Code/computer_architecture/list_1/exercise5.v
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+Z20 !s107 /home/joao/Code/computer_architecture/list_1/exercise5.v|
+Z21 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/exercise5.v|
+!i113 1
+R10
+R11
+R12
+vexercise5tb
+R1
+!i10b 1
+!s100 H92k6LGP812FlKhm]BWz[0
+Iaf[`23I<ie;3LN2DcV?5_2
+R2
+R0
+R13
+R18
+R19
+L0 39
+R6
+r1
+!s85 0
+31
+R7
+R20
+R21
+!i113 1
+R10
+R11
+R12
+vexercise6
+R1
+!i10b 1
+!s100 mWmE8OAlhkW94PNDd?8aJ1
+IJ@1kUA014[j10U>gigVDk3
+R2
+R0
+R13
+Z22 8/home/joao/Code/computer_architecture/list_1/exercise6.v
+Z23 F/home/joao/Code/computer_architecture/list_1/exercise6.v
+L0 15
+R6
+r1
+!s85 0
+31
+R7
+Z24 !s107 /home/joao/Code/computer_architecture/list_1/exercise6.v|
+Z25 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/exercise6.v|
+!i113 1
+R10
+R11
+R12
+vexercise6tb
+R1
+!i10b 1
+!s100 :8Sf3??NEm_lhAJkZUbJ01
+IDWSXHQ7?F^W6D82Nm3Zc>3
+R2
+R0
+R13
+R22
+R23
+L0 82
+R6
+r1
+!s85 0
+31
+R7
+R24
+R25
+!i113 1
+R10
+R11
+R12
+vexercise7
+R1
+!i10b 1
+!s100 0a5]3KO<800?FR=zbf6Qa2
+Im0fJ;Doh9=b^M5HN7@eKe3
+R2
+R0
+Z26 w1507053026
+Z27 8/home/joao/Code/computer_architecture/list_1/exercise7.v
+Z28 F/home/joao/Code/computer_architecture/list_1/exercise7.v
+L0 4
+R6
+r1
+!s85 0
+31
+Z29 !s108 1507060843.000000
+Z30 !s107 /home/joao/Code/computer_architecture/list_1/exercise7.v|
+Z31 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/exercise7.v|
+!i113 1
+R10
+R11
+R12
+vexercise7tb
+R1
+!i10b 1
+!s100 Boi[J9JHnLdYLLd@0<oLg2
+I0j5hj3lTNL[`@S2cXOakK1
+R2
+R0
+R26
+R27
+R28
+L0 41
+R6
+r1
+!s85 0
+31
+R29
+R30
+R31
+!i113 1
+R10
+R11
+R12
+vlist_1
+R1
+!i10b 1
+!s100 R9<2E3Ko`h[aZK<UXe:XJ1
+I[QJ[[FFF<4m3=2K<k>3?`2
+R2
+R0
+w1507051661
+8/home/joao/Code/computer_architecture/list_1/list_1.v
+F/home/joao/Code/computer_architecture/list_1/list_1.v
+L0 2
+R6
+r1
+!s85 0
+31
+R7
+!s107 /home/joao/Code/computer_architecture/list_1/list_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/joao/Code/computer_architecture/list_1|/home/joao/Code/computer_architecture/list_1/list_1.v|
+!i113 1
+R10
+R11
+R12

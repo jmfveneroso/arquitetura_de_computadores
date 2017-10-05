@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise1.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise7.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise4.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise3.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise2.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise6.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/exercise5.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/list_1.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/alu.v
+source_file = 1, /home/joao/Code/computer_architecture/list_1/db/list_1.cbx.xml
+design_name = list_1
+instance = comp, \output_tmp~output , output_tmp~output, list_1, 1
+instance = comp, \input_tmp~input , input_tmp~input, list_1, 1
+instance = comp, \~QUARTUS_CREATED_GND~I , ~QUARTUS_CREATED_GND~I, list_1, 1
