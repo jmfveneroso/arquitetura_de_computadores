@@ -1,0 +1,18 @@
+
+
+
+module Mux16bit2x1 (A, B, S, SEL);
+
+	input SEL;
+	input [15:0] A, B;
+	output [15:0] S;
+
+	always @(A or B or SEL)
+	begin
+		if (SEL == 1)
+			S = A;
+		else
+			S = B;
+	end
+
+endmodule
