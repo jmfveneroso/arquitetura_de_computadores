@@ -29,5 +29,4 @@ Mux16bit2x1 muxOpImm(regB, { 12'h000, opB }, outMux, isImm);
 /* Control: Control (CLK, RST, Start, Ready, Wen, Go) */
 Control ctrl(CLK, RST, START, RDY, wen);
 
-
 endmodule

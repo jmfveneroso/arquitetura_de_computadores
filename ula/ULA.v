@@ -128,5 +128,3 @@ module ULA (OpA, OpB, Res, Op, FlagReg, CLK, RST);
 		end
 	end
 endmodule
-
-
