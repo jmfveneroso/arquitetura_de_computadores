@@ -60,3 +60,92 @@ module Control (CLK, RST, Start, Ready, Wen );
 		end
 	end	
 endmodule
+
+module ControlTB ();
+  reg CLK, RST, Start;
+  wire Ready, Wen;
+
+  Control Control1 (
+    .CLK(CLK),     // Clock
+    .RST(RST),     // Reset.
+    .Start(Start),  
+    .Ready(Ready),  
+    .Wen(Wen)      // Write enable.
+  );
+
+  reg TestResult;
+  reg ExpectedWen, ExpectedReady;
+  task CheckControlOutput;
+    begin
+      if (Wen != ExpectedWen) begin
+        $display ("Error at time %d", $time); 
+        $display ("Expected Wen to have value %d, Got Value %d", ExpectedWen, Wen); 
+        $display ("Test result: FAILED."); 
+        TestResult = 0;
+        $finish;
+      end else if (Ready != ExpectedReady) begin
+        $display ("Error at time %d", $time); 
+        $display ("Expected Ready to have value %b, Got Value %b", ExpectedReady, Ready); 
+        $display ("Test result: FAILED."); 
+        TestResult = 0;
+        $finish;
+      end else begin
+        TestResult = 1;
+      end
+    end
+  endtask
+    
+  initial begin
+    TestResult = 1;
+
+    ExpectedReady = 1'bx;
+    ExpectedWen = 1'bx;
+
+    ExpectedReady <= #5 1;
+    ExpectedWen   <= #5 0;
+
+    ExpectedReady <= #25 0;
+    ExpectedWen   <= #25 0;
+
+    ExpectedReady <= #35 0;
+    ExpectedWen   <= #35 0;
+
+    ExpectedReady <= #45 0;
+    ExpectedWen   <= #45 0;
+
+    ExpectedReady <= #55 0;
+    ExpectedWen   <= #55 1;
+
+    ExpectedReady <= #65 1;
+    ExpectedWen   <= #65 0;
+  end
+
+  initial begin
+    // Descomente para ver o resultado do controlador.
+    // $monitor(
+    //   "Time = %g, CLK = %d, Ready = %d, Wen = %d",
+    //   $time, CLK, Ready, Wen
+    // );
+
+    // Reseta o estado do controlador.
+    CLK = 0;
+    RST = 1;
+    Start = 0;
+
+    #15
+    RST = 0;
+    Start = 1;
+
+    #25
+    Start = 0;
+
+    #25
+    $display ("Test result: PASSED."); 
+    $finish;
+  end
+
+  always begin
+    #5 CLK = ~CLK;
+    CheckControlOutput();
+  end
+endmodule
