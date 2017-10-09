@@ -140,7 +140,7 @@ module ControlTB ();
     Start = 0;
 
     #25
-    $display ("Test result: PASSED."); 
+    $display ("Test result: PASSED.");  
     $finish;
   end
 

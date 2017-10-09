@@ -30,3 +30,75 @@ Mux16bit2x1 muxOpImm(regB, { 12'h000, opB }, outMux, isImm);
 Control ctrl(CLK, RST, START, RDY, wen);
 
 endmodule
+
+module WrapperSimTB ();
+  reg[15:0] Instr;
+  reg CLK, RST, START;
+  wire RDY;
+
+  WrapperSim WrapperSim1 (
+    .Instr(Instr),
+    .CLK(CLK), 
+    .RST(RST), 
+    .RDY(RDY), 
+    .START(START)
+  );
+
+  // Esse teste faz a operação (A XOR B) OR (C AND D) com os valores:
+  // A (register ) = 0000000011011111.
+  // B (register ) = 0000000011101111.
+  // C (register ) = 0000111111111111.
+  // D (immediate) = 0000000000001111.
+  // A XOR B = 0000000000110000.
+  // C AND D = 0000000000001111.
+  // (A XOR B) OR (C AND D) = 0000000000111111.
+  initial begin
+    // Descomente para ver o banco de registradores.
+    // $monitor(
+    //   "Time = %g, CLK = %d, Instr = %b, Reg[0] = %b, Reg[1] = %b, Reg[2] = %b, Ready = %b",
+    //   $time, CLK, Instr,
+    //   WrapperSim1.regBank.RegBank[0],
+    //   WrapperSim1.regBank.RegBank[1],
+    //   WrapperSim1.regBank.RegBank[2],
+    //   RDY
+    // );
+
+    CLK = 0;
+    RST = 1;
+
+    // Inicia os registradores. 
+    #10
+    RST = 0;
+    WrapperSim1.regBank.RegBank[0] = 16'b0000000011011111;
+    WrapperSim1.regBank.RegBank[1] = 16'b0000000011101111;
+    WrapperSim1.regBank.RegBank[2] = 16'b0000111111111111;
+
+    // XOR(5) 0 0 1
+    #5
+    START = 1;
+    Instr = 16'b0101000000000001;
+
+    // ANDI(6) 1 15 2
+    #55
+    Instr = 16'b0110000111110010;
+
+    // OR(4) 0 0 1 
+    #55
+    Instr = 16'b0100000000000001;
+
+    #55
+    if (WrapperSim1.regBank.RegBank[0] != 16'b0000000000111111) begin
+      $display ("Error at time %d", $time); 
+      $display ("Expected result to have value %b, Got Value %b", 16'b0000000000111111, WrapperSim1.regBank.RegBank[0]); 
+      $display ("Test result: FAILED."); 
+      $finish;
+    end else begin
+      $display ("Test result: PASSED."); 
+      $finish;
+    end
+  end
+
+  always begin
+    #5 CLK = ~CLK;
+  end
+endmodule
