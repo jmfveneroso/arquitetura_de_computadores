@@ -16,3 +16,9 @@ $ git add -A
 $ git commit -m "mensagem de exemplo"
 $ git push origin master
 ```
+
+# Como compilar o Latex
+
+```
+$ pdflatex report.tex
+```
