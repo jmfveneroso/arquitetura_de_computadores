@@ -1,0 +1,159 @@
+\begin{thebibliography}{10}
+
+\bibitem{Gubbi20131645}
+Jayavardhana Gubbi, Rajkumar Buyya, Slaven Marusic, and Marimuthu Palaniswami.
+\newblock Internet of things {(IoT)}: A vision, architectural elements, and
+  future directions.
+\newblock {\em Future Generation Computer Systems}, 29(7):1645 -- 1660, 2013.
+
+\bibitem{1024422}
+I.~F. Akyildiz, Weilian Su, Y.~Sankarasubramaniam, and E.~Cayirci.
+\newblock A survey on sensor networks.
+\newblock {\em IEEE Communications Magazine}, 40(8):102--114, Aug 2002.
+
+\bibitem{1305-0982}
+Charith Perera, Arkady~B. Zaslavsky, Peter Christen, and Dimitrios
+  Georgakopoulos.
+\newblock Context aware computing for the internet of things: {A} survey.
+\newblock {\em CoRR}, abs/1305.0982, 2013.
+
+\bibitem{6729767}
+W.~Arellano and I.~Mahgoub.
+\newblock Trafficmodeler extensions: A case for rapid vanet simulation using,
+  omnet++, sumo, and veins.
+\newblock In {\em High Capacity Optical Networks and Enabling Technologies
+  (HONET-CNS), 2013 10th International Conference on}, pages 109--115, Dec
+  2013.
+
+\bibitem{6957186}
+Shichao Guan, R.E. De~Grande, and A.~Boukerche.
+\newblock Real-time 3d visualization for distributed simulations of vanets.
+\newblock In {\em Distributed Simulation and Real Time Applications (DS-RT),
+  2014 IEEE/ACM 18th International Symposium on}, pages 138--146, Oct 2014.
+
+\bibitem{6528502}
+T.G. Nimje and S.S. Dorle.
+\newblock A survey on various mobility models to improve realistic simulation
+  and accuracy of ivc protocols.
+\newblock In {\em Emerging Trends in Computing, Communication and
+  Nanotechnology (ICE-CCN), 2013 International Conference on}, pages 245--249,
+  March 2013.
+
+\bibitem{6466764}
+S.~Zemouri, S.~Mehar, and S.~Senouci.
+\newblock Hints: A novel approach for realistic simulations of vehicular
+  communications.
+\newblock In {\em Global Information Infrastructure and Networking Symposium
+  (GIIS), 2012}, pages 1--6, Dec 2012.
+
+\bibitem{eckhoff2015simulative}
+David Eckhoff and Christoph Sommer.
+\newblock Simulative performance evaluation of vehicular networks.
+\newblock {\em Vehicular Communications and Networks: Architectures, Protocols,
+  Operation and Deployment}, page 255, 2015.
+
+\bibitem{5343061}
+J.~Harri, F.~Filali, and C.~Bonnet.
+\newblock Mobility models for vehicular ad hoc networks: a survey and taxonomy.
+\newblock {\em Communications Surveys Tutorials, IEEE}, 11(4):19--41, Fourth
+  2009.
+
+\bibitem{5510240}
+C.~Sommer, R.~German, and F.~Dressler.
+\newblock Bidirectionally coupled network and road traffic simulation for
+  improved ivc analysis.
+\newblock {\em Mobile Computing, IEEE Transactions on}, 10(1):3--15, Jan 2011.
+
+\bibitem{Rondinone201399}
+Michele Rondinone, Julen Maneros, Daniel Krajzewicz, Ramon Bauza, Pasquale
+  Cataldi, Fatma Hrizi, Javier Gozalvez, Vineet Kumar, Matthias Röckl, Lan
+  Lin, Oscar Lazaro, Jérémie Leguay, Jérôme Härri, Sendoa Vaz, Yoann
+  Lopez, Miguel Sepulcre, Michelle Wetterwald, Robbin Blokpoel, and Fabio
+  Cartolano.
+\newblock itetris: A modular simulation platform for the large scale evaluation
+  of cooperative \{ITS\} applications.
+\newblock {\em Simulation Modelling Practice and Theory}, 34(0):99 -- 125,
+  2013.
+
+\bibitem{Schunemann20113189}
+Björn Schünemann.
+\newblock \{V2X\} simulation runtime infrastructure vsimrti: An assessment tool
+  to design smart traffic management systems.
+\newblock {\em Computer Networks}, 55(14):3189 -- 3198, 2011.
+\newblock Deploying vehicle-2-x communication.
+
+\bibitem{4689256}
+C.~Sommer and F.~Dressler.
+\newblock Progressing toward realistic mobility models in vanet simulations.
+\newblock {\em Communications Magazine, IEEE}, 46(11):132--137, November 2008.
+
+\bibitem{Marfia:2007:EVN:1247694.1247704}
+Gustavo Marfia, Giovanni Pau, Enzo De~Sena, Eugenio Giordano, and Mario Gerla.
+\newblock Evaluating vehicle network strategies for downtown portland:
+  Opportunistic infrastructure and the importance of realistic mobility models.
+\newblock In {\em Proceedings of the 1st International MobiSys Workshop on
+  Mobile Opportunistic Networking}, MobiOpp '07, pages 47--51, New York, NY,
+  USA, 2007. ACM.
+
+\bibitem{Mota20145}
+Vinícius~F.S. Mota, Felipe~D. Cunha, Daniel~F. Macedo, José~M.S. Nogueira,
+  and Antonio~A.F. Loureiro.
+\newblock Protocols, mobility models and tools in opportunistic networks: A
+  survey.
+\newblock {\em Computer Communications}, 48(0):5 -- 19, 2014.
+\newblock Opportunistic networks.
+
+\bibitem{4349669}
+C.~Sommer and F.~Dressler.
+\newblock The dymo routing protocol in vanet scenarios.
+\newblock In {\em Vehicular Technology Conference, 2007. VTC-2007 Fall. 2007
+  IEEE 66th}, pages 16--20, Sept 2007.
+
+\bibitem{Camp02asurvey}
+Tracy Camp, Jeff Boleng, and Vanessa Davies.
+\newblock A survey of mobility models for ad hoc network research.
+\newblock {\em Wireless Communications and Mobile Computing (WCMC)},
+  2:483--502, 2002.
+
+\bibitem{4127230}
+M.~Fiore, J.~Harri, F.~Filali, and C.~Bonnet.
+\newblock Vehicular mobility simulation for vanets.
+\newblock In {\em Simulation Symposium, 2007. ANSS '07. 40th Annual}, pages
+  301--309, March 2007.
+
+\bibitem{6094021}
+D.~Karamshuk, Chiara Boldrini, M.~Conti, and A.~Passarella.
+\newblock Human mobility models for opportunistic networks.
+\newblock {\em Communications Magazine, IEEE}, 49(12):157--165, December 2011.
+
+\bibitem{1354517}
+G.~Lin, G.~Noubir, and R.~Rajaraman.
+\newblock Mobility models for ad hoc network simulation.
+\newblock In {\em INFOCOM 2004. Twenty-third AnnualJoint Conference of the IEEE
+  Computer and Communications Societies}, volume~1, pages --463, March 2004.
+
+\bibitem{sommer2010improving}
+Christoph Sommer, David Eckhoff, and Falko Dressler.
+\newblock Improving the accuracy of ivc simulation using crowd-sourced geodata.
+\newblock {\em PIK-Praxis der Informationsverarbeitung und Kommunikation},
+  33(4):278--283, 2010.
+
+\bibitem{6134402}
+D.~Eckhoff, C.~Sommer, R.~German, and F.~Dressler.
+\newblock Cooperative awareness at low vehicle densities: How parked cars can
+  help see through buildings.
+\newblock In {\em Global Telecommunications Conference (GLOBECOM 2011), 2011
+  IEEE}, pages 1--6, Dec 2011.
+
+\bibitem{6117125}
+S.~Uppoor and M.~Fiore.
+\newblock Large-scale urban vehicular mobility for networking research.
+\newblock In {\em Vehicular Networking Conference (VNC), 2011 IEEE}, pages
+  62--69, Nov 2011.
+
+\bibitem{804564}
+A.~Varga.
+\newblock Using the omnet++ discrete event simulation system in education.
+\newblock {\em Education, IEEE Transactions on}, 42(4):11 pp.--, Nov 1999.
+
+\end{thebibliography}
