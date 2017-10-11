@@ -3,9 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\newcommand{\titulo}{\textit{Arquitetura de Computadores: Trabalho Prático 2 - ULA}}
+\newcommand{\titulo}{\textit{Relatório I - Unidade Lógica Aritmética}}
 
-\newcommand{\cabecalho}{\textit{Arquitetura de Computadores: Trabalho Prático 2 - ULA}}
+\newcommand{\cabecalho}{\textit{Relatório I}}
 
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
@@ -119,7 +119,7 @@
 \lhead{}
 \chead{}
 \rhead{\footnotesize{\textsc{\cabecalho}}}
-\lfoot{\footnotesize{Guilherme ..., Iuri Castro, João Mateus de Freitas Veneroso, Ricardo Pagoto Marinho}}
+\lfoot{\footnotesize{Guilherme Batista Santos, Iuri Silva Castro, João Mateus de Freitas Veneroso, Ricardo Pagoto Marinho}}
 \cfoot{}
 \rfoot{\footnotesize{\thepage}}
 \setlength{\headwidth}{\textwidth}
@@ -143,7 +143,7 @@ Departamento de Ciência da Computação\\
 \vspace{20mm}
 
 \begin{Large}
-DCC007-Organização de Computadores II
+DCC819 - Arquitetura de Computadores
 \end{Large}
 
 \vspace{20mm}
@@ -157,7 +157,7 @@ DCC007-Organização de Computadores II
 
 \begin{Large}
 \begin{center}
-Guilherme ...\\ Iuri Castro\\ João Mateus de Freitas Veneroso\\ Ricardo Pagoto Marinho \\
+Guilherme Batista Santos\\ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\\ Ricardo Pagoto Marinho \\
 \end{center}
 \end{Large}
 
@@ -176,12 +176,12 @@ Guilherme ...\\ Iuri Castro\\ João Mateus de Freitas Veneroso\\ Ricardo Pagoto 
 
 \section{Introdução}\label{sec:intro}
 
-O presente trabalho foca na descrição da implementação de uma Unidade Lógica e Aritmética (ULA) em Verilog, uma Linguagem de descrição de hardware, \textit{Hardware Description Language} - HDL - em inglês.
+O presente trabalho foca na descrição da implementação de uma Unidade Lógica e Aritmética (ULA) em Verilog HDL, uma Linguagem de descrição de hardware, \textit{Hardware Description Language} - HDL - em inglês.
 A ULA é um circuito digital responsável por realizar operações lógicas e aritméticas no caminho de dados de uma CPU.
-É a ULA que realiza operações como adição, subtração e \textit{and} e \textit{or} lógicos.
+É a ULA que realiza operações como adição, subtração e operações lógicas como \textit{and} e \textit{or}.
 Além disso, ela também é responsável por calcular o endereço de memória para escrita ou leitura quando as instruções requisitam.
-Para implementar a ALU, utilizamos a IDE \textit{Quartus v 13} junto com \textit{ModelSim} para simular uma FPGA e fazer os testes necessários.
-Os testes em dispositivo físico foi feito numa \textit{FPGA Cyclone II} da Altera.
+Para implementar a ALU, utilizamos a IDE \textit{Quartus II 13} junto com \textit{ModelSim} para simular uma FPGA e fazer os testes necessários.
+Os testes em dispositivo físico foi feito no módulo de prototipação DE2.
 
 \section{ULA}\label{sec:ula}
 
@@ -280,7 +280,7 @@ A saída \textit{Res} possui \textit{16 bits}, assim como as entradas \textit{Op
 \hline
 Índice & Sinal\\
 \hline
-0 & \textit{Carry/Overflow}\\
+0 & \textit{Overflow}\\
 \hline
 1 & Negativo \\
 \hline
@@ -308,11 +308,11 @@ module ULA (OpA, OpB, Res, Op, FlagReg, CLK, RST);
 	assign invOpB = ~OpB + 16'd1;
 
 	parameter InsADD = 4'b0000;	// ADD	Res = OpA + OpB
-	parameter InsSUB = 4'b0001;	//	SUB	Res = OpA - OpB
-	parameter InsSLT = 4'b0010;	//	SLTI	Res = (OpA > OpB) ? 1 : 0
-	parameter InsAND = 4'b0011;	//	AND 	Res = OpA & OpB
-	parameter InsOR =  4'b0100;	//	OR 	Res = OpA | OpB
-	parameter InsXOR = 4'b0101;	//	XOR 	Res = OpA ^ OpB
+	parameter InsSUB = 4'b0001;	// SUB	Res = OpA - OpB
+	parameter InsSLT = 4'b0010;	// SLTI	Res = (OpA > OpB) ? 1 : 0
+	parameter InsAND = 4'b0011;	// AND 	Res = OpA & OpB
+	parameter InsOR =  4'b0100;	// OR 	Res = OpA | OpB
+	parameter InsXOR = 4'b0101;	// XOR 	Res = OpA ^ OpB
 	
 	parameter OverflowFlag	= 0;
 	parameter NegFlag 		= 1;
