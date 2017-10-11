@@ -24,7 +24,7 @@
 %package to insert codes
 \usepackage{listings}
 \usepackage{mips}
-
+\usepackage{tabularx}
 %appendix
 \usepackage[titletoc,toc,page]{appendix}
 \renewcommand{\appendixtocname}{Apêndices}
@@ -219,6 +219,101 @@ Esse sinal controla um multiplexador para seleciona qual entrada irá passar par
 
 Já a saída de sinais~\textit{D}, são os sinais que a ALU indica, sendo eles se o resultado é zero, negativo e se houve~\textit{overflow} na operação.
 
+\section{Descrição}\label{sec:desc}
+
+\subsection{Código}\label{subsec:codigo}
+
+O problema atacado neste trabalho foi implementar uma ULA em \textit{Verilog} HDL.
+Para isso foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
+Para este trabalho, utilizamos apenas 16 registradores, ou seja, apenas 4 bits são necessários para fazer o endereçamento no banco de registradores.
+
+A ULA desenvolvida é capaz de realizar as operações descritas na Tabela~\ref{tab:ULA}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | l |}
+\hline
+Código & Instrução & Operação & Descrição\\
+\hline
+0 & ADD \$s4,\$s3,\$s2 & \$s4=\$s2+\$s3 & Adição entre registros\\
+\hline
+1 & SUB \$s4,\$s3,\$s2 & \$s4=\$s2-\$s3 & Subtração entre registros \\
+\hline
+2 & SLTI \$s4,imm,\$s2 & \$s2>imm?\$s4=1:\$s4=0 & Comparação entre registro e imediato \\
+\hline
+3 & AND \$s4,\$s3,\$s2 & \$s4=\$s2\&\$s3 & \textit{AND} lógico com dois registros\\
+\hline
+4 & OR \$s4,\$s3,\$s2 &  \$s4=\$s2|\$s3 & \textit{OR} lógico com dois registros\\
+\hline
+5 & XOR \$s4,\$s3,\$s2 &  \$s4=\$s2\^\$s3 & \textit{XOR} lógico com dois registros\\
+\hline
+6 & ANDI \$s4,imm,\$s2 & \$s4=\$s2\&imm & \textit{AND} lógico com um registro e um imediato\\
+\hline
+7 & ORI \$s4,imm,\$s2 & \$s4=\$s2|imm & \textit{OR} lógico com um registro e um imediato \\
+\hline
+8 & XORI \$s4,imm,\$s2 & \$s4=\$s2\^imm & \textit{XOR} lógico com um registro e um imediato \\
+\hline
+9 & ADDI \$s4,imm,\$s2 & \$s4=\$s2+imm & Adição entre registro e um imediato\\
+\hline
+10 & SUBI \$s4,imm,\$s2 & \$s4=\$s2+imm & Subtração entre registro e um imediato\\
+\hline
+\end{tabular}
+\caption{Descrição das operações requisitadas.}
+\label{tab:ULA}
+\end{table}
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+
+Ou seja, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
+Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
+Esses números devem possuir 4 bits de largura.
+
+Como saída, a ULA deve entregar o resultado da operação solicitada e um conjunto de sinais relativos ao resultado da operação.
+O resultado possui 16 bits para que seja armazenado em um registrador de destino e o conjunto de sinais são 3, como mostrado na Tabela~\ref{tab:flags}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c |}
+\hline
+Índice & Sinal\\
+\hline
+0 & \textit{Overflow}\\
+\hline
+1 & Negativo \\
+\hline
+2 & Zero\\
+\hline
+\end{tabular}
+\caption{Sinais de saída da ULA.}
+\label{tab:flags}
+\end{table}
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+
+\subsection{Prototipação}\label{subsec:prot}
+
+A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
+Cada \textit{switche} possui dois estados: \textit{cima} e \textit{baixo}.
+Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0.
+Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
+
+Quando o botão de nome \textit{KEY0} for apertado, os \textit{displays HEX7} e \textit{HEX6} mostram o valor no conjunto de \textit{switches} \textit{SW8} a \textit{SW11} (4 bits) e os \textit{displays HEX5} e \textit{HEX4} mostram o valor no conjunto de \textit{switches} \textit{SW4} a \textit{SW7} (4 bits).
+Desta forma, é possível visualizar os valores passados para a placa.
+
+Se apertarmos o botão \textit{KEY3}, os \textit{switches} serão interpretados como uma instrução completa, ou seja, com código da operação e operandos de entrada e saída, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo.
+Assim, cada instrução possui 16 bits, como especificado no documento.
+O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indicam a entrada \textit{A} e do \textit{sitch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
+Lembrando que a entrada \textit{B} pode ser um imediato.
+Já o conjunto de \textit{swtches SW8} a \textit{SW11} indicam a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto que do \textit{switch SW12} ao \textit{SW15} indica a operação a ser realizada, \textit{i.e.}, o código da operação.
+
+A Figura~\ref{fig:fpga} mostra a divisão na placa.
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{images/fpga.png}
+\caption{FPGA.}
+\label{fig:fpga}
+\end{figure}
+
+
 \section{Implementação}
 
 Esta seção fala da implementação da ULA em \textit{Verilog}.
@@ -236,59 +331,33 @@ Aqui, apenas o \textit{OpB} pode ser um imediato.
 Neste caso, o imediato possui apenas \textit{4 bits}, sendo necessário estender mais \textit{12 bits}.
 Mais a frente será mostrado como e onde essa operação é feita.
 A entrada \textit{Op} indica a operação a ser realizada e possui \textit{4 bits}, ou seja, a ALU implementada possui um máximo de 16 operações diferentes.
-Pela especificação, apenas 11 operações foram utilizadas como mostrado na Tabela~\ref{tab:ULA}.
 
-\begin{table}[h]
-\centering
-\begin{tabular}{| c | c | c |}
-\hline
-Código & Operação & Descrição\\
-\hline
-0 & Add & Adição com registradores \\
-\hline
-1 & Sub & Subtração com registradores \\
-\hline
-2 & Slti & Salto condicional com imediato \\
-\hline
-3 & And & \textit{And} binário \\
-\hline
-4 & Or & \textit{Or} binário  \\
-\hline
-5 & Xor & \textit{Xor} binário  \\
-\hline
-6 & Andi & \textit{And} binário com imediato \\
-\hline
-7 & Ori & \textit{Or} binário com imediato \\
-\hline
-8 & Xori & \textit{Xor} binário com imediato  \\
-\hline
-9 & Addi & Adição com imediato \\
-\hline
-10 & Subi & Subtração com imediato \\
-\hline
-\end{tabular}
-\caption{Descrição das operações implementadas.}
-\label{tab:ULA}
-\end{table}
-\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+A saída \textit{Res} possui \textit{16 bits}, assim como as entradas \textit{OpA} e \textit{OpB} já que é o resultado da operação e a saída \textit{FlagReg} possui \textit{3 bits}, um para cada sinal de saída.
 
-A saída \textit{Res} possui \textit{16 bits}, assim como as entradas \textit{OpA} e \textit{OpB} já que é o resultado da operação e a saída \textit{FlagReg} possui \textit{3 bits}, um para cada sinal de saída como mostra a Tabela~\ref{tab:flags}.
+Decidimos fazer uma ULA genérica, ou seja, não diferenciamos instruções para imediatos, deixando para outra unidade o trabalho de identificar se a instrução utilizada é com um imediato ou não.
+Assim, criou-se uma ULA com as operações mostradas na Tabela~\ref{tab:imp}.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{| c | c |}
 \hline
-Índice & Sinal\\
+Código  & Operação \\
 \hline
-0 & \textit{Overflow}\\
+0000 & Adição\\
 \hline
-1 & Negativo \\
+0001 & Subtração\\
 \hline
-2 & Zero\\
+0010 & Comparação\\
+\hline
+0011 & \textit{AND} lógico\\
+\hline
+0100 & \textit{OR} lógico\\
+\hline
+0101 & \textit{XOR} lógico\\
 \hline
 \end{tabular}
-\caption{Sinais de saída da ULA.}
-\label{tab:flags}
+\caption{Descrição das operações implementadas.}
+\label{tab:imp}
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
