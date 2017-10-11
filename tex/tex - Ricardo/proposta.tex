@@ -316,11 +316,12 @@ A Figura~\ref{fig:fpga} mostra a divisão na placa.
 
 \section{Implementação}
 
+\subsection{ULA}\label{subsec:imp-ula}
 Esta seção fala da implementação da ULA em \textit{Verilog}.
-Nela, mostramos como cada parte da ULA foi implementada além de decisões de projeto tomadas.
+Nela, mostramos como a ULA foi implementada além de decisões de projeto tomadas.
 
 O módulo desenvolvido possui 5 entradas e duas saídas: \textit{OpA}, \textit{OpB}, \textit{Op}, \textit{RST}, \textit{CLK}, \textit{Res} e \textit{FlagReg} respectivamente.
-O Apêndice~\ref{app:ULA} mostra o código.
+%O Apêndice~\ref{app:ULA} mostra o código.
 
 As entradas \textit{OpA} e \textit{OpB} representam as entradas \textit{A} e \textit{B} da Figura~\ref{fig:ula}.
 A entrada \textit{Op} indica qual operação a ALU vai fazer (Add, Sub, etc.) e faz parte da entrada \textit{F} na Figura~\ref{fig:ula}.
@@ -331,6 +332,9 @@ Aqui, apenas o \textit{OpB} pode ser um imediato.
 Neste caso, o imediato possui apenas \textit{4 bits}, sendo necessário estender mais \textit{12 bits}.
 Mais a frente será mostrado como e onde essa operação é feita.
 A entrada \textit{Op} indica a operação a ser realizada e possui \textit{4 bits}, ou seja, a ALU implementada possui um máximo de 16 operações diferentes.
+
+As entradas \textit{RST} e \textit{CLK} possuem a função de reiniciar os valores de entrada, caso necessário, e dar o \textit{clock} da máquina respectivamente.
+Assim, a cada subida de \textit{clock}, uma operação é realizada.
 
 A saída \textit{Res} possui \textit{16 bits}, assim como as entradas \textit{OpA} e \textit{OpB} já que é o resultado da operação e a saída \textit{FlagReg} possui \textit{3 bits}, um para cada sinal de saída.
 
@@ -361,120 +365,142 @@ Código  & Operação \\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-\begin{appendices}
-	\chapter{Módulo ULA}
-	\label{app:ULA}
-	\begin{lstlisting}[style={verilog-style}]
-module ULA (OpA, OpB, Res, Op, FlagReg, CLK, RST);
+\subsection{Banco de registradores}\label{subsec:imp-br}
 
-	input CLK, RST;
-	input [3:0] Op;
-	input [15:0] OpA, OpB;
-	output reg [15:0] Res;
-	output reg [2:0] FlagReg;		// [Z N C]: Z=Zero; N=Neg; C=Carry/Overflow
-	
-	wire [15:0] invOpB;
-	assign invOpB = ~OpB + 16'd1;
+Para carregar e armazenar valores dos registradores, um banco de registrador foi necessário.
+O banco de registradores implementado consiste em 16 registradores de 16 bits cada.
+No início das simulações e dos testes, o banco inteiro foi iniciado com o valor 0, ou seja, todos os registradores, inicialmente, possuem o valor 0.
 
-	parameter InsADD = 4'b0000;	// ADD	Res = OpA + OpB
-	parameter InsSUB = 4'b0001;	// SUB	Res = OpA - OpB
-	parameter InsSLT = 4'b0010;	// SLTI	Res = (OpA > OpB) ? 1 : 0
-	parameter InsAND = 4'b0011;	// AND 	Res = OpA & OpB
-	parameter InsOR =  4'b0100;	// OR 	Res = OpA | OpB
-	parameter InsXOR = 4'b0101;	// XOR 	Res = OpA ^ OpB
-	
-	parameter OverflowFlag	= 0;
-	parameter NegFlag 		= 1;
-	parameter ZeroFlag		= 2;
-	
-	always @(posedge CLK) begin
-	 if (RST) begin
-	  FlagReg = 3'b000;
-	 end
-	 else begin
-	  case (Op)
-	   InsADD: begin			
-	    Res = OpA + OpB;
-					
-	    /* Zero check */
-	    if (Res == 0)
-		 FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	   InsSUB: begin			
-	    Res = OpA + invOpB;
-	    /* Zero check */
-	    if (Res == 0)
-	     FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & invOpB[15] & ~Res[15]) | (~OpA[15] & ~invOpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	   InsSLT: begin
-	    if (OpA > OpB)
-	     Res = 16'd1;
-	    else
-	     Res = 16'd0;
-	    /* Zero check */
-	    if (Res == 0)
-	     FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	   InsAND: begin			
-	    Res = OpA & OpB;
-	    /* Zero check */
-	    if (Res == 0)
-	     FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	   InsOR: begin			
-	    Res = OpA | OpB;
-	    /* Zero check */
-	    if (Res == 0)
-	     FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	   InsXOR: begin			
-	    Res = OpA ^ OpB;
-	    /* Zero check */
-	    if (Res == 0)
-	     FlagReg[ZeroFlag] = 1'b1;
-	    else
-	     FlagReg[ZeroFlag] = 1'b0;
-	    /* Overflow check */
-	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
-	    /* Negative check */
-	    FlagReg[NegFlag] = Res[15];
-	   end
-	  endcase
-	 end
-	end
-endmodule
-	\end{lstlisting}
-\end{appendices}
+O módulo do banco possui como entrada os endereços de dois registradores de entrada, \textit{AddrRegA} e \textit{AddrRegB}, o endereço de um registrador para escrita, \textit{AddrWriteReg}, o dado de escrita, \textit{data}, e três sinais:
+
+\begin{itemize}
+\item WEN -> \textit{Write Enable}
+\item RST -> \textit{Reset}
+\item CLK -> \textit{Clock} 
+\end{itemize}
+
+O primeiro sinal, WEN, indica se o banco será lido ou escrito.
+Ele será escrito, caso WEN=1 e lido caso WEN=0.
+Se quisermos escrever no banco, então o endereço do registrador para escrita é utilizado e o dado é escrito naquele registrador.
+Se quisermos ler do banco, então utilizamos as duas saídas do banco de registradores, que são os valores que serão utilizados como entrada da ULA.
+A saída \textit{RegA} se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
+Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato será discutida mais a frente.
+
+
+%\begin{appendices}
+%	\chapter{Módulo ULA}
+%	\label{app:ULA}
+%	\begin{lstlisting}[style={verilog-style}]
+%module ULA (OpA, OpB, Res, Op, FlagReg, CLK, RST);
+%
+%	input CLK, RST;
+%	input [3:0] Op;
+%	input [15:0] OpA, OpB;
+%	output reg [15:0] Res;
+%	output reg [2:0] FlagReg;		// [Z N C]: Z=Zero; N=Neg; C=Carry/Overflow
+%	
+%	wire [15:0] invOpB;
+%	assign invOpB = ~OpB + 16'd1;
+%
+%	parameter InsADD = 4'b0000;	// ADD	Res = OpA + OpB
+%	parameter InsSUB = 4'b0001;	// SUB	Res = OpA - OpB
+%	parameter InsSLT = 4'b0010;	// SLTI	Res = (OpA > OpB) ? 1 : 0
+%	parameter InsAND = 4'b0011;	// AND 	Res = OpA & OpB
+%	parameter InsOR =  4'b0100;	// OR 	Res = OpA | OpB
+%	parameter InsXOR = 4'b0101;	// XOR 	Res = OpA ^ OpB
+%	
+%	parameter OverflowFlag	= 0;
+%	parameter NegFlag 		= 1;
+%	parameter ZeroFlag		= 2;
+%	
+%	always @(posedge CLK) begin
+%	 if (RST) begin
+%	  FlagReg = 3'b000;
+%	 end
+%	 else begin
+%	  case (Op)
+%	   InsADD: begin			
+%	    Res = OpA + OpB;
+%					
+%	    /* Zero check */
+%	    if (Res == 0)
+%		 FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	   InsSUB: begin			
+%	    Res = OpA + invOpB;
+%	    /* Zero check */
+%	    if (Res == 0)
+%	     FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & invOpB[15] & ~Res[15]) | (~OpA[15] & ~invOpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	   InsSLT: begin
+%	    if (OpA > OpB)
+%	     Res = 16'd1;
+%	    else
+%	     Res = 16'd0;
+%	    /* Zero check */
+%	    if (Res == 0)
+%	     FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	   InsAND: begin			
+%	    Res = OpA & OpB;
+%	    /* Zero check */
+%	    if (Res == 0)
+%	     FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	   InsOR: begin			
+%	    Res = OpA | OpB;
+%	    /* Zero check */
+%	    if (Res == 0)
+%	     FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	   InsXOR: begin			
+%	    Res = OpA ^ OpB;
+%	    /* Zero check */
+%	    if (Res == 0)
+%	     FlagReg[ZeroFlag] = 1'b1;
+%	    else
+%	     FlagReg[ZeroFlag] = 1'b0;
+%	    /* Overflow check */
+%	    FlagReg[OverflowFlag] = (OpA[15] & OpB[15] & ~Res[15]) | (~OpA[15] & ~OpB[15] & Res[15]);
+%	    /* Negative check */
+%	    FlagReg[NegFlag] = Res[15];
+%	   end
+%	  endcase
+%	 end
+%	end
+%endmodule
+%	\end{lstlisting}
+%\end{appendices}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Para mudar o nome da seo de referncias
