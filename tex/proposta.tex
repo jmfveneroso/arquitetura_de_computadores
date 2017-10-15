@@ -181,7 +181,7 @@ A ULA é um circuito digital responsável por realizar operações lógicas e ar
 É a ULA que realiza operações como adição, subtração e operações lógicas como \textit{and} e \textit{or}.
 Além disso, ela também é responsável por calcular o endereço de memória para escrita ou leitura quando as instruções requisitam.
 Para implementar a ALU, utilizamos a IDE \textit{Quartus II 13} junto com \textit{ModelSim} para simular uma FPGA e fazer os testes necessários.
-Os testes em dispositivo físico foi feito no módulo de prototipação DE2.
+Os testes em dispositivo físico foram feitos no módulo de prototipação DE2.
 
 \section{ULA}\label{sec:ula}
 
@@ -215,7 +215,7 @@ R3=R4-R5
 
 A entrada de sinais~\textit{F} é a entrada de controles da ALU.
 Dentre esses sinais de controle está o que sinaliza se o valor na entrada de dados~\textit{B} é o valor vindo de um registrador ou um imediato.
-Esse sinal controla um multiplexador para seleciona qual entrada irá passar para a ALU, a entrada vinda do banco de registradores ou a entrada vinda direto da instrução no caso de um imediato.
+Esse sinal controla um multiplexador para selecionar qual entrada irá passar para a ALU, a entrada vinda do banco de registradores ou a entrada vinda direto da instrução no caso de um imediato.
 
 Já a saída de sinais~\textit{D}, são os sinais que a ALU indica, sendo eles se o resultado é zero, negativo e se houve~\textit{overflow} na operação.
 
@@ -291,7 +291,7 @@ O resultado possui 16 bits para que seja armazenado em um registrador de destino
 \subsection{Prototipação}\label{subsec:prot}
 
 A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
-Cada \textit{switche} possui dois estados: \textit{cima} e \textit{baixo}.
+Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
 Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0.
 Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
 
@@ -300,9 +300,9 @@ Desta forma, é possível visualizar os valores passados para a placa.
 
 Se apertarmos o botão \textit{KEY3}, os \textit{switches} serão interpretados como uma instrução completa, ou seja, com código da operação e operandos de entrada e saída, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo.
 Assim, cada instrução possui 16 bits, como especificado no documento.
-O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indicam a entrada \textit{A} e do \textit{sitch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
+O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica a entrada \textit{A} e do \textit{switch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
 Lembrando que a entrada \textit{B} pode ser um imediato.
-Já o conjunto de \textit{swtches SW8} a \textit{SW11} indicam a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto que do \textit{switch SW12} ao \textit{SW15} indica a operação a ser realizada, \textit{i.e.}, o código da operação.
+Já o conjunto de \textit{switches SW8} a \textit{SW11} indica a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto os \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, \textit{i.e.}, o código da operação.
 
 A Figura~\ref{fig:fpga} mostra a divisão na placa.
 
@@ -367,9 +367,9 @@ Código  & Operação \\
 
 \subsection{Banco de registradores}\label{subsec:imp-br}
 
-Para carregar e armazenar valores dos registradores, um banco de registrador foi necessário.
+Para carregar e armazenar valores dos registradores, um banco de registradores foi necessário.
 O banco de registradores implementado consiste em 16 registradores de 16 bits cada.
-No início das simulações e dos testes, o banco inteiro foi iniciado com o valor 0, ou seja, todos os registradores, inicialmente, possuem o valor 0.
+No início das simulações e dos testes, o banco inteiro foi inicializado com o valor 0, ou seja, todos os registradores, inicialmente, possuem o valor 0.
 
 O módulo do banco possui como entrada os endereços de dois registradores de entrada, \textit{AddrRegA} e \textit{AddrRegB}, o endereço de um registrador para escrita, \textit{AddrWriteReg}, o dado de escrita, \textit{data}, e três sinais:
 
@@ -386,6 +386,45 @@ Se quisermos ler do banco, então utilizamos as duas saídas do banco de registr
 A saída \textit{RegA} se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
 Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato será discutida mais a frente.
 
+\section{Experimentos}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Instrução & Operando A & Operando B & Resultado & O & N & Z \\
+\hline
+ADD & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
+ADD & 0100 0000 0000 0000 & 0100 0000 0000 0000 & 1000 0000 0000 0000 & 1 & 1 & 0 \\
+ADD & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
+ADD & 0010 0000 0000 0000 & 1100 0000 0000 0000 & 1110 0000 0000 0000 & 0 & 1 & 0 \\
+SUB & 0100 0000 0000 0000 & 0011 1111 1111 1111 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
+SUB & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
+SLT & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
+SLT & 0000 0000 0000 0000 & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
+AND & 0111 1111 1111 1111 & 0011 1111 1111 1111 & 0011 1111 1111 1111 & 0 & 0 & 0 \\
+OR  & 0000 0000 1111 1111 & 1111 1111 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
+XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
+\hline
+
+\end{tabular}
+\caption{Experimentos.}
+\label{tab:experiments}
+\end{table}
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+
+Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética
+implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma 
+vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação 
+númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos 
+registradores enderaçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 
+bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos 
+de instruções: ADD, SUB, SLT, AND, OR e XOR. 
+
+A tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da 
+ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, 
+\textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} 
+implementado no arquivo "\textit{ULA.v}".
 
 %\begin{appendices}
 %	\chapter{Módulo ULA}
@@ -528,6 +567,7 @@ Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a sa
 
 %\includegraphics{Figuras/RecSys12}
 
+\nocite{*}
 
 
 \end{document}

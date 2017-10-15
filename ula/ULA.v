@@ -182,18 +182,18 @@ module ULATB ();
     ExpectedFlags <= #15 2'd0;
 
     ExpectedValue <= #25 32768;
-    ExpectedFlags <= #25 3'b011; // Deveria ser 010.
+    ExpectedFlags <= #25 3'b011;
 
     ExpectedValue <= #35 0;
     ExpectedFlags <= #35 3'b100;
 
-    ExpectedValue <= #45 16'b1110000000000000; // deveria ser 16'b1010000000000000.
+    ExpectedValue <= #45 16'b1110000000000000;
     ExpectedFlags <= #45 3'b010;
 
     ExpectedValue <= #55 1;
     ExpectedFlags <= #55 3'b000;
 
-    ExpectedValue <= #65 16'b1111111111111111; // Deveria ser 16'b1000000000000001.
+    ExpectedValue <= #65 16'b1111111111111111;
     ExpectedFlags <= #65 3'b010;
 
     ExpectedValue <= #75 16'd1;
