@@ -176,58 +176,24 @@ Guilherme Batista Santos\\ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\
 
 \section{Introdução}\label{sec:intro}
 
-O presente trabalho foca na descrição da implementação de uma Unidade Lógica e Aritmética (ULA) em Verilog HDL, uma Linguagem de descrição de hardware, \textit{Hardware Description Language} - HDL - em inglês.
-A ULA é um circuito digital responsável por realizar operações lógicas e aritméticas no caminho de dados de uma CPU.
-É a ULA que realiza operações como adição, subtração e operações lógicas como \textit{and} e \textit{or}.
-Além disso, ela também é responsável por calcular o endereço de memória para escrita ou leitura quando as instruções requisitam.
-Para implementar a ALU, utilizamos a IDE \textit{Quartus II 13} junto com \textit{ModelSim} para simular uma FPGA e fazer os testes necessários.
-Os testes em dispositivo físico foram feitos no módulo de prototipação DE2.
-
-\section{ULA}\label{sec:ula}
-
-A Figura~\ref{fig:ula} mostra o desenho esquemático de uma ULA.
-
+A Unidade Lógica Aritmética, ou \textit{ULA}, é um circuito digital responsável por realizar operações lógicas e aritméticas no microprocessador, como por exemplo, executando operações de adição, subtração, deslocamentos lógicos, operações lógicas \textit{and} e \textit{or}. A Figura~\ref{fig:ula} abaixo mostra a forma geral de uma ULA.
 
 \begin{figure}[h]
 \centering
-\includegraphics[]{images/ULA.png}
-\caption{Desenho esquemático de uma ULA.}
+\includegraphics[]{images/ALU_symbol.png}
+\caption{Unidade Lógica Aritmética.}
 \label{fig:ula}
 \end{figure}
 
-Nela, é possível ver que a ULA possui duas entradas e uma saída de dados,~\textit{A}, \textit{B} e~\textit{R} respectivamente, além de uma entrada e uma saída de sinais de controle,~\textit{F} e~\textit{D}.
-As entradas \textit{A} e~\textit{B} são os valores que a ULA recebe para fazer os cálculos necessários.
-Esses valores podem vir de registradores ou podem ser imediatos: números absolutos, como nas instruções a seguir:
+A unidade possui duas entradas e uma saída de dados,~\textit{A}, \textit{B} e~\textit{R} respectivamente, além de entradas e saídas de sinais de controle,~\textit{F} e~\textit{D}. As entradas \textit{A} e~\textit{B} são conhecidas como \textit{operandos}, valores em que a unidade executará a operação designada. O resultado da operação será dado em \textit{R}. Os sinais entrada de controle \textit{F} indicam a unidade, por exemplo, qual operação deverá ser feita, e os sinais de saída \textit{D} são utilizados, por exemplo, para indicar o estado do resultado da operação como indicação de valor zero, negativo ou se houve~\textit{overflow} na operação.
 
-\begin{lstlisting}
-Addi R1,R2,10
-Sub R3,R4,R5
-\end{lstlisting}
+Propõe-se, para esse trabalho, implementar uma Unidade Lógica Aritmética capaz de realizar operações específicas. Será utilizada a linguagem de descrição de hardware \textit{Verilog HDL} e a plataforma \textit{Quartus II} para a implementação. O simulador \textit{ModelSim} será utilizado para auxiliar na verificação e testes da implementação. Testes físicos serão feitos no módulo de prototipação Altera DE2.
 
-A instrução 1 soma o valor imediato 10 ao valor armazenado no registrador \textit{R2} e armazena no registrador \textit{R1}.
-No caso dessa instrução, a entrada~\textit{A} na Figura~\ref{fig:ula} recebe o valor do registrador~\textit{R2}, a entrada~\textit{B} o valor do imediato (10) e a saída~\textit{R} terá o valor da soma, sendo que este valor será armazenado no registrador~\textit{R1}.
-Já a instrução 2 subtrai o valor armazenado no registrador~\textit{R5} do valor armazenado em~\textit{R4} e armazena em~\textit{R3}, fazendo a operação
-
-\begin{equation}
-\label{eq1:sub-ula}
-R3=R4-R5
-\end{equation}
-
-A entrada de sinais~\textit{F} é a entrada de controles da ALU.
-Dentre esses sinais de controle está o que sinaliza se o valor na entrada de dados~\textit{B} é o valor vindo de um registrador ou um imediato.
-Esse sinal controla um multiplexador para selecionar qual entrada irá passar para a ALU, a entrada vinda do banco de registradores ou a entrada vinda direto da instrução no caso de um imediato.
-
-Já a saída de sinais~\textit{D}, são os sinais que a ALU indica, sendo eles se o resultado é zero, negativo e se houve~\textit{overflow} na operação.
+Futuramente, a ULA descrita neste trabalho será integrada como parte de um microprocessador.
 
 \section{Descrição}\label{sec:desc}
 
-\subsection{Código}\label{subsec:codigo}
-
-O problema atacado neste trabalho foi implementar uma ULA em \textit{Verilog} HDL.
-Para isso foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
-Para este trabalho, utilizamos apenas 16 registradores, ou seja, apenas 4 bits são necessários para fazer o endereçamento no banco de registradores.
-
-A ULA desenvolvida é capaz de realizar as operações descritas na Tabela~\ref{tab:ULA}.
+Deseja-se que o microprocessador seja capaz de executar as instruções conforme a tabela ~\ref{tab:ULA}. As instruções são de 16-bits e trabalham com registradores de 16-bits e imediatos absolutos de 4-bits. São definidas como um código de operação de 4-bits, código do registrador de destino \$s4 de 4-bits, código do registrador \$s3 ou o imediato absoluto de 4-bits e o código do registrador operando \$s2 de 4-bits.
 
 \begin{table}[h]
 \centering
@@ -235,40 +201,39 @@ A ULA desenvolvida é capaz de realizar as operações descritas na Tabela~\ref{
 \hline
 Código & Instrução & Operação & Descrição\\
 \hline
-0 & ADD \$s4,\$s3,\$s2 & \$s4=\$s2+\$s3 & Adição entre registros\\
+0 & ADD \$s4,\$s3,\$s2 & \$s4 = \$s2 + \$s3 & Adição entre registros\\
 \hline
-1 & SUB \$s4,\$s3,\$s2 & \$s4=\$s2-\$s3 & Subtração entre registros \\
+1 & SUB \$s4,\$s3,\$s2 & \$s4 = \$s3 - \$s2 & Subtração entre registros \\
 \hline
-2 & SLTI \$s4,imm,\$s2 & \$s2>imm?\$s4=1:\$s4=0 & Comparação entre registro e imediato \\
+2 & SLTI \$s4,imm,\$s2 & \$s2 > imm ? \$s4 = 1 : \$s4 = 0 & Comparação entre registro e imediato \\
 \hline
-3 & AND \$s4,\$s3,\$s2 & \$s4=\$s2\&\$s3 & \textit{AND} lógico com dois registros\\
+3 & AND \$s4,\$s3,\$s2 & \$s4 = \$s2 and \$s3 & \textit{AND} lógico com dois registros\\
 \hline
-4 & OR \$s4,\$s3,\$s2 &  \$s4=\$s2|\$s3 & \textit{OR} lógico com dois registros\\
+4 & OR \$s4,\$s3,\$s2 &  \$s4 = \$s2 or \$s3 & \textit{OR} lógico com dois registros\\
 \hline
-5 & XOR \$s4,\$s3,\$s2 &  \$s4=\$s2\^\$s3 & \textit{XOR} lógico com dois registros\\
+5 & XOR \$s4,\$s3,\$s2 &  \$s4 = \$s2 xor \$s3 & \textit{XOR} lógico com dois registros\\
 \hline
-6 & ANDI \$s4,imm,\$s2 & \$s4=\$s2\&imm & \textit{AND} lógico com um registro e um imediato\\
+6 & ANDI \$s4,imm,\$s2 & \$s4 = \$s2 and imm & \textit{AND} lógico com um registro e um imediato\\
 \hline
-7 & ORI \$s4,imm,\$s2 & \$s4=\$s2|imm & \textit{OR} lógico com um registro e um imediato \\
+7 & ORI \$s4,imm,\$s2 & \$s4 = \$s2 or imm & \textit{OR} lógico com um registro e um imediato \\
 \hline
-8 & XORI \$s4,imm,\$s2 & \$s4=\$s2\^imm & \textit{XOR} lógico com um registro e um imediato \\
+8 & XORI \$s4,imm,\$s2 & \$s4 = \$s2 xor imm & \textit{XOR} lógico com um registro e um imediato \\
 \hline
-9 & ADDI \$s4,imm,\$s2 & \$s4=\$s2+imm & Adição entre registro e um imediato\\
+9 & ADDI \$s4,imm,\$s2 & \$s4 = \$s2 + imm & Adição entre registro e um imediato\\
 \hline
-10 & SUBI \$s4,imm,\$s2 & \$s4=\$s2+imm & Subtração entre registro e um imediato\\
+10 & SUBI \$s4,imm,\$s2 & \$s4 = \$s2 - imm & Subtração entre registro e um imediato\\
 \hline
 \end{tabular}
-\caption{Descrição das operações requisitadas.}
+\caption{Descrição das instruções requisitadas.}
 \label{tab:ULA}
 \end{table}
-\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}
 
-Ou seja, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
-Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
-Esses números devem possuir 4 bits de largura.
+Observa-se que há instruções que trabalham com operandos registro-registro e operandos registro-imediato. Tais operações não são distinguidas pela ULA, indicando apenas se um dos operandos virá do banco de registradores ou da própria instrução. A unidade precisa ser capaz de apenas executar as operações de adição, subtração, comparação, E, OU e OU-EXCLUSIVO, deixando a parte de decisão de operandos para a unidade de decodificação.
 
-Como saída, a ULA deve entregar o resultado da operação solicitada e um conjunto de sinais relativos ao resultado da operação.
-O resultado possui 16 bits para que seja armazenado em um registrador de destino e o conjunto de sinais são 3, como mostrado na Tabela~\ref{tab:flags}.
+Observa-se também que para a instrução de subtração, em que a posição dos operandos altera o resultado, a subtração entre registros e a subtração entre registro-imediato, tem a forma \$s4 = \$s3 - \$s2 e \$s4 = \$s2 - imm. Para tornar a ULA genérica e diminuir a complexidade, optou-se pela modificação da instrução de subtração entre registros, ficando da forma \$s4 = \$s2 - \$s3.
+
+Sinais de indicação de características do resultado da operação são desejáveis, assim opta-se por um registro de indicadores de \textit{zero}, \textit{negativo} e \textit{overflow}, conforme a tabela \ref{tab:flags} abaixo, sendo esse registro atualizado a cada operação da unidade.
 
 \begin{table}[h]
 \centering
@@ -288,31 +253,7 @@ O resultado possui 16 bits para que seja armazenado em um registrador de destino
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-\subsection{Prototipação}\label{subsec:prot}
-
-A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
-Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
-Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0.
-Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
-
-Quando o botão de nome \textit{KEY0} for apertado, os \textit{displays HEX7} e \textit{HEX6} mostram o valor no conjunto de \textit{switches} \textit{SW8} a \textit{SW11} (4 bits) e os \textit{displays HEX5} e \textit{HEX4} mostram o valor no conjunto de \textit{switches} \textit{SW4} a \textit{SW7} (4 bits).
-Desta forma, é possível visualizar os valores passados para a placa.
-
-Se apertarmos o botão \textit{KEY3}, os \textit{switches} serão interpretados como uma instrução completa, ou seja, com código da operação e operandos de entrada e saída, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo.
-Assim, cada instrução possui 16 bits, como especificado no documento.
-O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica a entrada \textit{A} e do \textit{switch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
-Lembrando que a entrada \textit{B} pode ser um imediato.
-Já o conjunto de \textit{switches SW8} a \textit{SW11} indica a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto os \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, \textit{i.e.}, o código da operação.
-
-A Figura~\ref{fig:fpga} mostra a divisão na placa.
-
-\begin{figure}[h]
-\centering
-\includegraphics[]{images/fpga.png}
-\caption{FPGA.}
-\label{fig:fpga}
-\end{figure}
-
+Definido as instruções, parte-se para a implementação.
 
 \section{Implementação}
 
@@ -385,6 +326,47 @@ Se quisermos escrever no banco, então o endereço do registrador para escrita �
 Se quisermos ler do banco, então utilizamos as duas saídas do banco de registradores, que são os valores que serão utilizados como entrada da ULA.
 A saída \textit{RegA} se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
 Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato será discutida mais a frente.
+
+
+\subsection{Código}\label{subsec:codigo}
+
+Para isso foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
+Para este trabalho, utilizamos apenas 16 registradores, ou seja, apenas 4 bits são necessários para fazer o endereçamento no banco de registradores.
+
+
+Ou seja, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
+Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
+Esses números devem possuir 4 bits de largura.
+
+
+
+\subsection{Prototipação}\label{subsec:prot}
+
+A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
+Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
+Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0.
+Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
+
+Quando o botão de nome \textit{KEY0} for apertado, os \textit{displays HEX7} e \textit{HEX6} mostram o valor no conjunto de \textit{switches} \textit{SW8} a \textit{SW11} (4 bits) e os \textit{displays HEX5} e \textit{HEX4} mostram o valor no conjunto de \textit{switches} \textit{SW4} a \textit{SW7} (4 bits).
+Desta forma, é possível visualizar os valores passados para a placa.
+
+Se apertarmos o botão \textit{KEY3}, os \textit{switches} serão interpretados como uma instrução completa, ou seja, com código da operação e operandos de entrada e saída, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo.
+Assim, cada instrução possui 16 bits, como especificado no documento.
+O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica a entrada \textit{A} e do \textit{switch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
+Lembrando que a entrada \textit{B} pode ser um imediato.
+Já o conjunto de \textit{switches SW8} a \textit{SW11} indica a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto os \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, \textit{i.e.}, o código da operação.
+
+A Figura~\ref{fig:fpga} mostra a divisão na placa.
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{images/FPGA.png}
+\caption{Módulo Altera DE2.}
+\label{fig:fpga}
+\end{figure}
+
+
+
 
 \section{Experimentos}
 
