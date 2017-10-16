@@ -25,6 +25,7 @@
 \usepackage{listings}
 \usepackage{mips}
 \usepackage{tabularx}
+\usepackage{makecell}
 %appendix
 \usepackage[titletoc,toc,page]{appendix}
 \renewcommand{\appendixtocname}{Apêndices}
@@ -193,7 +194,7 @@ Futuramente, a ULA descrita neste trabalho será integrada como parte de um micr
 
 \section{Descrição}\label{sec:desc}
 
-Deseja-se que o microprocessador seja capaz de executar as instruções conforme a tabela ~\ref{tab:ULA}. As instruções são de 16-bits e trabalham com registradores de 16-bits e imediatos absolutos de 4-bits. São definidas como um código de operação de 4-bits, código do registrador de destino \$s4 de 4-bits, código do registrador \$s3 ou o imediato absoluto de 4-bits e o código do registrador operando \$s2 de 4-bits.
+Deseja-se que o microprocessador seja capaz de executar as instruções conforme a tabela ~\ref{tab:ULA}. As instruções são de 16-bits e trabalham com registradores de 16-bits e imediatos absolutos de 4-bits. Cada instrução possui um código de operação de 4-bits, código do registrador de destino \$s4 de 4-bits, código do registrador \$s3 ou o imediato absoluto de 4-bits e o código do registrador operando \$s2 de 4-bits.
 
 \begin{table}[h]
 \centering
@@ -201,27 +202,27 @@ Deseja-se que o microprocessador seja capaz de executar as instruções conforme
 \hline
 Código & Instrução & Operação & Descrição\\
 \hline
-0 & ADD \$s4,\$s3,\$s2 & \$s4 = \$s2 + \$s3 & Adição entre registros\\
+0 & ADD \$s4,\$s3,\$s2 & \$s4 = \$s2 + \$s3 & \makecell{Adição entre \\ registros}\\
 \hline
-1 & SUB \$s4,\$s3,\$s2 & \$s4 = \$s3 - \$s2 & Subtração entre registros \\
+1 & SUB \$s4,\$s3,\$s2 & \$s4 = \$s3 - \$s2 & \makecell{Subtração entre \\ registros} \\
 \hline
-2 & SLTI \$s4,imm,\$s2 & \$s2 > imm ? \$s4 = 1 : \$s4 = 0 & Comparação entre registro e imediato \\
+2 & SLTI \$s4,imm,\$s2 & \$s2 > imm ? \$s4 = 1 : \$s4 = 0 & \makecell{Comparação entre \\ registro e imediato }\\
 \hline
-3 & AND \$s4,\$s3,\$s2 & \$s4 = \$s2 and \$s3 & \textit{AND} lógico com dois registros\\
+3 & AND \$s4,\$s3,\$s2 & \$s4 = \$s2 and \$s3 & \makecell{\textit{AND} lógico \\ com dois registros}\\
 \hline
-4 & OR \$s4,\$s3,\$s2 &  \$s4 = \$s2 or \$s3 & \textit{OR} lógico com dois registros\\
+4 & OR \$s4,\$s3,\$s2 &  \$s4 = \$s2 or \$s3 & \makecell{\textit{OR} lógico \\ com dois registros}\\
 \hline
-5 & XOR \$s4,\$s3,\$s2 &  \$s4 = \$s2 xor \$s3 & \textit{XOR} lógico com dois registros\\
+5 & XOR \$s4,\$s3,\$s2 &  \$s4 = \$s2 xor \$s3 & \makecell{\textit{XOR} lógico \\ com dois registros}\\
 \hline
-6 & ANDI \$s4,imm,\$s2 & \$s4 = \$s2 and imm & \textit{AND} lógico com um registro e um imediato\\
+6 & ANDI \$s4,imm,\$s2 & \$s4 = \$s2 and imm & \makecell{\textit{AND} lógico com \\ um registro e um imediato}\\
 \hline
-7 & ORI \$s4,imm,\$s2 & \$s4 = \$s2 or imm & \textit{OR} lógico com um registro e um imediato \\
+7 & ORI \$s4,imm,\$s2 & \$s4 = \$s2 or imm & \makecell{\textit{OR} lógico com \\ um registro e um imediato} \\
 \hline
-8 & XORI \$s4,imm,\$s2 & \$s4 = \$s2 xor imm & \textit{XOR} lógico com um registro e um imediato \\
+8 & XORI \$s4,imm,\$s2 & \$s4 = \$s2 xor imm & \makecell{\textit{XOR} lógico com \\ um registro e um imediato} \\
 \hline
-9 & ADDI \$s4,imm,\$s2 & \$s4 = \$s2 + imm & Adição entre registro e um imediato\\
+9 & ADDI \$s4,imm,\$s2 & \$s4 = \$s2 + imm & \makecell{Adição entre \\ registro e um imediato}\\
 \hline
-10 & SUBI \$s4,imm,\$s2 & \$s4 = \$s2 - imm & Subtração entre registro e um imediato\\
+10 & SUBI \$s4,imm,\$s2 & \$s4 = \$s2 - imm & \makecell{Subtração entre \\ registro e um imediato}\\
 \hline
 \end{tabular}
 \caption{Descrição das instruções requisitadas.}
@@ -233,7 +234,7 @@ Observa-se que há instruções que trabalham com operandos registro-registro e 
 
 Observa-se também que para a instrução de subtração, em que a posição dos operandos altera o resultado, a subtração entre registros e a subtração entre registro-imediato, tem a forma \$s4 = \$s3 - \$s2 e \$s4 = \$s2 - imm. Para tornar a ULA genérica e diminuir a complexidade, optou-se pela modificação da instrução de subtração entre registros, ficando da forma \$s4 = \$s2 - \$s3.
 
-Sinais de indicação de características do resultado da operação são desejáveis, assim opta-se por um registro de indicadores de \textit{zero}, \textit{negativo} e \textit{overflow}, conforme a tabela \ref{tab:flags} abaixo, sendo esse registro atualizado a cada operação da unidade.
+Sinais de indicação de características do resultado da operação são desejáveis, assim opta-se por um registro de indicadores de \textit{zero}, \textit{negativo} e \textit{overflow}, conforme a Tabela \ref{tab:flags} abaixo, sendo esse registro atualizado a cada operação da unidade.
 
 \begin{table}[h]
 \centering
@@ -270,22 +271,21 @@ O banco de registradores é utilizado para fazer o armazenamento temporário de 
 \label{fig:blocoregbank}
 \end{figure}
 
-O módulo possui três entradas de 4-bits para endereços de registros, sendo dois endereços para leitura dos registros A e B (\textit{AddrRegA} e \textit{AddrRegB}), com os dados de leitura apresentados em \textit{RegA} e \textit{RegB}, e um endereço (\textit{AddrWriteReg}) para encrita do valor de entrada (\textit{Data}). Há três sinais de controle, sendo:
+O módulo possui três entradas de 4-bits para endereços de registros, sendo dois endereços para leitura dos registros A e B (\textit{AddrRegA} e \textit{AddrRegB}), com os dados de leitura apresentados em \textit{RegA} e \textit{RegB}, e um endereço (\textit{AddrWriteReg}) para escrita do valor de entrada (\textit{Data}). Há três sinais de controle, sendo:
 
 \begin{itemize}
 \item WEN (\textit{Write Enable}): Indica a operação do banco (leitura ou escrita). Ele será escrito, caso WEN=1 e lido caso WEN=0;
-\item RST (\textit{Reset}): Faz o reset do banco, zerando os valores de todos os registros;
+\item RST (\textit{Reset}): Faz o \textit{reset} do banco, zerando os valores de todos os registros;
 \item CLK (\textit{Clock}): Utilizado para sincronização e execução.
 \end{itemize}
 
 Para a utilização correta do módulo primeiro deve-se definir qual será a operação a ser realizada (leitura ou escrita) e o devido sinal deve ser colocado em WEN. Os endereços dos registros devem ser definidos e, em seguida, deve-se fazer uma transição do sinal de relógio (CLK) para que a operação seja executada.
 
-O sinal de reset (RST) deve ser mantido em nível lógico baixo durante toda a execução. Ele é utilizado apenas para a inicialização do banco de registros.
+O sinal de \textit{reset} (RST) deve ser mantido em nível lógico baixo durante toda a execução. Ele é utilizado apenas para a inicialização do banco de registros.
 
 \subsection{ULA}\label{subsec:imp-ula}
 
 O módulo desenvolvido possui 5 entradas e duas saídas: \textit{OpA}, \textit{OpB}, \textit{Op}, \textit{RST}, \textit{CLK}, \textit{Res} e \textit{FlagReg} respectivamente. A figura \ref{fig:blocoula} mostra os sinais de entrada e saída do módulo.
-%O Apêndice~\ref{app:ULA} mostra o código.
 
 \begin{figure}[h]
 \centering
@@ -322,30 +322,62 @@ Código  & Operação \\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-Optou-se por implementar uma ALU sincrona, utilizando o passo do relógio (CLK) para orientar sua execução. Assim, depois de selecionados os operandos e a operação a ser executada, deve-se fazer uma transição no sinal de clock para que a operação seja realizada. O sinal de reset (RST) é utilizado apenas para limpar o registro de estados \textit{FlagReg} e deve ser mantido em nível lógico baixo durante a execução.
+Optou-se por implementar uma ALU síncrona, utilizando o passo do relógio (CLK) para orientar sua execução. Assim, depois de selecionados os operandos e a operação a ser executada, deve-se fazer uma transição no sinal de clock para que a operação seja realizada. O sinal de reset (RST) é utilizado apenas para limpar o registro de estados \textit{FlagReg} e deve ser mantido em nível lógico baixo durante a execução.
 
 Todas as operações da ALU modificam todo o registro de estados \textit{FlagReg}.
 
-\subsection{Decodificador}\label{subsec:imp-decoder}
+\subsection{Decodificador}\label{subsec:decode}
 
-ESCREVER SOBRE O DECODIFICADOR.
+O decodificador é responsável por receber a instrução completa, \textit{i.e.}, todos os 16 bits contendo o código da operação e os endereços de registrador de entrada e saída e manipular a instrução para a ALU realizar a operação correta.
+
+A implementação deste módulo possui uma entrada que indica a instrução que será executada(\textit{Instr}) e uma de \textit{clock} (\textit{CLK}).
+A entrada \textit{Instr} possui 16 bits.
+Este módulo possui como saída os operadores entregues pela instrução (dois de entrada - \textit{OpA} e \textit{OpB}, e um de saída - \textit{OpC}), além da operação a ser realizada, \textit{OpALU}, junto com duas \textit{flags}: \textit{isImm} e \textit{isValid}.
+As duas \textit{flags} indicam se a operação será realizada com um imediato e se ela é válida, ou seja, foi implementada pela ALU.
+A \textit{flag isImm} que indica para o multiplexador qual entrada a ALU deverá receber, se do banco de registradores ou se é um imediato, logo, essa \textit{flag} serve como entrada de seleção do multiplexador, descrito na próxima subseção.
+
+A cada subida do \textit{clock}, verificamos qual operação a instrução recebida realizará verificando os 4 bits mais significativos dela.
+Caso ela seja uma das instruções implementadas, a \textit{flag} \textit{isValid} recebe o valor 1, caso contrário, ela recebe o valor 0.
+Além disso, quando a instrução utilizar um imediato, seguindo os códigos de operação da Tabela~\ref{tab:ULA}, a \textit{flag isImm} passa ter o valor 1.
+Se for uma instrução com dois registradores de entrada, ela tem o valor 0.
+Já a saída \textit{OpALU} recebe o código da operação que a ALU deverá executar.
+As saídas \textit{OpA}, \textit{OpB} e \textit{OpC} recebem os endereços de registradores dentro da instrução quando lemos os 12 bits menos significativos, sendo 4 bits para cada saída: 0 a 3, \textit{OpA}, 4 a 7, \textit{OpB} e 8 a 11, \textit{OpC}.
+Ressaltamos que caso a \textit{flag isImm} possua o valor 1, o valor em \textit{OpB} será avaliado como um imediato de 4 bits e não como um endereço de registrador.
+
+\subsection{Multiplexador}\label{subsec:mux}
+
+O multiplexador implementado tem como entrada dois valores \textit{A} e \textit{B} além de um seletor \textit{SEL}.
+A saída é o resultado da seleção do multiplexador: \textit{S}.
+
+Caso o valor em \textit{SEL} seja 0, a saída é o valor de um registrador, indicado pela entrada \textit{A}.
+Caso o valor seja 1, então o valor é um imediato estendido em 12 bits, vindo da entrada \textit{B}.
+Com isso, a ALU fica genérica o suficiente para sua lógica não se preocupar com operações que recebam imediato ou valor de registrador.
+É importante frisar que o multiplexador é responsável apenas pela entrada \textit{B} da Figura~\ref{fig:ula}.
+Como explicado anteriormente, essa entrada que, caso a instrução requisite, recebe um imediato ao invés de um registrador.
+
+\subsection{Estágio do caminho de dados}\label{subsec:exec}
+
+Por último, descreveremos como implementamos o estágio do caminho de dados para saber o que fazer em cada \textit{clock}.
+
+Os estágios foram implementados como uma máquina de estados, ou seja, a cada subida de \textit{clock}, mudamos de estado e fazemos um estágio do caminho de dados.
+Inicialmente, a máquina começa no estado de \textit{Halt} esperando alguma ação.
+O estado muda assim que o módulo recebe um sinal de \textit{START}.
+Quando o sinal chega, a máquina decodifica a instrução no decodificador.
+O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução.
+Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores.
+Depois de escrever o resultado, a máquina volta ao estado inicial de \textit{HALT} esperando a próxima instrução.
 
 \section{Integração}
 
-Para isso foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
+Foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
 Para este trabalho, utilizamos apenas 16 registradores, ou seja, apenas 4 bits são necessários para fazer o endereçamento no banco de registradores.
 
-
-Ou seja, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
+Como dito anteriormente, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
 Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
 Esses números devem possuir 4 bits de largura.
 
-
-A saída \textit{RegA} se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
-Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato será discutida mais a frente.
-
-Aqui, apenas o \textit{OpB} pode ser um imediato.
-Neste caso, o imediato possui apenas \textit{4 bits}, sendo necessário estender mais \textit{12 bits}.
+A saída \textit{RegA} do banco de registradores se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
+Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato segue como descrito na Seção~\ref{subsec:mux}.
 
 \subsection{Prototipação}\label{subsec:prot}
 
@@ -373,11 +405,9 @@ A Figura~\ref{fig:fpga} mostra a divisão na placa.
 \end{figure}
 
 
-
-
 \section{Experimentos}
 
-\begin{table}[h]
+\begin{table}[t]
 \centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
@@ -414,6 +444,13 @@ A tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o 
 ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, 
 \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} 
 implementado no arquivo "\textit{ULA.v}".
+
+Para realizar os experimentos na placa, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada.
+Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado.
+Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1.
+Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1.
+Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
+
 
 %\begin{appendices}
 %	\chapter{Módulo ULA}
