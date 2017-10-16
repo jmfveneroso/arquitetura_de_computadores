@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 12:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 14:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -767,7 +767,7 @@ File: images/ALU_symbol.png Graphic file (type png)
 
 <use images/ALU_symbol.png>
 Package pdftex.def Info: images/ALU_symbol.png used on input line 183.
-(pdftex.def)             Requested size: 200.7495pt x 171.64081pt.
+(pdftex.def)             Requested size: 160.6002pt x 137.31316pt.
 LaTeX Font Info:    Try loading font information for U+msa on input line 200.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -785,34 +785,57 @@ Overfull \hbox (57.93282pt too wide) in paragraph at lines 200--227
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[1 <./images/ALU_symbol.png>] [2]
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 318.
+[1 <./images/ALU_symbol.png>]
+<images/RegisterBank.png, id=20, 297.11pt x 221.82875pt>
+File: images/RegisterBank.png Graphic file (type png)
 
+<use images/RegisterBank.png>
+Package pdftex.def Info: images/RegisterBank.png used on input line 268.
+(pdftex.def)             Requested size: 148.55463pt x 110.9141pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 276.
 
 (/usr/share/texmf/tex/latex/R/tex/latex/omsaer.fd
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 318.
- [3]
-<images/FPGA.png, id=28, 304.13625pt x 278.54062pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
+ [2]
+<images/ULA_diag.png, id=26, 297.11pt x 222.8325pt>
+File: images/ULA_diag.png Graphic file (type png)
+ <use images/ULA_diag.png>
+Package pdftex.def Info: images/ULA_diag.png used on input line 292.
+(pdftex.def)             Requested size: 148.55463pt x 111.41597pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./images/RegisterBank.png> <./images/ULA_diag.png>]
+<images/FPGA.png, id=32, 304.13625pt x 278.54062pt>
 File: images/FPGA.png Graphic file (type png)
  <use images/FPGA.png>
-Package pdftex.def Info: images/FPGA.png used on input line 363.
+Package pdftex.def Info: images/FPGA.png used on input line 370.
 (pdftex.def)             Requested size: 304.1355pt x 278.53993pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./images/FPGA.png>] (./proposta.bbl) [5] (./proposta.aux) ) 
+[4]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./proposta.bbl) [5 <./images/FPGA.png>] [6] (./proposta.aux) ) 
 Here is how much of TeX's memory you used:
- 7697 strings out of 493029
- 104965 string characters out of 6136234
- 192747 words of memory out of 5000000
- 11005 multiletter control sequences out of 15000+600000
+ 7709 strings out of 493029
+ 105236 string characters out of 6136234
+ 194763 words of memory out of 5000000
+ 11015 multiletter control sequences out of 15000+600000
  40224 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,11n,43p,710b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,11n,43p,710b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-d
@@ -823,10 +846,10 @@ ic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on proposta.pdf (6 pages, 430072 bytes).
+Output written on proposta.pdf (7 pages, 445550 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
