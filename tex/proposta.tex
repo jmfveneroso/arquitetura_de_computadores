@@ -177,7 +177,7 @@ Guilherme Batista Santos\\ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\
 
 \section{Introdução}\label{sec:intro}
 
-A Unidade Lógica Aritmética, ou \textit{ULA}, é um circuito digital responsável por realizar operações lógicas e aritméticas no microprocessador, como por exemplo, executando operações de adição, subtração, deslocamentos lógicos, operações lógicas \textit{and} e \textit{or}. A Figura~\ref{fig:ula} abaixo mostra a forma geral de uma ULA.
+A Unidade Lógica Aritmética, ou \textit{ULA}, é um circuito digital responsável por realizar operações lógicas e aritméticas no microprocessador, como por exemplo, operações de adição, subtração, deslocamentos lógicos, operações lógicas \textit{and} e \textit{or}. A Figura~\ref{fig:ula} abaixo mostra a forma geral de uma ULA.
 
 \begin{figure}[h]
 \centering
@@ -194,7 +194,7 @@ Futuramente, a ULA descrita neste trabalho será integrada como parte de um micr
 
 \section{Descrição}\label{sec:desc}
 
-Deseja-se que o microprocessador seja capaz de executar as instruções conforme a tabela ~\ref{tab:ULA}. As instruções são de 16-bits e trabalham com registradores de 16-bits e imediatos absolutos de 4-bits. Cada instrução possui um código de operação de 4-bits, código do registrador de destino \$s4 de 4-bits, código do registrador \$s3 ou o imediato absoluto de 4-bits e o código do registrador operando \$s2 de 4-bits.
+Deseja-se que o microprocessador seja capaz de executar as instruções conforme a Tabela ~\ref{tab:ULA}. As instruções são de 16-bits e trabalham com registradores de 16-bits e imediatos absolutos de 4-bits. Cada instrução possui um código de operação de 4-bits, código do registrador de destino \$s4 de 4-bits, código do registrador \$s3 ou o imediato absoluto de 4-bits e o código do registrador operando \$s2 de 4-bits.
 
 \begin{table}[h]
 \centering
@@ -230,9 +230,9 @@ Código & Instrução & Operação & Descrição\\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}
 
-Observa-se que há instruções que trabalham com operandos registro-registro e operandos registro-imediato. Tais operações não são distinguidas pela ULA, indicando apenas se um dos operandos virá do banco de registradores ou da própria instrução. A unidade precisa ser capaz de apenas executar as operações de adição, subtração, comparação, E, OU e OU-EXCLUSIVO, deixando a parte de decisão de operandos para a unidade de decodificação.
+Observa-se que há instruções que trabalham com operandos registro-registro e operandos registro-imediato. Tais operações não são distinguidas pela ULA, indicando apenas se um dos operandos virá do banco de registradores ou da própria instrução. A unidade precisa apenas executar as operações de adição, subtração, comparação, E, OU e OU-EXCLUSIVO, deixando a parte de decisão de operandos para a unidade de decodificação.
 
-Observa-se também que para a instrução de subtração, em que a posição dos operandos altera o resultado, a subtração entre registros e a subtração entre registro-imediato, tem a forma \$s4 = \$s3 - \$s2 e \$s4 = \$s2 - imm. Para tornar a ULA genérica e diminuir a complexidade, optou-se pela modificação da instrução de subtração entre registros, ficando da forma \$s4 = \$s2 - \$s3.
+Observa-se também que para a instrução de subtração, em que a posição dos operandos altera o resultado, a subtração entre registros e a subtração entre registro-imediato tem a forma \$s4 = \$s3 - \$s2 e \$s4 = \$s2 - imm. Para tornar a ULA genérica e diminuir a complexidade, optou-se pela modificação da instrução de subtração entre registros, ficando da forma \$s4 = \$s2 - \$s3.
 
 Sinais de indicação de características do resultado da operação são desejáveis, assim opta-se por um registro de indicadores de \textit{zero}, \textit{negativo} e \textit{overflow}, conforme a Tabela \ref{tab:flags} abaixo, sendo esse registro atualizado a cada operação da unidade.
 
@@ -262,7 +262,7 @@ Necessita-se, além da ULA, de implementar unidades auxiliares, como o banco de 
 
 \subsection{Banco de registradores}\label{subsec:imp-br}
 
-O banco de registradores é utilizado para fazer o armazenamento temporário de valores que serão utilizados e escritos pela ULA. Implementou-se um banco de registradores com em 16 registradores de 16-bits cada. A figura \ref{fig:blocoregbank} mostra os sinais de entrada e saída do módulo.
+O banco de registradores é utilizado para fazer o armazenamento temporário de valores que serão utilizados e escritos pela ULA. Implementou-se um banco de registradores com em 16 registradores de 16-bits cada. A Figura \ref{fig:blocoregbank} mostra os sinais de entrada e saída do módulo.
 
 \begin{figure}[h]
 \centering
@@ -285,7 +285,7 @@ O sinal de \textit{reset} (RST) deve ser mantido em nível lógico baixo durante
 
 \subsection{ULA}\label{subsec:imp-ula}
 
-O módulo desenvolvido possui 5 entradas e duas saídas: \textit{OpA}, \textit{OpB}, \textit{Op}, \textit{RST}, \textit{CLK}, \textit{Res} e \textit{FlagReg} respectivamente. A figura \ref{fig:blocoula} mostra os sinais de entrada e saída do módulo.
+O módulo desenvolvido possui 5 entradas e duas saídas: \textit{OpA}, \textit{OpB}, \textit{Op}, \textit{RST}, \textit{CLK}, \textit{Res} e \textit{FlagReg} respectivamente. A Figura \ref{fig:blocoula} mostra os sinais de entrada e saída do módulo.
 
 \begin{figure}[h]
 \centering
@@ -294,9 +294,9 @@ O módulo desenvolvido possui 5 entradas e duas saídas: \textit{OpA}, \textit{O
 \label{fig:blocoula}
 \end{figure}
 
-As entradas \textit{OpA} e \textit{OpB} representam os operandos de 16-bits \textit{A} e \textit{B} a serem utilizados na operação. A entrada \textit{CodeULA} de 4-btis indica qual operação a ser executada, como adição, subtração, etc., conforme a tabela \ref{tab:imp} abaixo. As saídas \textit{Res} de 16-bits e \textit{FlagReg} de 3-bits indicam, respectivamente, o resultado da operação e o estado da operação.
+As entradas \textit{OpA} e \textit{OpB} representam os operandos de 16-bits \textit{A} e \textit{B} a serem utilizados na operação. A entrada \textit{CodeULA} de 4-btis indica qual operação a ser executada, como adição, subtração, etc., conforme a Tabela \ref{tab:imp} abaixo. As saídas \textit{Res} de 16-bits e \textit{FlagReg} de 3-bits indicam, respectivamente, o resultado da operação e o estado do resultado.
 
-Conforme descrito anteriormente, não há destinção, por parta da ULA, se o operando é um imediato ou um registro. Assim, cria-se a partir das instruções desejadas na tabela \ref{tab:ULA}, uma ULA com as seguintes instruções genéricas:
+Conforme descrito anteriormente, não há destinção, por parta da ULA, se o operando é um imediato ou um registro. Assim, cria-se a partir das instruções desejadas na Tabela \ref{tab:ULA}, uma ULA com as seguintes instruções genéricas:
 
 \begin{table}[h]
 \centering
@@ -324,25 +324,63 @@ Código  & Operação \\
 
 Optou-se por implementar uma ALU síncrona, utilizando o passo do relógio (CLK) para orientar sua execução. Assim, depois de selecionados os operandos e a operação a ser executada, deve-se fazer uma transição no sinal de clock para que a operação seja realizada. O sinal de reset (RST) é utilizado apenas para limpar o registro de estados \textit{FlagReg} e deve ser mantido em nível lógico baixo durante a execução.
 
-Todas as operações da ALU modificam todo o registro de estados \textit{FlagReg}.
+Todas as operações da ALU modificam todos os campos do registro de estados \textit{FlagReg}.
 
 \subsection{Decodificador}\label{subsec:decode}
 
-O decodificador é responsável por receber a instrução completa, \textit{i.e.}, todos os 16 bits contendo o código da operação e os endereços de registrador de entrada e saída e manipular a instrução para a ALU realizar a operação correta.
+O decodificador é responsável por receber a instrução e fazer a seleção correta dos operandos e da operação na ULA. Ele recebe a instrução de 16-bits na forma \textit{INSTR DST, IMM|REGB, REGA}, onde
 
-A implementação deste módulo possui uma entrada que indica a instrução que será executada(\textit{Instr}) e uma de \textit{clock} (\textit{CLK}).
-A entrada \textit{Instr} possui 16 bits.
-Este módulo possui como saída os operadores entregues pela instrução (dois de entrada - \textit{OpA} e \textit{OpB}, e um de saída - \textit{OpC}), além da operação a ser realizada, \textit{OpALU}, junto com duas \textit{flags}: \textit{isImm} e \textit{isValid}.
+\begin{itemize}
+\item \textit{INSTR} (4-bit): Código da instrução, conforme a Tabela \ref{tab:ULA};
+\item \textit{DST} (4-bit): Endereço do registrador de destino;
+\item \textit{IMM/REGB} (4-bit): Endereço do registrador operando (RegB) ou imediato absoluto;
+\item \textit{REGA} (4-bit): Endereço do segundo registrador operando (RegA).
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{images/Decoder.png}
+\caption{Bloco do Decodificador.}
+\label{fig:blocodecoder}
+\end{figure}
+
+O módulo retorna, em suas saídas, os endereços dos operandos (\textit{OpC}, \textit{OpA} e \textit{OpB}), a operação a ser executada pela ALU (\textit{OpALU}), a indicação se o operando B é um registro ou um imediato (\textit{isImm}) e indica se a instrução é válida ou não (\textit{isValid}).
+
+A sincronia é feita através do sinal de \textit{clock}. Assim, a cada transição do sinal verifica-se o código da instrução, altera-se os sinais de \textit{isImm} e \textit{isValid}, ajusta os endereços dos operandos e a operação da ALU. Os códigos da \textit{OpALU} seguem a Tabela \ref{tab:imp}.
+
+\section{Integração}
+
+Após a implementação dos módulos, faz-se a integração dos mesmos para testar o funcionamento da ULA e suas respostas as instruções. É necessário implementar uma pequena unidade de controle com uma máquina de estados para gerenciar o fluxo dos dados no microprocessador.
+
+Fluxo: Decodificador -> Banco de Registradores -> ULA -> Banco de Registradores
+
+
+-- REVISADO ATÉ AQUI --
+
+
+Por último, descreveremos como implementamos o estágio do caminho de dados para saber o que fazer em cada \textit{clock}.
+
+Os estágios foram implementados como uma máquina de estados, ou seja, a cada subida de \textit{clock}, mudamos de estado e fazemos um estágio do caminho de dados.
+Inicialmente, a máquina começa no estado de \textit{Halt} esperando alguma ação.
+O estado muda assim que o módulo recebe um sinal de \textit{START}.
+Quando o sinal chega, a máquina decodifica a instrução no decodificador.
+O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução.
+Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores.
+Depois de escrever o resultado, a máquina volta ao estado inicial de \textit{HALT} esperando a próxima instrução.
+
+
+Como dito anteriormente, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
+Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
+Esses números devem possuir 4 bits de largura.
+
 As duas \textit{flags} indicam se a operação será realizada com um imediato e se ela é válida, ou seja, foi implementada pela ALU.
 A \textit{flag isImm} que indica para o multiplexador qual entrada a ALU deverá receber, se do banco de registradores ou se é um imediato, logo, essa \textit{flag} serve como entrada de seleção do multiplexador, descrito na próxima subseção.
 
-A cada subida do \textit{clock}, verificamos qual operação a instrução recebida realizará verificando os 4 bits mais significativos dela.
-Caso ela seja uma das instruções implementadas, a \textit{flag} \textit{isValid} recebe o valor 1, caso contrário, ela recebe o valor 0.
-Além disso, quando a instrução utilizar um imediato, seguindo os códigos de operação da Tabela~\ref{tab:ULA}, a \textit{flag isImm} passa ter o valor 1.
-Se for uma instrução com dois registradores de entrada, ela tem o valor 0.
-Já a saída \textit{OpALU} recebe o código da operação que a ALU deverá executar.
-As saídas \textit{OpA}, \textit{OpB} e \textit{OpC} recebem os endereços de registradores dentro da instrução quando lemos os 12 bits menos significativos, sendo 4 bits para cada saída: 0 a 3, \textit{OpA}, 4 a 7, \textit{OpB} e 8 a 11, \textit{OpC}.
-Ressaltamos que caso a \textit{flag isImm} possua o valor 1, o valor em \textit{OpB} será avaliado como um imediato de 4 bits e não como um endereço de registrador.
+
+A saída \textit{RegA} do banco de registradores se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
+Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato segue como descrito na Seção~\ref{subsec:mux}.
+
+
 
 \subsection{Multiplexador}\label{subsec:mux}
 
@@ -355,29 +393,8 @@ Com isso, a ALU fica genérica o suficiente para sua lógica não se preocupar c
 É importante frisar que o multiplexador é responsável apenas pela entrada \textit{B} da Figura~\ref{fig:ula}.
 Como explicado anteriormente, essa entrada que, caso a instrução requisite, recebe um imediato ao invés de um registrador.
 
-\subsection{Estágio do caminho de dados}\label{subsec:exec}
 
-Por último, descreveremos como implementamos o estágio do caminho de dados para saber o que fazer em cada \textit{clock}.
 
-Os estágios foram implementados como uma máquina de estados, ou seja, a cada subida de \textit{clock}, mudamos de estado e fazemos um estágio do caminho de dados.
-Inicialmente, a máquina começa no estado de \textit{Halt} esperando alguma ação.
-O estado muda assim que o módulo recebe um sinal de \textit{START}.
-Quando o sinal chega, a máquina decodifica a instrução no decodificador.
-O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução.
-Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores.
-Depois de escrever o resultado, a máquina volta ao estado inicial de \textit{HALT} esperando a próxima instrução.
-
-\section{Integração}
-
-Foi especificado que a ULA deve possuir entradas para dois operandos de 16 bits e um entrada para o código da operação a ser executada, que possui 4 bits.
-Para este trabalho, utilizamos apenas 16 registradores, ou seja, apenas 4 bits são necessários para fazer o endereçamento no banco de registradores.
-
-Como dito anteriormente, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
-Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
-Esses números devem possuir 4 bits de largura.
-
-A saída \textit{RegA} do banco de registradores se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
-Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato segue como descrito na Seção~\ref{subsec:mux}.
 
 \subsection{Prototipação}\label{subsec:prot}
 
