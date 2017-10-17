@@ -350,7 +350,7 @@ A sincronia é feita através do sinal de \textit{clock}. Assim, a cada transiç
 
 \section{Integração}
 
-Após a implementação dos módulos, faz-se a integração dos mesmos para testar o funcionamento da ULA e suas respostas as instruções. É necessário implementar uma pequena unidade de controle com uma máquina de estados para gerenciar o fluxo dos dados e a utilização de um multiplexador para fazer seleção entre imediato e registro, para o operando B. A Figura \ref{fig:blocomicro} mostra a integração do sistema, considere que os sinais de CLK e RST são globalmente interligados.
+Após a implementação dos módulos, faz-se a integração dos mesmos para testar o funcionamento da ULA e suas respostas as instruções, é criado o \textit{Top-Level WrapperSim.v}. É necessário implementar uma pequena unidade de controle com uma máquina de estados para gerenciar o fluxo dos dados e a utilização de um multiplexador para fazer seleção entre imediato e registro, para o operando B. A Figura \ref{fig:blocomicro} mostra a integração do sistema, considere que os sinais de CLK e RST são globalmente interligados.
 
 \begin{figure}[h]
 \centering
@@ -376,7 +376,7 @@ Para o processo de simulação utiliza-se a ferramenta \textit{ModelSim}.
 
 Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos registradores endereçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos de instruções: ADD, SUB, SLT, AND, OR e XOR.
 
-A tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
+A Tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
 
 \begin{table}[t]
 \centering
@@ -402,13 +402,18 @@ XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
+Para a simulação da máquina completa utilizando as unidades de controle, banco de registradores e decodificador, fez-se a execução de teste para a instrução ADDI Reg[0], 1, Reg[0]. As formas de ondas geradas podem ser visualizadas na Figura \ref{fig:modelsim}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{images/ADDI_Sim.png}
+\caption{Formas de onda para execução da instrução ADDI.}
+\label{fig:modelsim}
+\end{figure}
+
 \section{Prototipação}
 
-Para realizar os experimentos na placa, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada.
-Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado.
-Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1.
-Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1.
-Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
+Para realizar os experimentos na Altera DE2, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada. Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado. Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1. Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1. Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
 
 A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
 Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
