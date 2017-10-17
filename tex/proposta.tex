@@ -370,13 +370,30 @@ O fluxo de dados segue o seguinte caminho: Decodificador, Banco de Registradores
 
 A progressão de estados é dado a cada transição positiva do sinal de \textit{clock}. Inicialmente, a máquina começa no estado de \textit{Halt} (S0) esperando alguma ação. O estado muda assim que o módulo recebe um sinal de \textit{START}. Quando o sinal chega, a máquina faz a decodificação da instrução. O próximo passo é ir no banco de registradores e buscar os valores requisitados pela instrução. Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores. Para o próximo estágio (S5) a máquina aguarda o sinal de \textit{GO} para poder retornar ao estado de \textit{Halt} (S0).
 
+
 \section{Simulação}
 
 Para o processo de simulação utiliza-se a ferramenta \textit{ModelSim}.
 
 Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos registradores endereçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos de instruções: ADD, SUB, SLT, AND, OR e XOR.
 
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.5]{images/ADDI_Sim.png}
+\caption{Formas de onda para execução da instrução ADDI.}
+\label{fig:modelsim}
+\end{figure}
+
+
 A Tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
+
+\begin{figure}[t]
+\centering
+\includegraphics[]{images/FPGA.png}
+\caption{Módulo Altera DE2.}
+\label{fig:fpga}
+\end{figure}
+
 
 \begin{table}[t]
 \centering
@@ -404,23 +421,10 @@ XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 
 
 Para a simulação da máquina completa utilizando as unidades de controle, banco de registradores e decodificador, fez-se a execução de teste para a instrução ADDI Reg[0], 1, Reg[0]. As formas de ondas geradas podem ser visualizadas na Figura \ref{fig:modelsim}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{images/ADDI_Sim.png}
-\caption{Formas de onda para execução da instrução ADDI.}
-\label{fig:modelsim}
-\end{figure}
 
 \section{Prototipação}
 
 Para a prototipagem, utiliza-se a placa Altera DE2. Nela são utilizados três \textit{pushbuttons} para executar comandos, 16 \textit{switches} para inserir a instrução e dados, 1 \textit{switche} para controle da máquina de estados e 8 \textit{displays} de 7-segmentos para mostrar resultados de operações e registros. A Figura~\ref{fig:fpga} mostra a divisão na placa.
-
-\begin{figure}[h]
-\centering
-\includegraphics[]{images/FPGA.png}
-\caption{Módulo Altera DE2.}
-\label{fig:fpga}
-\end{figure}
 
 Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}. Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0. Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
 
