@@ -387,14 +387,6 @@ Alguns experimentos foram realizados com o intuito de testar as funcionalidades 
 
 A Tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
 
-\begin{figure}[t]
-\centering
-\includegraphics[]{images/FPGA.png}
-\caption{Módulo Altera DE2.}
-\label{fig:fpga}
-\end{figure}
-
-
 \begin{table}[t]
 \centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
@@ -421,10 +413,16 @@ XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 
 
 Para a simulação da máquina completa utilizando as unidades de controle, banco de registradores e decodificador, fez-se a execução de teste para a instrução ADDI Reg[0], 1, Reg[0]. As formas de ondas geradas podem ser visualizadas na Figura \ref{fig:modelsim}.
 
-
 \section{Prototipação}
 
 Para a prototipagem, utiliza-se a placa Altera DE2. Nela são utilizados três \textit{pushbuttons} para executar comandos, 16 \textit{switches} para inserir a instrução e dados, 1 \textit{switche} para controle da máquina de estados e 8 \textit{displays} de 7-segmentos para mostrar resultados de operações e registros. A Figura~\ref{fig:fpga} mostra a divisão na placa.
+
+\begin{figure}[t]
+\centering
+\includegraphics[]{images/FPGA.png}
+\caption{Módulo Altera DE2.}
+\label{fig:fpga}
+\end{figure}
 
 Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}. Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0. Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
 
