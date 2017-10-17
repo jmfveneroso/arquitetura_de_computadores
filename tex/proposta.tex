@@ -368,7 +368,7 @@ O fluxo de dados segue o seguinte caminho: Decodificador, Banco de Registradores
 \label{fig:statemachine}
 \end{figure}
 
-A progressão de estados é dado a cada transição positiva do sinal de \textit{clock}. Inicialmente, a máquina começa no estado de \textit{Halt} (S0) esperando alguma ação. O estado muda assim que o módulo recebe um sinal de \textit{START}. Quando o sinal chega, a máquina faz a decodificação da instrução. O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução. Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores. Para o próximo estágio (S5) a máquina aguarda o sinal de \textit{GO} para poder retornar ao estado de \textit{Halt} (S0).
+A progressão de estados é dado a cada transição positiva do sinal de \textit{clock}. Inicialmente, a máquina começa no estado de \textit{Halt} (S0) esperando alguma ação. O estado muda assim que o módulo recebe um sinal de \textit{START}. Quando o sinal chega, a máquina faz a decodificação da instrução. O próximo passo é ir no banco de registradores e buscar os valores requisitados pela instrução. Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores. Para o próximo estágio (S5) a máquina aguarda o sinal de \textit{GO} para poder retornar ao estado de \textit{Halt} (S0).
 
 \section{Simulação}
 
