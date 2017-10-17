@@ -377,25 +377,10 @@ Para o processo de simulação utiliza-se a ferramenta \textit{ModelSim}.
 
 Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos registradores endereçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos de instruções: ADD, SUB, SLT, AND, OR e XOR.
 
-\begin{figure}[t]
-\centering
-\includegraphics[scale=0.5]{images/ADDI_Sim.png}
-\caption{Formas de onda para execução da instrução ADDI.}
-\label{fig:modelsim}
-\end{figure}
-
 
 A Tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
 
-\begin{figure}[t]
-\centering
-\includegraphics[]{images/FPGA.png}
-\caption{Módulo Altera DE2.}
-\label{fig:fpga}
-\end{figure}
-
-
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
@@ -421,6 +406,13 @@ XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 
 
 Para a simulação da máquina completa utilizando as unidades de controle, banco de registradores e decodificador, fez-se a execução de teste para a instrução ADDI Reg[0], 1, Reg[0]. As formas de ondas geradas podem ser visualizadas na Figura \ref{fig:modelsim}.
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{images/ADDI_Sim.png}
+\caption{Formas de onda para execução da instrução ADDI.}
+\label{fig:modelsim}
+\end{figure}
+
 
 \section{Prototipação}
 
@@ -435,6 +427,14 @@ O \textit{pushbuttom KEY1} é como sinal de \textit{reset} para os módulos.
 O botão \textit{pushbuttom KEY3}, quando pressionado, faz com que os \textit{switches} de 0 a 15 sejam interpretados como uma instrução completa, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo. O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica o endereço \textit{registrador A}, o conjunto do \textit{switch SW4} ao \textit{SW7} indicam o endereço do \textit{registrador B} ou do imediado da instrução. O endereço do \textit{registrador C} de destino é dado pelo conjunto de \textit{switches SW8} a \textit{SW11} e o \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, ou seja, o código da operação conforme a Tabela \ref{tab:ULA}.
 
 Utilizou-se também a \textit{switch 17} para fazer o controle da máquina de estados (sinal \textit{GO} da máquina). Tal mecanismo é necessário devido o \textit{clock} da placa ser sempre ativo e a falta de \textit{debounce} nos \textit{pushbuttons}, havendo efeitos de trepidação quando apertados fazendo com que a instrução seja executada várias vezes consecutivas. Assim, a cada execução, deve-se chavear a \textit{switch 17} para retornar a máquina ao estado de \textit{Halt}. Com isso, garante-se que a instrução é executada apenas uma vez.
+
+\begin{figure}[t]
+\centering
+\includegraphics[]{images/FPGA.png}
+\caption{Módulo Altera DE2.}
+\label{fig:fpga}
+\end{figure}
+
 
 %\begin{appendices}
 %	\chapter{Módulo ULA}
@@ -558,7 +558,7 @@ Utilizou-se também a \textit{switch 17} para fazer o controle da máquina de es
 
 \bibliographystyle{unsrt}
 \addcontentsline{toc}{section}{Referências}
-\bibliography{references}
+%\bibliography{references}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
