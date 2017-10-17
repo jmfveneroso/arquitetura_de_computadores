@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 22:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,7 +846,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/FPGA.png, id=49, 304.13625pt x 278.54062pt>
 File: images/FPGA.png Graphic file (type png)
  <use images/FPGA.png>
-Package pdftex.def Info: images/FPGA.png used on input line 440.
+Package pdftex.def Info: images/FPGA.png used on input line 420.
 (pdftex.def)             Requested size: 304.1355pt x 278.53993pt.
 
 
@@ -861,7 +861,7 @@ Here is how much of TeX's memory you used:
  11179 multiletter control sequences out of 15000+600000
  40224 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,15n,43p,735b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,15n,43p,774b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -872,7 +872,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti9.pfb>
-Output written on proposta.pdf (9 pages, 525861 bytes).
+Output written on proposta.pdf (9 pages, 524917 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream

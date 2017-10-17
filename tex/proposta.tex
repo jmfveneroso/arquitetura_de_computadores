@@ -413,23 +413,7 @@ Para a simulação da máquina completa utilizando as unidades de controle, banc
 
 \section{Prototipação}
 
-Para realizar os experimentos na Altera DE2, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada. Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado. Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1. Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1. Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
-
-A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
-Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
-Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0.
-Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
-
-Quando o botão de nome \textit{KEY0} for apertado, os \textit{displays HEX7} e \textit{HEX6} mostram o valor no conjunto de \textit{switches} \textit{SW8} a \textit{SW11} (4 bits) e os \textit{displays HEX5} e \textit{HEX4} mostram o valor no conjunto de \textit{switches} \textit{SW4} a \textit{SW7} (4 bits).
-Desta forma, é possível visualizar os valores passados para a placa.
-
-Se apertarmos o botão \textit{KEY3}, os \textit{switches} serão interpretados como uma instrução completa, ou seja, com código da operação e operandos de entrada e saída, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo.
-Assim, cada instrução possui 16 bits, como especificado no documento.
-O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica a entrada \textit{A} e do \textit{switch SW4} ao \textit{SW7}, a entrada \textit{B} da Figura~\ref{fig:ula}.
-Lembrando que a entrada \textit{B} pode ser um imediato.
-Já o conjunto de \textit{switches SW8} a \textit{SW11} indica a saída do resultado (saída R na Figura~\ref{fig:ula}), enquanto os \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, \textit{i.e.}, o código da operação.
-
-A Figura~\ref{fig:fpga} mostra a divisão na placa.
+Para a prototipagem, utiliza-se a placa Altera DE2. Nela são utilizados três \textit{pushbuttons} para executar comandos, 16 \textit{switches} para inserir a instrução e dados, 1 \textit{switche} para controle da máquina de estados e 8 \textit{displays} de 7-segmentos para mostrar resultados de operações e registros. A Figura~\ref{fig:fpga} mostra a divisão na placa.
 
 \begin{figure}[h]
 \centering
@@ -438,10 +422,15 @@ A Figura~\ref{fig:fpga} mostra a divisão na placa.
 \label{fig:fpga}
 \end{figure}
 
+Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}. Quando um \textit{switch} está no estado \textit{cima}, ele possui valor 1, e quando está no estado \textit{baixo}, ele possui valor 0. Desta forma, cada \textit{switch} se comporta com 1 bit do dado.
 
-\section{Conclusão}
+Quando o \textit{pushbuttom KEY0} é pressionado, os \textit{displays HEX7} e \textit{HEX6} mostram o valor atual do registrador endereçado pelo conjunto de \textit{switches} \textit{SW8} a \textit{SW11} (4 bits) e os \textit{displays HEX5} e \textit{HEX4} mostram o valor atual do registrador endereçado pelo conjunto de \textit{switches} \textit{SW4} a \textit{SW7} (4 bits). Desta forma, é possível visualizar os valores dos registradores no banco de registradores.
 
+O \textit{pushbuttom KEY1} é como sinal de \textit{reset} para os módulos.
 
+O botão \textit{pushbuttom KEY3}, quando pressionado, faz com que os \textit{switches} de 0 a 15 sejam interpretados como uma instrução completa, sendo que o \textit{switch SW0} é o menos significativo enquanto o \textit{SW15} o mais significativo. O conjunto de \textit{switches} \textit{SW0} a \textit{SW3} indica o endereço \textit{registrador A}, o conjunto do \textit{switch SW4} ao \textit{SW7} indicam o endereço do \textit{registrador B} ou do imediado da instrução. O endereço do \textit{registrador C} de destino é dado pelo conjunto de \textit{switches SW8} a \textit{SW11} e o \textit{switches SW12} a \textit{SW15} indicam a operação a ser realizada, ou seja, o código da operação conforme a Tabela \ref{tab:ULA}.
+
+Utilizou-se também a \textit{switch 17} para fazer o controle da máquina de estados (sinal \textit{GO} da máquina). Tal mecanismo é necessário devido o \textit{clock} da placa ser sempre ativo e a falta de \textit{debounce} nos \textit{pushbuttons}, havendo efeitos de trepidação quando apertados fazendo com que a instrução seja executada várias vezes consecutivas. Assim, a cada execução, deve-se chavear a \textit{switch 17} para retornar a máquina ao estado de \textit{Halt}. Com isso, garante-se que a instrução é executada apenas uma vez.
 
 %\begin{appendices}
 %	\chapter{Módulo ULA}
