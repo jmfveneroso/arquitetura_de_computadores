@@ -324,7 +324,7 @@ Código  & Operação \\
 
 Optou-se por implementar uma ALU síncrona, utilizando o passo do relógio (CLK) para orientar sua execução. Assim, depois de selecionados os operandos e a operação a ser executada, deve-se fazer uma transição no sinal de clock para que a operação seja realizada. O sinal de reset (RST) é utilizado apenas para limpar o registro de estados \textit{FlagReg} e deve ser mantido em nível lógico baixo durante a execução.
 
-Todas as operações da ALU modificam todos os campos do registro de estados \textit{FlagReg}.
+Todas as operações da ALU modificam todos os campos do registro de estados \textit{FlagReg}. O módulo trabalha com complemento de 2 para a descrição de números negativos.
 
 \subsection{Decodificador}\label{subsec:decode}
 
@@ -346,7 +346,7 @@ O decodificador é responsável por receber a instrução e fazer a seleção co
 
 O módulo retorna, em suas saídas, os endereços dos operandos (\textit{OpC}, \textit{OpA} e \textit{OpB}), a operação a ser executada pela ALU (\textit{OpALU}), a indicação se o operando B é um registro ou um imediato (\textit{isImm}) e indica se a instrução é válida ou não (\textit{isValid}).
 
-A sincronia é feita através do sinal de \textit{clock}. Assim, a cada transição do sinal verifica-se o código da instrução, altera-se os sinais de \textit{isImm} e \textit{isValid}, ajusta os endereços dos operandos e a operação da ALU. Os códigos da \textit{OpALU} seguem a Tabela \ref{tab:imp}.
+A sincronia é feita através do sinal de \textit{clock}. Assim, a cada transição do sinal verifica-se o código da instrução, altera-se os sinais de \textit{isImm} e \textit{isValid}, ajusta os endereços dos operandos e a operação da ALU. Os códigos da \textit{OpALU} seguem na Tabela \ref{tab:imp}.
 
 \section{Integração}
 
@@ -370,7 +370,45 @@ O fluxo de dados segue o seguinte caminho: Decodificador, Banco de Registradores
 
 A progressão de estados é dado a cada transição positiva do sinal de \textit{clock}. Inicialmente, a máquina começa no estado de \textit{Halt} (S0) esperando alguma ação. O estado muda assim que o módulo recebe um sinal de \textit{START}. Quando o sinal chega, a máquina faz a decodificação da instrução. O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução. Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores. Para o próximo estágio (S5) a máquina aguarda o sinal de \textit{GO} para poder retornar ao estado de \textit{Halt} (S0).
 
-\section{Testes e Verificação}
+\section{Simulação}
+
+Para o processo de simulação utiliza-se a ferramenta \textit{ModelSim}.
+
+Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos registradores endereçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos de instruções: ADD, SUB, SLT, AND, OR e XOR.
+
+A tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, \textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} implementado no arquivo "\textit{ULA.v}".
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Instrução & Operando A & Operando B & Resultado & O & N & Z \\
+\hline
+ADD & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
+ADD & 0100 0000 0000 0000 & 0100 0000 0000 0000 & 1000 0000 0000 0000 & 1 & 1 & 0 \\
+ADD & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
+ADD & 0010 0000 0000 0000 & 1100 0000 0000 0000 & 1110 0000 0000 0000 & 0 & 1 & 0 \\
+SUB & 0100 0000 0000 0000 & 0011 1111 1111 1111 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
+SUB & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
+SLT & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
+SLT & 0000 0000 0000 0000 & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
+AND & 0111 1111 1111 1111 & 0011 1111 1111 1111 & 0011 1111 1111 1111 & 0 & 0 & 0 \\
+OR  & 0000 0000 1111 1111 & 1111 1111 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
+XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Experimentos.}
+\label{tab:experiments}
+\end{table}
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+
+\section{Prototipação}
+
+Para realizar os experimentos na placa, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada.
+Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado.
+Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1.
+Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1.
+Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
 
 A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
 Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
@@ -396,51 +434,8 @@ A Figura~\ref{fig:fpga} mostra a divisão na placa.
 \end{figure}
 
 
-\section{Experimentos}
+\section{Conclusão}
 
-\begin{table}[t]
-\centering
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
-Instrução & Operando A & Operando B & Resultado & O & N & Z \\
-\hline
-ADD & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
-ADD & 0100 0000 0000 0000 & 0100 0000 0000 0000 & 1000 0000 0000 0000 & 1 & 1 & 0 \\
-ADD & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
-ADD & 0010 0000 0000 0000 & 1100 0000 0000 0000 & 1110 0000 0000 0000 & 0 & 1 & 0 \\
-SUB & 0100 0000 0000 0000 & 0011 1111 1111 1111 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
-SUB & 0011 1111 1111 1111 & 0100 0000 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
-SLT & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0000 0000 0000 0001 & 0 & 0 & 0 \\
-SLT & 0000 0000 0000 0000 & 0100 0000 0000 0000 & 0000 0000 0000 0000 & 0 & 0 & 1 \\
-AND & 0111 1111 1111 1111 & 0011 1111 1111 1111 & 0011 1111 1111 1111 & 0 & 0 & 0 \\
-OR  & 0000 0000 1111 1111 & 1111 1111 0000 0000 & 1111 1111 1111 1111 & 0 & 1 & 0 \\
-XOR & 0101 0101 0101 0101 & 0010 1010 1010 1010 & 0111 1111 1111 1111 & 0 & 0 & 0 \\
-\hline
-
-\end{tabular}
-\caption{Experimentos.}
-\label{tab:experiments}
-\end{table}
-\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
-
-Alguns experimentos foram realizados com o intuito de testar as funcionalidades da Unida Lógica Aritmética
-implementada em Verilog HDL. Observe que a ULA não distingue operações com registradores e imediatos, uma 
-vez que os operandos A e B são tratados pelo módulo \textit{Decoder} e transformados em sua representação 
-númerica de 16 bits antes de serem encaminhados à ULA. Durante o estágio de decodificação, os valores dos 
-registradores enderaçados pela instrução são lidos do banco de registradores e um \textit{padding} de 12 
-bits é concatenado ao valor dos operandos imediatos. Dessa forma, a ULA precisa executar apenas seis tipos 
-de instruções: ADD, SUB, SLT, AND, OR e XOR. 
-
-A tabela \ref{tab:experiments} descreve os resultados de onze  instruções e o valor das \textit{flags} da 
-ULA após o término de cada operação. As colunas O, N e Z se referem respectivamente às flags \textit{Overflow}, 
-\textit{Negative} e \textit{Zero}. Os experimentos também estão descritos no formato de um \textit{Test Bench} 
-implementado no arquivo "\textit{ULA.v}".
-
-Para realizar os experimentos na placa, um dos \textit{switches} foi utilizado como chave para que a instrução fosse executada.
-Como o \textit{clock} da placa é de 50 MHz, sempre que o botão \textit{Key3} era apertado, a instrução era executada 50 milhões de vezes, o que inviabilizava a visualização correta do resultado.
-Para superar este problema, o \textit{switch} 17 foi utilizado para que a instrução executasse apenas uma vez quando ele estivesse com o valor 1.
-Após a execução da instrução e a consequente visualização do resultado, temos que reiniciar o \textit{switch}, ou seja, colocar ele no valor 0 e novamente no valor 1.
-Com isso, garantimos que a instrução é executada apenas uma vez, com o custo de ter que reiniciar o \textit{switch} toda vez que fomos executar uma instrução novamente, mesmo se for a mesma operação com os mesmos valores de entrada e saída.
 
 
 %\begin{appendices}
