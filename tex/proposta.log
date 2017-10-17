@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 21:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.17)  16 OCT 2017 22:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -814,40 +814,58 @@ File: images/Decoder.png Graphic file (type png)
 Package pdftex.def Info: images/Decoder.png used on input line 342.
 (pdftex.def)             Requested size: 128.47968pt x 91.34102pt.
 
-[4 <./images/Decoder.png>] [5]
-<images/FPGA.png, id=40, 304.13625pt x 278.54062pt>
+[4 <./images/Decoder.png>]
+<images/Microprocessor.png, id=37, 1135.24126pt x 613.29124pt>
+File: images/Microprocessor.png Graphic file (type png)
+
+<use images/Microprocessor.png>
+Package pdftex.def Info: images/Microprocessor.png used on input line 357.
+(pdftex.def)             Requested size: 454.08846pt x 245.31215pt.
+
+<images/StateMachine.png, id=38, 968.61874pt x 328.22626pt>
+File: images/StateMachine.png Graphic file (type png)
+
+<use images/StateMachine.png>
+Package pdftex.def Info: images/StateMachine.png used on input line 366.
+(pdftex.def)             Requested size: 387.44063pt x 131.28816pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./images/Microprocessor.png>]
+<images/FPGA.png, id=43, 304.13625pt x 278.54062pt>
 File: images/FPGA.png Graphic file (type png)
  <use images/FPGA.png>
-Package pdftex.def Info: images/FPGA.png used on input line 410.
+Package pdftex.def Info: images/FPGA.png used on input line 393.
 (pdftex.def)             Requested size: 304.1355pt x 278.53993pt.
 
-[6 <./images/FPGA.png>] (./proposta.bbl) [7] (./proposta.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
- ) 
+[6 <./images/StateMachine.png>] (./proposta.bbl) [7 <./images/FPGA.png>]
+[8] (./proposta.aux) ) 
 Here is how much of TeX's memory you used:
- 7865 strings out of 493029
- 106940 string characters out of 6136234
- 196581 words of memory out of 5000000
- 11167 multiletter control sequences out of 15000+600000
+ 7874 strings out of 493029
+ 107200 string characters out of 6136234
+ 197567 words of memory out of 5000000
+ 11174 multiletter control sequences out of 15000+600000
  40224 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,15n,43p,710b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmti9.pfb>
-Output written on proposta.pdf (8 pages, 458350 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on proposta.pdf (9 pages, 511092 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

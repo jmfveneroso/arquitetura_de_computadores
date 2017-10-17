@@ -350,53 +350,27 @@ A sincronia é feita através do sinal de \textit{clock}. Assim, a cada transiç
 
 \section{Integração}
 
-Após a implementação dos módulos, faz-se a integração dos mesmos para testar o funcionamento da ULA e suas respostas as instruções. É necessário implementar uma pequena unidade de controle com uma máquina de estados para gerenciar o fluxo dos dados no microprocessador.
+Após a implementação dos módulos, faz-se a integração dos mesmos para testar o funcionamento da ULA e suas respostas as instruções. É necessário implementar uma pequena unidade de controle com uma máquina de estados para gerenciar o fluxo dos dados e a utilização de um multiplexador para fazer seleção entre imediato e registro, para o operando B. A Figura \ref{fig:blocomicro} mostra a integração do sistema, considere que os sinais de CLK e RST são globalmente interligados.
 
-Fluxo: Decodificador -> Banco de Registradores -> ULA -> Banco de Registradores
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{images/Microprocessor.png}
+\caption{Integração.}
+\label{fig:blocomicro}
+\end{figure}
 
+O fluxo de dados segue o seguinte caminho: Decodificador, Banco de Registradores, ULA, Banco de Registradores. O sinal de \textit{START} é utilizado para comandar o controle para iniciar a execução da instrução, e o sinal de \textit{RDY} é utilizado pelo controle para indicar quando a máquina está pronta para executar/terminou execução da instrução passada. O sinal \textit{GO} é utilizado para a implementação física, sendo necessário para fazer o processo de \textit{debounce} do módulo Altera DE2. O sinal de \textit{RST} reinicia a máquina, voltando para o estado inicial.
 
--- REVISADO ATÉ AQUI --
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{images/StateMachine.png}
+\caption{Máquina de estados do controle.}
+\label{fig:statemachine}
+\end{figure}
 
+A progressão de estados é dado a cada transição positiva do sinal de \textit{clock}. Inicialmente, a máquina começa no estado de \textit{Halt} (S0) esperando alguma ação. O estado muda assim que o módulo recebe um sinal de \textit{START}. Quando o sinal chega, a máquina faz a decodificação da instrução. O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução. Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores. Para o próximo estágio (S5) a máquina aguarda o sinal de \textit{GO} para poder retornar ao estado de \textit{Halt} (S0).
 
-Por último, descreveremos como implementamos o estágio do caminho de dados para saber o que fazer em cada \textit{clock}.
-
-Os estágios foram implementados como uma máquina de estados, ou seja, a cada subida de \textit{clock}, mudamos de estado e fazemos um estágio do caminho de dados.
-Inicialmente, a máquina começa no estado de \textit{Halt} esperando alguma ação.
-O estado muda assim que o módulo recebe um sinal de \textit{START}.
-Quando o sinal chega, a máquina decodifica a instrução no decodificador.
-O próximo passo é ir no bando de registradores e buscar os valores requisitados pela instrução.
-Após a busca, a instrução é executada na ALU e então, o resultado é escrito no banco de registradores.
-Depois de escrever o resultado, a máquina volta ao estado inicial de \textit{HALT} esperando a próxima instrução.
-
-
-Como dito anteriormente, a ULA implementada deve ser capaz de realizar 11 operações diferentes.
-Observe que é possível, além de fazer operações com registradores, realizar operações com imediatos, \textit{i.e.}, números absolutos.
-Esses números devem possuir 4 bits de largura.
-
-As duas \textit{flags} indicam se a operação será realizada com um imediato e se ela é válida, ou seja, foi implementada pela ALU.
-A \textit{flag isImm} que indica para o multiplexador qual entrada a ALU deverá receber, se do banco de registradores ou se é um imediato, logo, essa \textit{flag} serve como entrada de seleção do multiplexador, descrito na próxima subseção.
-
-
-A saída \textit{RegA} do banco de registradores se conecta à entrada \textit{OpA} do módulo da ULA, enquanto a saída \textit{RegB}, se conecta à entrada \textit{OpB} do módulo da ULA.
-Lembrando que essa entrada da ULA pode ser um imediato, a decisão de pegar a saída do banco de registradores ou o imediato segue como descrito na Seção~\ref{subsec:mux}.
-
-
-
-\subsection{Multiplexador}\label{subsec:mux}
-
-O multiplexador implementado tem como entrada dois valores \textit{A} e \textit{B} além de um seletor \textit{SEL}.
-A saída é o resultado da seleção do multiplexador: \textit{S}.
-
-Caso o valor em \textit{SEL} seja 0, a saída é o valor de um registrador, indicado pela entrada \textit{A}.
-Caso o valor seja 1, então o valor é um imediato estendido em 12 bits, vindo da entrada \textit{B}.
-Com isso, a ALU fica genérica o suficiente para sua lógica não se preocupar com operações que recebam imediato ou valor de registrador.
-É importante frisar que o multiplexador é responsável apenas pela entrada \textit{B} da Figura~\ref{fig:ula}.
-Como explicado anteriormente, essa entrada que, caso a instrução requisite, recebe um imediato ao invés de um registrador.
-
-
-
-
-\subsection{Prototipação}\label{subsec:prot}
+\section{Testes e Verificação}
 
 A FPGA utilizada para a prototipação possui 4 botões para que possamos inserir dados e realizar as operações, 16 \textit{switches} para informar o valor dos dados inseridos e 8 \textit{displays} que mostram o valor dos dados.
 Cada \textit{switch} possui dois estados: \textit{cima} e \textit{baixo}.
