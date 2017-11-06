@@ -189,7 +189,7 @@ Para atender as requisições, fez-se a modificação de vários módulos já im
 
 \subsection{Memória de Instruções}\label{subsec:imp-instmemory}
 
-A memória de instruções é uma memória do tipo ROM (\textit{Read-Only Memory}) com tamanho de palavra de 16-bit e tamanho total da memoria de 4096 palavras. O módulo possui uma entrada para o sinal de \textit{clock}, e uma para o endereço da palava desejado, sendo o endereço com tamanho de 12-bit para endereçar as 4096 palavras, a saída do módulo é a palavra contida no endereço especificado. O diagrama do módulo pode ser visto na Figura \ref{fig:instrmemory}.
+A memória de instruções é uma memória do tipo ROM (\textit{Read-Only Memory}) com tamanho de palavra de 16-bit e tamanho total da memoria de 4096 palavras. O módulo possui uma entrada para o sinal de \textit{clock}, e uma para o endereço da palava desejada, sendo o endereço com tamanho de 12-bit para endereçar as 4096 palavras, a saída do módulo é a palavra contida no endereço especificado, que é atualizada a cada transição do sinal de \textit{clock}. O diagrama do módulo pode ser visto na Figura \ref{fig:instrmemory}.
 
 \begin{figure}[!h]
 \centering
@@ -211,7 +211,7 @@ O decodificador, anteriormente responsável por indicar se a instrução é imed
 
 \subsection{ULA}\label{subsec:imp-ula}
 
-Para o módulo da ULA, implementou-se a operação de BEZ, onde é comparado o valor do operando A com zero (\textit{OpA == 0}), retornando como resultado o valor do operando B (\textit{res = OpB}) e ajustando o campo \textit{zero} do registro de \textit{flags} de acordo com a comparação. Modificou-se também a ULA para que ela seja completamente combinacional, não havendo mais registros e nem sincronização com o sinal de \textit{clock}. O diagrama do módulo pode ser visto na Figura \ref{fig:ula}.
+Para o módulo da ULA, implementou-se a operação de BEZ, onde é comparado o valor do operando A com zero (\textit{OpA == 0}), retornando como resultado o valor do operando B (\textit{Res = OpB}) e ajustando o campo \textit{zero} do registro de \textit{flags} de acordo com a comparação. Modificou-se também a ULA para que ela seja completamente combinacional, não havendo mais registros e nem sincronização com o sinal de \textit{clock}. O diagrama do módulo pode ser visto na Figura \ref{fig:ula}.
 
 \begin{figure}[!h]
 \centering
@@ -250,7 +250,7 @@ O diagrama do módulo de controle pode ser visto na Figura \ref{fig:control}.
 \label{fig:control}
 \end{figure}
 
-O sinal \textit{ULAOP} indica à ULA qual operação deverá ser feita. \textit{ULAB} encaminha se o dado é um imediato ou o conteúdo do registrador B. \textit{EscIR} é o sinal de escrita para o registrador de instruções, localizado dentro do módulo de decodificação. Os sinais \textit{EscCondCP} e \textit{EscCP} são responsáveis por indicar se a instrução é um salto condicional (\textit{Branch}) ou um salto incondicional \textit{Jump}. \textit{EscReg} é o sinal para escrita no banco de registradores e \textit{WEnPC} é o sinal para escrita no registrador \textit{PC}.
+O sinal \textit{ULAOP} indica à ULA qual operação deverá ser feita. \textit{ULAB} indica se o dado é um imediato ou o conteúdo do registrador B. \textit{EscIR} é o sinal de escrita para o registrador de instruções, localizado dentro do módulo de decodificação. Os sinais \textit{EscCondCP} e \textit{EscCP} são responsáveis por indicar se a instrução é um salto condicional (\textit{Branch}) ou um salto incondicional \textit{Jump}. \textit{EscReg} é o sinal para escrita no banco de registradores e \textit{WEnPC} é o sinal para escrita no registrador \textit{PC}.
 
 \section{Integração}
 
@@ -278,21 +278,21 @@ A instrução \textit{SLT Reg-Reg} é utilizada para fazer a comparação entre 
 START:
     XOR   R8, R8, R8    // Zera contador de swaps
     SLT   R10, R11, R12   
-    BEZ   N0SWAP1, R10
+    BEZ   NOSWAP1, R10
     ADDI  R10, 0, R11
     ADDI  R11, 0, R12
     ADDI  R12, 0, R10
     ADDI  R8, 1, R8     // Incrementa contador de swaps
 NOSWAP1:
     SLT   R10, R12, R13
-    BEZ   N0SWAP2, R10
+    BEZ   NOSWAP2, R10
     ADDI  R10, 0, R12
     ADDI  R12, 0, R13
     ADDI  R13, 0, R10
     ADDI  R8, 1, R8     // Incrementa contador de swaps
 NOSWAP2:
     SLT   R10, R13, R14
-    BEZ   N0SWAP3, R10
+    BEZ   NOSWAP3, R10
     ADDI  R10, 0, R13
     ADDI  R13, 0, R14
     ADDI  R14, 0, R10
@@ -337,7 +337,7 @@ END & 27 & R5\\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-Não atribui-se registro ao label \textit{START} pois não há instrução \textit{BEZ} que faz desvio desvio para sua posição, apenas instrução \textit{J} que utiliza imediato ao invés de ponteiro.
+Não atribui-se registro ao label \textit{START} pois não há instrução \textit{BEZ} que faz desvio para sua posição, apenas instrução \textit{J} que utiliza imediato ao invés de ponteiro.
 
 Converteu-se o código assembly para binário utilizando um pequeno assembler desenvolvido para auxiliar no trabalho, para que então possa ser gravado no arquivo de inicialização de memória (.mif).
 
@@ -440,7 +440,9 @@ run 47600
 \section{Discussões}
 
 Teve-se problemas para conseguir simular corretamente o módulo de memória no software ModelSim, principalmente problemas relacionados com o arquivo de inicialização de memória (.mif). Para contornar tais problemas, modificou-se o arquivo "InstrMemory.v", colocando o caminho completo do arquivo de inicialização. Pede-se ao leitor que ao fazer a reprodução da simulação atente-se a esse detalhe e que faça a modificação do caminho do arquivo para atender às configurações da máquina em que está trabalhando.
+
 Devido as limitações das formas de endereçamento atual da máquina é necessário calcular os ponteiros dos labels ao qual os branches farão o salto no programa, armazenando-os anteriormente no banco de registradores.
+
 A instrução \textit{SLT Reg-Reg} foi implementada apenas para atender o programa de ordenação. O somador dedicado para o registro de contador de programa foi implementado para diminuir a complexidade do controle da máquina e o número de estágios.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
