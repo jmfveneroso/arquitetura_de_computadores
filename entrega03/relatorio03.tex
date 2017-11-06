@@ -177,46 +177,41 @@ Guilherme Batista Santos\\ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\
 
 \section{Descrição}\label{sec:desc}
 
-Deseja-se, agora, que o microprocessador seja capaz de ler instruções de uma memória de instruções e que as execute que forma sequencial. Instruções de controle de fluxo como \textit{BEZ (Branch if Equals Zero)} e \textit{J (Jump)} são necessárias para o controle de execução dos programas. Para tais tarefas necessita-se de um sistema de controle robusto, mais complexo do que o anteriormente implementado. 
+Deseja-se, agora, que o microprocessador seja capaz de ler instruções de uma memória de instruções e que as execute de forma sequencial. Instruções de controle de fluxo como \textit{BEZ (Branch if Equals Zero)} e \textit{J (Jump)} são necessárias para o controle de execução dos programas. Para tais tarefas necessita-se de um sistema de controle robusto, mais complexo do que o anteriormente implementado. 
 
-Para a validação do sistema utilizou-se de um algoritmo de ordenação de números inteiros positivos. Viu-se a necessidade de implementar a instrução \textit{SLT Reg-Reg}, para fazer a comparação entre registros, anteriormente implementada apenas a versão imediatada ta instrução (SLTI Reg-Imm).
+Foram implementados as instruções de controle de fluxo descritas acima e a instrução \textit{SLT Reg-Reg}, que anteriormente havia apenas a versão imediata da instrução (\textit{SLTI}), que será utilizada no algoritmo de validação da máquina.
+
+Algumas modificações foram feitas a fim de atender o funcionamento da máquina. Tais modificações serão descita nas seções abaixo.
 
 \section{Implementação}
 
-Para atender as requisições, fez-se a modificação de vários módulos já implementados em relatórios passados.
-Adicionado instrução de SLT Reg-Reg.
-
-O único módulo que permanenceu inalterado é o do banco de registradores.
-
-
+Para atender as requisições, fez-se a modificação de vários módulos já implementados anteriormente e houve a inclusão das intruções \textit{BEZ}, \textit{J} e \textit{SLT}. O único módulo que permanenceu inalterado é o do banco de registradores. As subseções abaixos descrevem os módulos e as alterações feitas.
 
 \subsection{Memória de Instruções}\label{subsec:imp-instmemory}
 
-A memória de instruções é uma memória do tipo ROM (Read-Only Memory).
+A memória de instruções é uma memória do tipo ROM (\textit{Read-Only Memory}) com tamanho de palavra de 16-bit e tamanho total da memoria de 4096 palavras. O módulo possui uma entrada para o sinal de \textit{clock}, e uma para o endereço da palava desejado, sendo o endereço com tamanho de 12-bit para endereçar as 4096 palavras, a saída do módulo é a palavra contída no endereço especificado. O diagrama do módulo pode ser visto na figura \ref{fig:instrmemory}.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{images/InstructionMemory.pdf}
+\includegraphics[scale=0.5]{images/InstructionMemory.pdf}
 \caption{Módulo da Memória de Instruções.}
 \label{fig:instrmemory}
 \end{figure}
 
-
-
 \subsection{Decodificador}\label{subsec:imp-decode}
 
-O decodificador mantem o registrador de instruções (Instruction Register, IR), que mantem a instrução que está sendo atualmente executada.
+O decodificador, anteriormente responsável por indicar se a instrução é imediata, agora possui o registrador de instruções (\textit{Instruction Register, IR}), que mantem a instrução que está sendo atualmente executada, apenas encaminhando para a unidade de controle e banco de registradores os endereços dos operandos e \textit{opcode}. O sinal \textit{EN} (\textit{Enable}) é necessário estar em nível lógico alto para que o registro de instruções seja atualizado, atualizando também a saída do módulo. A figura \ref{fig:decoder} mostra o diagrama do módulo.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{images/Decoder.pdf}
+\includegraphics[scale=0.5]{images/Decoder.pdf}
 \caption{Módulo de decodificação.}
 \label{fig:decoder}
 \end{figure}
 
 \subsection{ULA}\label{subsec:imp-ula}
 
-Para o módulo da ULA, implementou-se a operação de BEZ, onde ela compara o valor do operando A com zero (OpA == 0?), retornando como resultado o valor do operando B (res = OpB) e ajustando o campo Zero do registro de flags de acordo com a comparação. Modificou-se também a ULA para que ela seja completamente combinacional, não havendo mais registros e nem sincronização com o sinal de clock.
+Para o módulo da ULA, implementou-se a operação de BEZ, onde é comparado o valor do operando A com zero (\textit{OpA == 0}), retornando como resultado o valor do operando B (\textit{res = OpB}) e ajustando o campo \textit{zero} do registro de flags de acordo com a comparação. Modificou-se também a ULA para que ela seja completamente combinacional, não havendo mais registros e nem sincronização com o sinal de \textit{clock}. O diagrama do módulo pode ser visto na figura \ref{fig:ula}.
 
 \begin{figure}[!h]
 \centering
@@ -227,18 +222,39 @@ Para o módulo da ULA, implementou-se a operação de BEZ, onde ela compara o va
 
 \subsection{Controle}\label{subsec:imp-ctrl}
 
-Estágios da máquina de controle. Sinais de controle adicionados, sinais de controle não utilizados.
+A unidade de controle, responsável por coordenar todo o funcionamento do microprocessador, é basicamente uma máquina de estados com transições de estados a cada transição do sinal de \textit{clock}. A máquina de estados pode ser vista na figura \ref{fig:statemachine}.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{images/Control.pdf}
+\includegraphics[scale=0.55]{images/statemachine.png}
+\caption{Máquina de estados da unidade de controle.}
+\label{fig:statemachine}
+\end{figure}
+
+Definiu-se os estágios da máquina como \textit{Instruction Fetch (IF)}, \textit{Instruction Decode (ID)}, \textit{Register Fetch (RF)}, \textit{Execution (EX)} e \textit{Write Back (WB)}.
+
+\begin{itemize}
+\item \textit{IF}: Estágio de busca de instrução na memória de instrução. O registro \textit{Program Counter} (\textit{PC}) é responsável em apontar qual é o endereço da próxima instrução a ser buscada para execução;
+\item \textit{ID}: Estágio de decodificação da instrução. A instrução retornada pela memória de instruções é decodificada e quebrada em partes, alimentando dados a unidade de controle e banco de registradores;
+\item \textit{RF}: Estágio de busca de registradores no banco de registradores. Os registros necessários para a execução da instrução são buscados nesse estágio;
+\item \textit{EX}: Estágio de execução da instrução. A unidade de controle informa a ULA qual operação deve ser feita e encaminha os operandos corretos para a unidade;
+\item \textit{WB}: Estágio de escrita dos resultados e modificação do estado da máquina. O resultado da ULA pode ser guardado no banco de registradores, atualiza-se o \textit{PC} e retorna-se para o estágio de \textit{IF}.
+\end{itemize}
+
+O diagrama do módulo de controle pode ser visto na figura \ref{fig:control}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/Control.pdf}
 \caption{Módulo de controle.}
 \label{fig:control}
 \end{figure}
 
+O sinal \textit{ULAOP} indica a ULA qual operação deverá ser feita. \textit{ULAB} encaminha se o dado é um imediato ou o conteúdo do registrador B. \textit{EscIR} é o sinal de escrita para o registrador de instruções, localizado dentro do módulo de decodificação. Os sinais \textit{EscCondCP} e \textit{EscCP} são responsáveis por indicar se a instrução é um salto condicional (\textit{Branch}) ou um salto incondicional \textit{Jump}. \textit{EscReg} é o sinal para escrita no banco de registradores e \textit{WEnPC} é o sinal para escrita no registrador \textit{PC}.
+
 \section{Integração}
 
-Mux's para seleção de PC. Adder externo para incremento de PC. Considerar que os sinais de clock (CLK) e reset (RST) são globais, e estão conectados em todos os módulos que os têm. O diagrama do sistema pode ser visto na figura \ref{fig:microprocessor}.
+Após a implementação dos módulos, faz-se a integração do sistema (microprocessador). O diagrama do sistema pode ser visto na figura \ref{fig:microprocessor}, considere que os sinais de \textit{clock (CLK)} e \textit{reset (RST)} são globais, e conectados a todos os módulos que os possuem.
 
 \begin{figure}[h]
 \centering
@@ -247,9 +263,15 @@ Mux's para seleção de PC. Adder externo para incremento de PC. Considerar que 
 \label{fig:microprocessor}
 \end{figure}
 
+Há a utilização de 3 multiplexadores, sendo um para a seleção entre registro e imediato (operando B) e os outros dois trabalham em conjunto para definir o próximo valor do registro \textit{PC}, podendo ser ele um valor de um registro, o endereço imediato ou o incremento do próprio registro \textit{PC} mais 1. Para a opção de incremento do registro \textit{PC}, optou-se pela utilização de um somador dedicado, diminuindo a complexidade da unidade de controle.
+
+O sistema é comandado pelo módulo de controle que, através dos sinais de controle, consegue ditar toda a execução das instruções.
+
 \section{Simulação e Testes}
 
 Integrado o microprocessador passa-se para o processo de simulação e teste para validar a implementação. Para tal, gerou-se um algoritmo para fazer a ordenação de um vetor, utilizando os registros R11, R12, R13, R14 e R15 como elementos do vetor. O algoritmo faz a ordenação de forma decrescente, colocando o elemento de maior valor em R11 e o de menor valor em R15, trabalhando apenas com valores inteiros positivos.
+
+A instrução \textit{SLT Reg-Reg} é utilizada para fazer a comparação entre os registros. Utiliza-se os registradores R8 e R10 como auxiliares. Ao fim o programa fica preso em um laço infinito, simbolizando o fim da execução do mesmo. O código pode ser visualizado abaixo.
 
 \lstset{language=[mips]Assembler}
 \begin{lstlisting}
@@ -286,12 +308,12 @@ TEST:
     BEZ   END, R8       // Teste se houve algum swap
     J     START         // Houve, retornar para inicio
 END:
-    J     end           // Fim de execucao, loop infinito
+    J     END           // Fim de execucao, loop infinito
 \end{lstlisting}
 
-A instrução BEZ (Branch if Equals Zero) requer que o ponteiro para qual o programa será desviado caso ocorra o branch seja armazenado em um registrador. Assim, precisa-se calcular a posição das labels do programa e carregar tais valores no banco de registradores durante a inicialização do programa. A tabeka abaixo relaciona os labels com suas posições e registros.
+A instrução \textit{BEZ} (\textit{Branch if Equals Zero}) requer que o ponteiro para o qual o programa será desviado, caso ocorra o branch, seja armazenado em um registrador. Assim, precisa-se calcular a posição das labels do programa e carregar tais valores no banco de registradores durante a inicialização do programa. A tabela abaixo relaciona os labels com suas posições e registros.
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
 \begin{tabular}{| c | c | c |}
 \hline
@@ -317,7 +339,7 @@ END & 27 & R5\\
 
 Não atribui-se registro ao label \textit{START} pois não há instrução \textit{BEZ} que faz desvio desvio para sua posição, apenas instrução \textit{J} que utiliza imediato ao invés de ponteiro.
 
-Converteu-se o código assembly para binário, para que então possa ser gravado no arquivo de inicialização de memória (.mif).
+Converteu-se o código assembly para binário utilizando um pequeno assembler desenvolvido para auxiliar no trabalho, para que então possa ser gravado no arquivo de inicialização de memória (.mif).
 
 \begin{lstlisting}
 0101100010001000
@@ -350,12 +372,76 @@ Converteu-se o código assembly para binário, para que então possa ser gravado
 1011000000011011
 \end{lstlisting}
 
+Fez-se a simulação do sistema rodando o algoritmo acima no ModelSim. Pode-se ver as formas de onda na figura \ref{fig:simulation}.
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.55]{images/simulation.png}
+\caption{Simulação no ModelSim.}
+\label{fig:simulation}
+\end{figure}
+
+O script de inicialização da simulação e ajuste dos dados no banco de registradores pode ser visto abaixo.
+
+\begin{lstlisting}
+## Arquivo de simulacaoo para o ModelSIM
+vsim -L altera_mf_ver -L lpm_ver -L cycloneiii_ver -L cycloneii_ver Microprocessor
+
+add wave -position end  sim:/Microprocessor/CLK
+add wave -position end  sim:/Microprocessor/RST
+add wave -position end  sim:/Microprocessor/isImm
+add wave -position end  sim:/Microprocessor/wenRB
+add wave -position end  sim:/Microprocessor/wenIR
+add wave -position end  sim:/Microprocessor/wenPC
+add wave -position end  sim:/Microprocessor/jmpCond
+add wave -position end  sim:/Microprocessor/escCondCP
+add wave -position end  sim:/Microprocessor/escCP
+add wave -position end  sim:/Microprocessor/opCode
+add wave -position end  sim:/Microprocessor/opA
+add wave -position end  sim:/Microprocessor/opB
+add wave -position end  sim:/Microprocessor/opC
+add wave -position end  sim:/Microprocessor/opALU
+add wave -position end  sim:/Microprocessor/addrImm
+add wave -position end  sim:/Microprocessor/progCounter
+add wave -position end  sim:/Microprocessor/regA
+add wave -position end  sim:/Microprocessor/regB
+add wave -position end  sim:/Microprocessor/res
+add wave -position end  sim:/Microprocessor/outMuxImm
+add wave -position end  sim:/Microprocessor/outMuxJmpBrc
+add wave -position end  sim:/Microprocessor/outMuxPC
+add wave -position end  sim:/Microprocessor/flagReg
+add wave -position end  sim:/Microprocessor/instr
+add wave -position end  sim:/Microprocessor/PC
+add wave -position end  sim:/Microprocessor/ctrl/State
+
+force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Microprocessor/RST 1 0
+run
+force -freeze sim:/Microprocessor/RST 0 0
+
+## Inicializacao do banco de registros para teste: R11 = 1, R12 = 2, R13 = 3, R14 = 4, R15 = 5
+mem load -skip 0 -filltype value -filldata 0001 -fillradix symbolic -startaddress 11 -endaddress 11 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 0010 -fillradix symbolic -startaddress 12 -endaddress 12 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 0011 -fillradix symbolic -startaddress 13 -endaddress 13 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 0100 -fillradix symbolic -startaddress 14 -endaddress 14 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 0101 -fillradix symbolic -startaddress 15 -endaddress 15 /Microprocessor/regBank/RegBank
+
+## Inicializacao dos ponteiros para os branches no banco de registros
+mem load -skip 0 -filltype value -filldata 00111 -fillradix symbolic -startaddress 1 -endaddress 1 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 01101 -fillradix symbolic -startaddress 2 -endaddress 2 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 10011 -fillradix symbolic -startaddress 3 -endaddress 3 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 11001 -fillradix symbolic -startaddress 4 -endaddress 4 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 11011 -fillradix symbolic -startaddress 5 -endaddress 5 /Microprocessor/regBank/RegBank
+
+## Passo da instrucao: 5 ciclos (500ps). ~95 execucoes de instrucoes para ordenacao com os valores atuais
+run 47600
+\end{lstlisting}
 
 \section{Discussões}
 
-Houve-se problemas para conseguir simular corretamente o módulo de memória no software ModelSim, principlamente problemas relacionados com o arquivo de inicialização de memória (.mif). Para contornar tais problemas, modificou-se o arquivo "InstrMemory.v", colocando o caminho completo do arquivo de inicialização. Pede-se ao leitor que ao fazer a reprodução da simulação atente-se a esse detalhe e que faça a modificação do caminho do arquivo para atender às configurações da máquina em que está trabalhando.
-Devido as limitações das formas de endereçamento atual da máquina, é necessário calcular os ponteiros dos labels ao qual os branches farão o salto no programa, armazenando-os anteriormente no banco de registradores.
+Teve-se problemas para conseguir simular corretamente o módulo de memória no software ModelSim, principlamente problemas relacionados com o arquivo de inicialização de memória (.mif). Para contornar tais problemas, modificou-se o arquivo "InstrMemory.v", colocando o caminho completo do arquivo de inicialização. Pede-se ao leitor que ao fazer a reprodução da simulação atente-se a esse detalhe e que faça a modificação do caminho do arquivo para atender às configurações da máquina em que está trabalhando.
+Devido as limitações das formas de endereçamento atual da máquina é necessário calcular os ponteiros dos labels ao qual os branches farão o salto no programa, armazenando-os anteriormente no banco de registradores.
+A instrução \textit{SLT Reg-Reg} foi implementada apenas para atender o programa de ordenação. O somador dedicado para o registro de contador de programa foi implementado para diminuir a complexidade do controle da máquina e o número de estágios.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Para mudar o nome da seo de referncias
