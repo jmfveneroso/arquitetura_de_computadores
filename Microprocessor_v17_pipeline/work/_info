@@ -1,0 +1,265 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/iuri/Projects/altera/Microprocessor
+vControl
+Z1 !s100 9;7mdkSf<cdEGNImdDY@P3
+Z2 ImA[Uf=]KDaAiQd0caSZo00
+Z3 V_eSjj;oGiYPA<bEG4<;>z0
+Z4 d/home/iuri/Projects/altera/Microprocessor
+Z5 w1510969091
+Z6 8/home/iuri/Projects/altera/Microprocessor/Control.v
+Z7 F/home/iuri/Projects/altera/Microprocessor/Control.v
+L0 7
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 o-work work -O0
+Z10 n@control
+Z11 !s108 1510971183.059502
+Z12 !s107 /home/iuri/Projects/altera/Microprocessor/Control.v|
+Z13 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Control.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vDec7Seg
+Z14 !s100 3h:>]aPeOz<zS9]zk87J31
+Z15 I=N25k[=c]mMM]H>[I1oE^3
+Z16 VXFTSb_enYVhd@Q5QE8OnJ2
+R4
+Z17 w1507595360
+Z18 8/home/iuri/Projects/altera/Microprocessor/Dec7Seg.v
+Z19 F/home/iuri/Projects/altera/Microprocessor/Dec7Seg.v
+L0 7
+R8
+r1
+31
+R9
+Z20 n@dec7@seg
+Z21 !s108 1510971183.082824
+Z22 !s107 /home/iuri/Projects/altera/Microprocessor/Dec7Seg.v|
+Z23 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Dec7Seg.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vDecoder
+Z24 !s100 lhk16P858mo<jVlX98d9U2
+Z25 I?eC]E38[mP5lhN@[B5fC20
+Z26 V3W4zlTi@4KIklG@_LBiC^0
+R4
+Z27 w1509798068
+Z28 8/home/iuri/Projects/altera/Microprocessor/Decoder.v
+Z29 F/home/iuri/Projects/altera/Microprocessor/Decoder.v
+L0 10
+R8
+r1
+31
+R9
+Z30 n@decoder
+Z31 !s108 1510971183.104799
+Z32 !s107 /home/iuri/Projects/altera/Microprocessor/Decoder.v|
+Z33 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Decoder.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vInstrMemory
+Z34 !s100 93R>XoXP?LR?Ok>T<;6<D0
+Z35 IJQP3UJjJz34Tl=MCAiD0U0
+Z36 Vz4elIH6k1``Pfch]:D;D53
+R4
+Z37 w1509807653
+Z38 8/home/iuri/Projects/altera/Microprocessor/InstrMemory_bb.v
+Z39 F/home/iuri/Projects/altera/Microprocessor/InstrMemory_bb.v
+L0 34
+R8
+r1
+31
+R9
+Z40 n@instr@memory
+Z41 !s108 1510971183.127203
+Z42 !s107 /home/iuri/Projects/altera/Microprocessor/InstrMemory_bb.v|
+Z43 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/InstrMemory_bb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMicroprocessor
+Z44 !s100 i7f6E>@Alh[mMac`4WF7_2
+Z45 I6I51E36Yf96^AGPRk0Je<3
+Z46 V_2ZRN9?2oOQ^eOFLS4NiN1
+R4
+Z47 w1510970531
+Z48 8/home/iuri/Projects/altera/Microprocessor/Microprocessor.v
+Z49 F/home/iuri/Projects/altera/Microprocessor/Microprocessor.v
+L0 17
+R8
+r1
+31
+R9
+Z50 n@microprocessor
+Z51 !s108 1510971183.148514
+Z52 !s107 /home/iuri/Projects/altera/Microprocessor/Microprocessor.v|
+Z53 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Microprocessor.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMult
+Z54 !s100 l6nCS?1Y<T]7^eDa3W_XQ0
+Z55 Igd68Hl[VWhi6UZm8V9iSU3
+Z56 Vk:4_gniPhUmB[NL>2khAl2
+R4
+Z57 w1510966207
+Z58 8/home/iuri/Projects/altera/Microprocessor/Mult.v
+Z59 F/home/iuri/Projects/altera/Microprocessor/Mult.v
+L0 9
+R8
+r1
+31
+R9
+Z60 n@mult
+Z61 !s108 1510971183.171235
+Z62 !s107 /home/iuri/Projects/altera/Microprocessor/Mult.v|
+Z63 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Mult.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux16bit2x1
+Z64 !s100 bkXNYnKEYYO[CWI0DZWmB1
+Z65 Im7L^m0NYCh0SaH?hH8h^L3
+Z66 V10mT@[7GECFRU7?LMC=IB3
+R4
+Z67 w1507225197
+Z68 8/home/iuri/Projects/altera/Microprocessor/Mux16bit2x1.v
+Z69 F/home/iuri/Projects/altera/Microprocessor/Mux16bit2x1.v
+L0 7
+R8
+r1
+31
+R9
+Z70 n@mux16bit2x1
+Z71 !s108 1510971183.192909
+Z72 !s107 /home/iuri/Projects/altera/Microprocessor/Mux16bit2x1.v|
+Z73 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Mux16bit2x1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux16bit3x1
+Z74 !s100 835PeY@dUnmkeN5JWfc7>3
+Z75 IaGl24^;fDCXWMi[f]6SZH1
+Z76 VJLl4R9O7TJJTAX@E8E<B60
+R4
+Z77 w1509477094
+Z78 8/home/iuri/Projects/altera/Microprocessor/Mux16bit3x1.v
+Z79 F/home/iuri/Projects/altera/Microprocessor/Mux16bit3x1.v
+L0 7
+R8
+r1
+31
+R9
+Z80 n@mux16bit3x1
+Z81 !s108 1510971183.214457
+Z82 !s107 /home/iuri/Projects/altera/Microprocessor/Mux16bit3x1.v|
+Z83 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Mux16bit3x1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux4bit2x1
+Z84 !s100 EQdCc9SCDa^j8V;5ZV<iA0
+Z85 I6ia6m@i=FCCjSGLe0R3SZ2
+Z86 V0T[=cn8aHSZjjkSORbAg@2
+R4
+Z87 w1507594200
+Z88 8/home/iuri/Projects/altera/Microprocessor/Mux4bit2x1.v
+Z89 F/home/iuri/Projects/altera/Microprocessor/Mux4bit2x1.v
+L0 7
+R8
+r1
+31
+R9
+Z90 n@mux4bit2x1
+Z91 !s108 1510971183.235055
+Z92 !s107 /home/iuri/Projects/altera/Microprocessor/Mux4bit2x1.v|
+Z93 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/Mux4bit2x1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vRegisterBank
+Z94 !s100 Y7Vc^O<]aM[<izz7K_KL33
+Z95 IPV[ih8OE787nhUE]FB2:E1
+Z96 V_mfj7Z:C8J;b>hcojQ?0M1
+R4
+Z97 w1506576262
+Z98 8/home/iuri/Projects/altera/Microprocessor/RegisterBank.v
+Z99 F/home/iuri/Projects/altera/Microprocessor/RegisterBank.v
+L0 7
+R8
+r1
+31
+R9
+Z100 n@register@bank
+Z101 !s108 1510971183.256287
+Z102 !s107 /home/iuri/Projects/altera/Microprocessor/RegisterBank.v|
+Z103 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/RegisterBank.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vULA
+Z104 !s100 oz25XiilXKmdPc3ca9o8X2
+Z105 I]0]i1=m4>d:0[^@gf[loM3
+Z106 V362Y]j09<lWQa?7nSnJO;3
+R4
+Z107 w1509477555
+Z108 8/home/iuri/Projects/altera/Microprocessor/ULA.v
+Z109 F/home/iuri/Projects/altera/Microprocessor/ULA.v
+L0 26
+R8
+r1
+31
+R9
+Z110 n@u@l@a
+Z111 !s108 1510971183.277570
+Z112 !s107 /home/iuri/Projects/altera/Microprocessor/ULA.v|
+Z113 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/ULA.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vWrapperDE2
+Z114 !s100 SThAzeb7NWk[9O`zXT4o?3
+Z115 IfbCZ?QfJBmITCTnl::Tj31
+Z116 VFFDjE>_zAmIX[LV41_mb?3
+R4
+Z117 w1509473968
+Z118 8/home/iuri/Projects/altera/Microprocessor/WrapperDE2.v
+Z119 F/home/iuri/Projects/altera/Microprocessor/WrapperDE2.v
+L0 7
+R8
+r1
+31
+R9
+Z120 n@wrapper@d@e2
+!i10b 1
+!s85 0
+Z121 !s108 1510971183.304473
+Z122 !s107 /home/iuri/Projects/altera/Microprocessor/WrapperDE2.v|
+Z123 !s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/WrapperDE2.v|
+!s101 -O0
+vWrapperSim
+!i10b 1
+Z124 !s100 QKL4hU[_hWZSi<ZY@c?IQ2
+Z125 IcLTHVLThi^ngkV:j96EHf2
+Z126 Vcj>P4hR5U6;N0]WA:`z2h3
+R4
+Z127 w1509802898
+Z128 8/home/iuri/Projects/altera/Microprocessor/WrapperSim.v
+Z129 F/home/iuri/Projects/altera/Microprocessor/WrapperSim.v
+L0 17
+R8
+r1
+!s85 0
+31
+!s108 1510971183.328090
+!s107 /home/iuri/Projects/altera/Microprocessor/WrapperSim.v|
+!s90 -reportprogress|300|-work|work|-O0|/home/iuri/Projects/altera/Microprocessor/WrapperSim.v|
+!s101 -O0
+R9
+Z130 n@wrapper@sim

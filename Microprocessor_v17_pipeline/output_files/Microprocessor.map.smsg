@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at WrapperDE2.v(86): always construct contains both blocking and non-blocking assignments File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/WrapperDE2.v Line: 86
+Info (10281): Verilog HDL Declaration information at WrapperDE2.v(36): object "RST" differs only in case from object "rst" in the same scope File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/WrapperDE2.v Line: 36
