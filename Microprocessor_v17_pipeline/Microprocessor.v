@@ -24,6 +24,9 @@ module Microprocessor(CLK, RST);
 	reg			DecExeBufferCtrl_HasWB;
 	reg			DecExeBufferCtrl_HasStall;
 	reg			DecExeBufferCtrl_IsJump;
+	reg			DecExeBufferCtrl_IsMult;
+	reg			DecExeBufferCtrl_HiLo;
+	reg			DecExeBufferCtrl_StoreHiLo;
 	
 	//-- Buffer entre execucao e writeback (Exe/WB)
 	reg [15:0]	ExeWBBuffer_Res;
@@ -45,6 +48,9 @@ module Microprocessor(CLK, RST);
 	wire			hasWB;								
 	wire			hasStall;
 	wire			isJump;
+	wire			isMult;
+	wire			storeHilo;
+	wire			hilo;
 	
 	wire			decExeBufferWr;						// Sinal para escrita no buffer do pipe Dec/Exe
 	wire			exeWBBufferWr;							// Sinal para escrita no buffer do pipe Exe/WB
@@ -61,9 +67,12 @@ module Microprocessor(CLK, RST);
 	
 	wire [15:0] regA, regB;								// Saidas do banco de registradores
 	wire [15:0]	operandA, operandB;					// Operandos utilizados pela ULA
+	wire [15:0] regHi, regLo;							// Saidas do multiplicador
 	wire [15:0] res;										// Resultado da ULA
 	wire [2:0]	flagReg;									// Flags da ULA
 	wire [15:0]	outMuxImm;								// Saida do mux de selecao de operando ou imediato
+	wire [15:0] outMuxHilo;								// Saida do mux de selecao Hi Lo
+	wire [15:0] outMuxRes;								// Saida do mux de selecao ULA e Mult
 	
 	
 	assign progCounter = PC[11:0];
@@ -87,7 +96,10 @@ module Microprocessor(CLK, RST);
 							isImm,
 							hasWB,
 							hasStall,
-							isJump	);
+							isJump,
+							isMult,
+							hilo,
+							storeHilo);
 
 	//-- Banco de Registradores
 	RegisterBank regBank(CLK,
@@ -100,12 +112,20 @@ module Microprocessor(CLK, RST);
 								regA,
 								regB );
 							
-							
+	//-- Unidade Logica Aritmetica						
 	ULA modULA(	operandA,
 					outMuxImm,
 					res,
 					DecExeBuffer_OpULA,
 					flagReg );
+	
+	//-- Unidade de multiplicacao
+	Mult modMult(	operandA,
+						operandB,
+						regHi,
+						regLo,
+						DecExeBufferCtrl_IsMult,
+						CLK	);
 	
 	//-- Maquina de estados para controle do estagio de decodificacao
 	ControlDecode ctrlDecode (	CLK,
@@ -160,6 +180,18 @@ module Microprocessor(CLK, RST);
 										pcExtSrc,
 										DecExeBufferCtrl_IsJump );
 	
+	//-- Mux para selecao Hi Lo
+	Mux16bit2x1 muxSelHiLo(	regLo,
+									regHi,
+									outMuxHilo,
+									DecExeBufferCtrl_HiLo	);
+									
+	//-- Mux para selecao saida ULA e registrador Mult
+	Mux16bit2x1 muxULAMult(	res,
+									outMuxHilo,
+									outMuxRes,
+									DecExeBufferCtrl_StoreHiLo	);
+	
 	
 	always @ (posedge CLK) begin
 		if (RST) begin
@@ -174,6 +206,9 @@ module Microprocessor(CLK, RST);
 			DecExeBufferCtrl_HasWB		<= 1'b0;
 			DecExeBufferCtrl_HasStall	<= 1'b0;
 			DecExeBufferCtrl_IsJump		<= 1'b0;
+			DecExeBufferCtrl_IsMult		<= 1'b0;
+			DecExeBufferCtrl_HiLo		<= 1'b0;
+			DecExeBufferCtrl_StoreHiLo <= 1'b0;
 			
 			ExeWBBuffer_Res					<= 16'b0;
 			ExeWBBuffer_FlagReg				<= 3'b0;
@@ -199,11 +234,14 @@ module Microprocessor(CLK, RST);
 				DecExeBufferCtrl_HasWB		<= hasWB;
 				DecExeBufferCtrl_HasStall	<= hasStall;
 				DecExeBufferCtrl_IsJump		<= isJump;
+				DecExeBufferCtrl_IsMult		<= isMult;
+				DecExeBufferCtrl_HiLo		<= hilo;
+				DecExeBufferCtrl_StoreHiLo <= storeHilo;
 			end
 			
 			// Atualiza o buffer Exe/WB
 			if (exeWBBufferWr) begin
-				ExeWBBuffer_Res					<= res;
+				ExeWBBuffer_Res					<= outMuxRes;
 				ExeWBBuffer_FlagReg				<= flagReg;
 				ExeWBBufferCtrl_RegDest			<= DecExeBuffer_OpC;
 				ExeWBBufferCtrl_HasWB			<= DecExeBufferCtrl_HasWB;

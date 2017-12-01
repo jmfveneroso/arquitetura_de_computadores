@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/home/iuri/Projects/altera/Microprocessor_v17_pipeline/simulation/modelsim
 vControlDecode
-Z1 !s110 1512079476
+Z1 !s110 1512097827
 !i10b 1
 !s100 Ml:imU>LQT;2WS74K[cI01
 I6ZYTnJQMm`:TN5jC@K4AF1
@@ -23,7 +23,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1512079475.000000
+Z5 !s108 1512097827.000000
 !s107 /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline|/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v|
 !i113 1
@@ -46,7 +46,7 @@ R4
 r1
 !s85 0
 31
-Z9 !s108 1512079476.000000
+R5
 !s107 /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline|/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v|
 !i113 1
@@ -69,7 +69,7 @@ R4
 r1
 !s85 0
 31
-R9
+R5
 !s107 /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline|/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v|
 !i113 1
@@ -78,13 +78,13 @@ R7
 R8
 n@control@writeback
 vDecoder
-Z10 !s110 1512079475
+R1
 !i10b 1
-!s100 RHZUF4X[T7<6NSaK^OJ:@1
-Id5cF5HTV<Mddk6jZ=VI9N2
+!s100 3<KeF5Y_82k??bH2LGQ=]0
+I^Z?n@;C4EUQgzCPO[6oTn1
 R2
 R0
-w1512013381
+w1512095913
 8/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v
 F/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v
 L0 9
@@ -101,7 +101,7 @@ R7
 R8
 n@decoder
 vInstrMemory
-R10
+R1
 !i10b 1
 !s100 _B09Q[ciSjQoT;>eY6j[32
 IBT<<M8a`a_377H3Ho;A3H2
@@ -124,13 +124,13 @@ R7
 R8
 n@instr@memory
 vMicroprocessor
-R10
+R1
 !i10b 1
-!s100 07C7gOQ?C6RN9]C8`?C]C0
-I[3ncJY3Wm_CWSh?_^MbYK2
+!s100 0Md[O2MGI=KhgUCQc@bVU1
+IoU0Ue`k3ebk6lK_E29=<X0
 R2
 R0
-w1512078058
+w1512096657
 8/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v
 F/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v
 L0 7
@@ -146,8 +146,31 @@ R6
 R7
 R8
 n@microprocessor
+vMult
+R1
+!i10b 1
+!s100 @gDYBTRfU^3jzUE=z9UFh1
+Ij:@=]P>Hi_aS:R=>6AlIN0
+R2
+R0
+w1510981051
+8/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v
+F/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline|/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v|
+!i113 1
+R6
+R7
+R8
+n@mult
 vMux16bit2x1
-R10
+R1
 !i10b 1
 !s100 cmEzF3GzZdMjAB?aLN?<k0
 ILU^dmiEdS3]J`8ci?AECK1
@@ -170,7 +193,7 @@ R7
 R8
 n@mux16bit2x1
 vRegisterBank
-R10
+R1
 !i10b 1
 !s100 Vc@Jo>O@T:aK=]B?6o=U>0
 IK75]inFH_=LSKle0V?:]z1
@@ -193,7 +216,7 @@ R7
 R8
 n@register@bank
 vULA
-R10
+R1
 !i10b 1
 !s100 zAO@fZJ>QOQnlhINmNXj=3
 IbOAo[5d0J]KK^=^MaM;gO1

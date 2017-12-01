@@ -11,6 +11,7 @@ vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v}
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v}
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v}
+vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v}
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v}
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v}
 vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v}

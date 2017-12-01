@@ -10,106 +10,117 @@
 # 
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit2x1.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit2x1.v 
 # -- Compiling module Mux16bit2x1
 # 
 # Top level modules:
 # 	Mux16bit2x1
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v 
 # -- Compiling module Decoder
 # 
 # Top level modules:
 # 	Decoder
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v 
 # -- Compiling module ULA
 # 
 # Top level modules:
 # 	ULA
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v 
 # -- Compiling module RegisterBank
 # 
 # Top level modules:
 # 	RegisterBank
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v 
 # -- Compiling module InstrMemory
 # 
 # Top level modules:
 # 	InstrMemory
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v 
 # -- Compiling module Microprocessor
 # 
 # Top level modules:
 # 	Microprocessor
-# End time: 20:04:35 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:10:27 on Dec 01,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v 
+# -- Compiling module Mult
+# 
+# Top level modules:
+# 	Mult
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:35 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v 
 # -- Compiling module ControlDecode
 # 
 # Top level modules:
 # 	ControlDecode
-# End time: 20:04:36 on Nov 30,2017, Elapsed time: 0:00:01
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:36 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v 
 # -- Compiling module ControlExecute
 # 
 # Top level modules:
 # 	ControlExecute
-# End time: 20:04:36 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline {/home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:04:36 on Nov 30,2017
+# Start time: 01:10:27 on Dec 01,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline" /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v 
 # -- Compiling module ControlWriteback
 # 
 # Top level modules:
 # 	ControlWriteback
-# End time: 20:04:36 on Nov 30,2017, Elapsed time: 0:00:00
+# End time: 01:10:27 on Dec 01,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # 
 # stdin: <EOF>
 vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver Microprocessor
 # vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver Microprocessor 
-# Start time: 20:05:17 on Nov 30,2017
+# Start time: 01:10:44 on Dec 01,2017
 # Loading work.Microprocessor
 # Loading work.InstrMemory
 # Loading altera_mf_ver.altsyncram
 # Loading work.Decoder
 # Loading work.RegisterBank
 # Loading work.ULA
+# Loading work.Mult
 # Loading work.ControlDecode
 # Loading work.ControlExecute
 # Loading work.ControlWriteback
@@ -172,12 +183,17 @@ add wave -position end  sim:/Microprocessor/ExeWBBuffer_HasJumped
 add wave -position end  sim:/Microprocessor/ctrlDecode/DecodeState
 add wave -position end  sim:/Microprocessor/ctrlExecute/ExecutionState
 add wave -position end  sim:/Microprocessor/ctrlWriteback/WriteBackState
-
+add wave -position 34  sim:/Microprocessor/DecExeBufferCtrl_IsMult
+add wave -position 35  sim:/Microprocessor/DecExeBufferCtrl_HiLo
+add wave -position 36  sim:/Microprocessor/DecExeBufferCtrl_StoreHiLo
 force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/Microprocessor/RST 1 0
 run
 force -freeze sim:/Microprocessor/RST 0 0
+mem load -skip 0 -filltype value -filldata 1111 -fillradix symbolic -startaddress 0 -endaddress 0 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 10100 -fillradix symbolic -startaddress 1 -endaddress 1 /Microprocessor/regBank/RegBank
 mem load -skip 0 -filltype value -filldata 101 -fillradix symbolic -startaddress 15 -endaddress 15 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 1011000000000101 -fillradix symbolic -startaddress 5 -endaddress 5 /Microprocessor/instrMemory/altsyncram_component/m_default/altsyncram_inst/mem_data
 run
 run
 run
@@ -208,7 +224,16 @@ run
 run
 run
 run
+restart -f
+force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Microprocessor/RST 1 0
 run
+force -freeze sim:/Microprocessor/RST 0 0
+mem load -skip 0 -filltype value -filldata 1111 -fillradix symbolic -startaddress 0 -endaddress 0 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 10100 -fillradix symbolic -startaddress 1 -endaddress 1 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 101 -fillradix symbolic -startaddress 15 -endaddress 15 /Microprocessor/regBank/RegBank
+mem load -skip 0 -filltype value -filldata 1011000000000101 -fillradix symbolic -startaddress 5 -endaddress 5 /Microprocessor/instrMemory/altsyncram_component/m_default/altsyncram_inst/mem_data
+mem load -skip 0 -filltype value -filldata 0111 -fillradix symbolic -startaddress 7 -endaddress 7 /Microprocessor/regBank/RegBank
 run
 run
 run
@@ -224,7 +249,6 @@ run
 run
 run
 run
-mem load -skip 0 -filltype value -filldata 1111 -fillradix symbolic -startaddress 4 -endaddress 4 /Microprocessor/regBank/RegBank
 run
 run
 run
@@ -247,56 +271,5 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-mem load -skip 0 -filltype value -filldata 1111 -fillradix symbolic -startaddress 7 -endaddress 7 /Microprocessor/regBank/RegBank
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# End time: 21:37:57 on Nov 30,2017, Elapsed time: 1:32:40
+# End time: 01:18:03 on Dec 01,2017, Elapsed time: 0:07:19
 # Errors: 1, Warnings: 0

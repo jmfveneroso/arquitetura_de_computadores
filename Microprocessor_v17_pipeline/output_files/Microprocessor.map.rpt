@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Microprocessor
-Thu Nov 30 20:04:18 2017
+Fri Dec  1 01:28:46 2017
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -62,7 +62,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Nov 30 20:04:18 2017       ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec  1 01:28:46 2017       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Microprocessor                              ;
 ; Top-level Entity Name              ; Microprocessor                              ;
@@ -192,6 +192,7 @@ refer to the applicable agreement for further details.
 ; MemoryInitFile.mif               ; yes             ; User Memory Initialization File  ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/MemoryInitFile.mif     ;         ;
 ; InstrMemory.v                    ; yes             ; User Wizard-Generated File       ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v          ;         ;
 ; Microprocessor.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v       ;         ;
+; Mult.v                           ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v                 ;         ;
 ; ControlDecode.v                  ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v        ;         ;
 ; ControlExecute.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v       ;         ;
 ; ControlWriteback.v               ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v     ;         ;
@@ -355,7 +356,44 @@ Encoding Type:  One-Hot
 ; RegisterBank:regBank|RegA[0]                      ; Lost fanout                              ;
 ; DecExeBufferCtrl_AddrImm[0..3]                    ; Lost fanout                              ;
 ; RegisterBank:regBank|RegA[1..15]                  ; Lost fanout                              ;
-; DecExeBufferCtrl_AddrImm[8..11]                   ; Lost fanout                              ;
+; Mult:modMult|LO[0]                                ; Lost fanout                              ;
+; Mult:modMult|HI[0]                                ; Lost fanout                              ;
+; DecExeBufferCtrl_HiLo                             ; Lost fanout                              ;
+; DecExeBufferCtrl_StoreHiLo                        ; Lost fanout                              ;
+; Mult:modMult|LO[1]                                ; Lost fanout                              ;
+; Mult:modMult|HI[1]                                ; Lost fanout                              ;
+; Mult:modMult|LO[2]                                ; Lost fanout                              ;
+; Mult:modMult|HI[2]                                ; Lost fanout                              ;
+; Mult:modMult|LO[3]                                ; Lost fanout                              ;
+; Mult:modMult|HI[3]                                ; Lost fanout                              ;
+; Mult:modMult|LO[4]                                ; Lost fanout                              ;
+; Mult:modMult|HI[4]                                ; Lost fanout                              ;
+; Mult:modMult|LO[5]                                ; Lost fanout                              ;
+; Mult:modMult|HI[5]                                ; Lost fanout                              ;
+; Mult:modMult|LO[6]                                ; Lost fanout                              ;
+; Mult:modMult|HI[6]                                ; Lost fanout                              ;
+; Mult:modMult|LO[7]                                ; Lost fanout                              ;
+; Mult:modMult|HI[7]                                ; Lost fanout                              ;
+; Mult:modMult|LO[8]                                ; Lost fanout                              ;
+; Mult:modMult|HI[8]                                ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[8]                       ; Lost fanout                              ;
+; Mult:modMult|LO[9]                                ; Lost fanout                              ;
+; Mult:modMult|HI[9]                                ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[9]                       ; Lost fanout                              ;
+; Mult:modMult|LO[10]                               ; Lost fanout                              ;
+; Mult:modMult|HI[10]                               ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[10]                      ; Lost fanout                              ;
+; Mult:modMult|LO[11]                               ; Lost fanout                              ;
+; Mult:modMult|HI[11]                               ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[11]                      ; Lost fanout                              ;
+; Mult:modMult|LO[15]                               ; Lost fanout                              ;
+; Mult:modMult|HI[15]                               ; Lost fanout                              ;
+; Mult:modMult|LO[14]                               ; Lost fanout                              ;
+; Mult:modMult|HI[14]                               ; Lost fanout                              ;
+; Mult:modMult|LO[13]                               ; Lost fanout                              ;
+; Mult:modMult|HI[13]                               ; Lost fanout                              ;
+; Mult:modMult|LO[12]                               ; Lost fanout                              ;
+; Mult:modMult|HI[12]                               ; Lost fanout                              ;
 ; RegisterBank:regBank|RegBank[0][0]                ; Lost fanout                              ;
 ; RegisterBank:regBank|RegBank[1][0]                ; Lost fanout                              ;
 ; RegisterBank:regBank|RegBank[2][0]                ; Lost fanout                              ;
@@ -613,6 +651,7 @@ Encoding Type:  One-Hot
 ; RegisterBank:regBank|RegBank[13][15]              ; Lost fanout                              ;
 ; RegisterBank:regBank|RegBank[14][15]              ; Lost fanout                              ;
 ; RegisterBank:regBank|RegBank[15][15]              ; Lost fanout                              ;
+; DecExeBufferCtrl_IsMult                           ; Lost fanout                              ;
 ; ControlWriteback:ctrlWriteback|WriteBackState.WB1 ; Lost fanout                              ;
 ; ControlWriteback:ctrlWriteback|WriteBackState.WB2 ; Lost fanout                              ;
 ; ControlWriteback:ctrlWriteback|WriteBackState.WB0 ; Lost fanout                              ;
@@ -622,96 +661,105 @@ Encoding Type:  One-Hot
 ; ControlDecode:ctrlDecode|DecodeState.DEC1         ; Lost fanout                              ;
 ; ControlDecode:ctrlDecode|DecodeState.DEC2         ; Lost fanout                              ;
 ; ControlDecode:ctrlDecode|DecodeState.DEC0         ; Lost fanout                              ;
-; Total Number of Removed Registers = 380           ;                                          ;
+; Total Number of Removed Registers = 415           ;                                          ;
 +---------------------------------------------------+------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                   ;
-+------------------------------+---------------------------+------------------------------------------------------------------------------------+
-; Register name                ; Reason for Removal        ; Registers Removed due to This Register                                             ;
-+------------------------------+---------------------------+------------------------------------------------------------------------------------+
-; PC[1]                        ; Lost Fanouts              ; ExeWBBuffer_Res[1], ExeWBBufferCtrl_AddrImm[1], DecExeBufferCtrl_AddrImm[5],       ;
-;                              ;                           ; DecExeBufferCtrl_IsImm, RegisterBank:regBank|RegB[1], DecExeBufferCtrl_AddrImm[1], ;
-;                              ;                           ; RegisterBank:regBank|RegA[1], RegisterBank:regBank|RegBank[0][1],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][1], RegisterBank:regBank|RegBank[2][1],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][1], RegisterBank:regBank|RegBank[4][1]             ;
-; PC[2]                        ; Lost Fanouts              ; ExeWBBuffer_Res[2], ExeWBBufferCtrl_AddrImm[2], DecExeBufferCtrl_AddrImm[6],       ;
-;                              ;                           ; RegisterBank:regBank|RegB[2], DecExeBufferCtrl_AddrImm[2],                         ;
-;                              ;                           ; RegisterBank:regBank|RegA[2], RegisterBank:regBank|RegBank[0][2],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][2], RegisterBank:regBank|RegBank[2][2],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][2], RegisterBank:regBank|RegBank[4][2]             ;
-; PC[3]                        ; Lost Fanouts              ; ExeWBBuffer_Res[3], ExeWBBufferCtrl_AddrImm[3], DecExeBufferCtrl_AddrImm[7],       ;
-;                              ;                           ; RegisterBank:regBank|RegB[3], DecExeBufferCtrl_AddrImm[3],                         ;
-;                              ;                           ; RegisterBank:regBank|RegA[3], RegisterBank:regBank|RegBank[0][3],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][3], RegisterBank:regBank|RegBank[2][3],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][3], RegisterBank:regBank|RegBank[4][3]             ;
-; PC[4]                        ; Lost Fanouts              ; ExeWBBuffer_Res[4], ExeWBBufferCtrl_AddrImm[4], DecExeBufferCtrl_AddrImm[4],       ;
-;                              ;                           ; RegisterBank:regBank|RegB[4], RegisterBank:regBank|RegA[4],                        ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][4], RegisterBank:regBank|RegBank[1][4],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][4], RegisterBank:regBank|RegBank[3][4],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][4]                                                 ;
-; PC[8]                        ; Lost Fanouts              ; ExeWBBuffer_Res[8], ExeWBBufferCtrl_AddrImm[8], RegisterBank:regBank|RegB[8],      ;
-;                              ;                           ; RegisterBank:regBank|RegA[8], DecExeBufferCtrl_AddrImm[8],                         ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][8], RegisterBank:regBank|RegBank[1][8],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][8], RegisterBank:regBank|RegBank[3][8],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][8]                                                 ;
-; PC[9]                        ; Lost Fanouts              ; ExeWBBuffer_Res[9], ExeWBBufferCtrl_AddrImm[9], RegisterBank:regBank|RegB[9],      ;
-;                              ;                           ; RegisterBank:regBank|RegA[9], DecExeBufferCtrl_AddrImm[9],                         ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][9], RegisterBank:regBank|RegBank[1][9],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][9], RegisterBank:regBank|RegBank[3][9],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][9]                                                 ;
-; PC[10]                       ; Lost Fanouts              ; ExeWBBuffer_Res[10], ExeWBBufferCtrl_AddrImm[10], RegisterBank:regBank|RegB[10],   ;
-;                              ;                           ; RegisterBank:regBank|RegA[10], DecExeBufferCtrl_AddrImm[10],                       ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][10], RegisterBank:regBank|RegBank[1][10],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][10], RegisterBank:regBank|RegBank[3][10],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][10]                                                ;
-; PC[11]                       ; Lost Fanouts              ; ExeWBBuffer_Res[11], ExeWBBufferCtrl_AddrImm[11], RegisterBank:regBank|RegB[11],   ;
-;                              ;                           ; RegisterBank:regBank|RegA[11], DecExeBufferCtrl_AddrImm[11],                       ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][11], RegisterBank:regBank|RegBank[1][11],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][11], RegisterBank:regBank|RegBank[3][11],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][11]                                                ;
-; PC[0]                        ; Lost Fanouts              ; ExeWBBuffer_Res[0], ExeWBBufferCtrl_AddrImm[0], ExeWBBufferCtrl_HasJumped,         ;
-;                              ;                           ; DecExeBuffer_OpULA[0], DecExeBuffer_OpULA[1], DecExeBuffer_OpULA[2],               ;
-;                              ;                           ; DecExeBufferCtrl_AddrImm[0], ControlWriteback:ctrlWriteback|WriteBackState.WB1,    ;
-;                              ;                           ; ControlDecode:ctrlDecode|DecodeState.DEC2                                          ;
-; PC[5]                        ; Lost Fanouts              ; ExeWBBuffer_Res[5], ExeWBBufferCtrl_AddrImm[5], RegisterBank:regBank|RegB[5],      ;
-;                              ;                           ; RegisterBank:regBank|RegA[5], RegisterBank:regBank|RegBank[0][5],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][5], RegisterBank:regBank|RegBank[2][5],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][5], RegisterBank:regBank|RegBank[4][5]             ;
-; PC[6]                        ; Lost Fanouts              ; ExeWBBuffer_Res[6], ExeWBBufferCtrl_AddrImm[6], RegisterBank:regBank|RegB[6],      ;
-;                              ;                           ; RegisterBank:regBank|RegA[6], RegisterBank:regBank|RegBank[0][6],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][6], RegisterBank:regBank|RegBank[2][6],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][6], RegisterBank:regBank|RegBank[4][6]             ;
-; PC[7]                        ; Lost Fanouts              ; ExeWBBuffer_Res[7], ExeWBBufferCtrl_AddrImm[7], RegisterBank:regBank|RegB[7],      ;
-;                              ;                           ; RegisterBank:regBank|RegA[7], RegisterBank:regBank|RegBank[0][7],                  ;
-;                              ;                           ; RegisterBank:regBank|RegBank[1][7], RegisterBank:regBank|RegBank[2][7],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[3][7], RegisterBank:regBank|RegBank[4][7]             ;
-; PC[14]                       ; Lost Fanouts              ; ExeWBBuffer_Res[14], RegisterBank:regBank|RegB[14], RegisterBank:regBank|RegA[14], ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][14], RegisterBank:regBank|RegBank[1][14],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][14], RegisterBank:regBank|RegBank[3][14],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][14]                                                ;
-; PC[13]                       ; Lost Fanouts              ; ExeWBBuffer_Res[13], RegisterBank:regBank|RegB[13], RegisterBank:regBank|RegA[13], ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][13], RegisterBank:regBank|RegBank[1][13],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][13], RegisterBank:regBank|RegBank[3][13],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][13]                                                ;
-; PC[15]                       ; Lost Fanouts              ; ExeWBBuffer_Res[15], RegisterBank:regBank|RegB[15], RegisterBank:regBank|RegA[15], ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][15], RegisterBank:regBank|RegBank[1][15],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][15], RegisterBank:regBank|RegBank[3][15],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][15]                                                ;
-; PC[12]                       ; Lost Fanouts              ; ExeWBBuffer_Res[12], RegisterBank:regBank|RegB[12], RegisterBank:regBank|RegA[12], ;
-;                              ;                           ; RegisterBank:regBank|RegBank[0][12], RegisterBank:regBank|RegBank[1][12],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][12], RegisterBank:regBank|RegBank[3][12],          ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][12]                                                ;
-; RegisterBank:regBank|RegB[0] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][0], RegisterBank:regBank|RegBank[1][0],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[2][0], RegisterBank:regBank|RegBank[3][0],            ;
-;                              ;                           ; RegisterBank:regBank|RegBank[4][0],                                                ;
-;                              ;                           ; ControlWriteback:ctrlWriteback|WriteBackState.WB0                                  ;
-; DecExeBuffer_OpULA[3]        ; Stuck at GND              ; DecExeBufferCtrl_HasStall, DecExeBufferCtrl_IsJump,                                ;
-;                              ; due to stuck port data_in ; ControlDecode:ctrlDecode|DecodeState.DEC1                                          ;
-; ExeWBBufferCtrl_HasStall     ; Lost Fanouts              ; ControlExecute:ctrlExecute|ExecutionState.EXE1                                     ;
-; ExeWBBufferCtrl_HasWB        ; Lost Fanouts              ; DecExeBufferCtrl_HasWB                                                             ;
-+------------------------------+---------------------------+------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                    ;
++------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; Register name                ; Reason for Removal        ; Registers Removed due to This Register                                              ;
++------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; DecExeBuffer_OpULA[3]        ; Stuck at GND              ; DecExeBufferCtrl_HasStall, DecExeBufferCtrl_IsJump, Mult:modMult|LO[0],             ;
+;                              ; due to stuck port data_in ; Mult:modMult|HI[0], DecExeBufferCtrl_HiLo, DecExeBufferCtrl_StoreHiLo,              ;
+;                              ;                           ; Mult:modMult|LO[1], Mult:modMult|HI[1], Mult:modMult|LO[2], Mult:modMult|HI[2],     ;
+;                              ;                           ; Mult:modMult|LO[3], Mult:modMult|HI[3], Mult:modMult|LO[4], Mult:modMult|HI[4],     ;
+;                              ;                           ; Mult:modMult|LO[5], Mult:modMult|HI[5], Mult:modMult|LO[6], Mult:modMult|HI[6],     ;
+;                              ;                           ; Mult:modMult|LO[7], Mult:modMult|HI[7], Mult:modMult|LO[8], Mult:modMult|HI[8],     ;
+;                              ;                           ; Mult:modMult|LO[9], Mult:modMult|HI[9], Mult:modMult|LO[10], Mult:modMult|HI[10],   ;
+;                              ;                           ; Mult:modMult|LO[11], Mult:modMult|HI[11], Mult:modMult|LO[15], Mult:modMult|HI[15], ;
+;                              ;                           ; Mult:modMult|LO[14], Mult:modMult|HI[14], Mult:modMult|LO[13], Mult:modMult|HI[13], ;
+;                              ;                           ; Mult:modMult|LO[12], Mult:modMult|HI[12], DecExeBufferCtrl_IsMult,                  ;
+;                              ;                           ; ControlDecode:ctrlDecode|DecodeState.DEC1                                           ;
+; PC[4]                        ; Lost Fanouts              ; ExeWBBuffer_Res[4], ExeWBBufferCtrl_AddrImm[4], DecExeBufferCtrl_AddrImm[4],        ;
+;                              ;                           ; DecExeBufferCtrl_IsImm, RegisterBank:regBank|RegB[4], RegisterBank:regBank|RegA[4], ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][4], RegisterBank:regBank|RegBank[1][4],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][4], RegisterBank:regBank|RegBank[3][4],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][4]                                                  ;
+; PC[8]                        ; Lost Fanouts              ; ExeWBBuffer_Res[8], ExeWBBufferCtrl_AddrImm[8], RegisterBank:regBank|RegB[8],       ;
+;                              ;                           ; RegisterBank:regBank|RegA[8], DecExeBufferCtrl_AddrImm[8],                          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][8], RegisterBank:regBank|RegBank[1][8],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][8], RegisterBank:regBank|RegBank[3][8],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][8]                                                  ;
+; PC[9]                        ; Lost Fanouts              ; ExeWBBuffer_Res[9], ExeWBBufferCtrl_AddrImm[9], RegisterBank:regBank|RegB[9],       ;
+;                              ;                           ; RegisterBank:regBank|RegA[9], DecExeBufferCtrl_AddrImm[9],                          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][9], RegisterBank:regBank|RegBank[1][9],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][9], RegisterBank:regBank|RegBank[3][9],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][9]                                                  ;
+; PC[10]                       ; Lost Fanouts              ; ExeWBBuffer_Res[10], ExeWBBufferCtrl_AddrImm[10], RegisterBank:regBank|RegB[10],    ;
+;                              ;                           ; RegisterBank:regBank|RegA[10], DecExeBufferCtrl_AddrImm[10],                        ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][10], RegisterBank:regBank|RegBank[1][10],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][10], RegisterBank:regBank|RegBank[3][10],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][10]                                                 ;
+; PC[11]                       ; Lost Fanouts              ; ExeWBBuffer_Res[11], ExeWBBufferCtrl_AddrImm[11], RegisterBank:regBank|RegB[11],    ;
+;                              ;                           ; RegisterBank:regBank|RegA[11], DecExeBufferCtrl_AddrImm[11],                        ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][11], RegisterBank:regBank|RegBank[1][11],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][11], RegisterBank:regBank|RegBank[3][11],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][11]                                                 ;
+; PC[0]                        ; Lost Fanouts              ; ExeWBBuffer_Res[0], ExeWBBufferCtrl_AddrImm[0], ExeWBBufferCtrl_HasJumped,          ;
+;                              ;                           ; DecExeBuffer_OpULA[0], DecExeBuffer_OpULA[1], DecExeBuffer_OpULA[2],                ;
+;                              ;                           ; DecExeBufferCtrl_AddrImm[0], ControlWriteback:ctrlWriteback|WriteBackState.WB1,     ;
+;                              ;                           ; ControlDecode:ctrlDecode|DecodeState.DEC2                                           ;
+; PC[5]                        ; Lost Fanouts              ; ExeWBBuffer_Res[5], ExeWBBufferCtrl_AddrImm[5], RegisterBank:regBank|RegB[5],       ;
+;                              ;                           ; RegisterBank:regBank|RegA[5], RegisterBank:regBank|RegBank[0][5],                   ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][5], RegisterBank:regBank|RegBank[2][5],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][5], RegisterBank:regBank|RegBank[4][5]              ;
+; PC[6]                        ; Lost Fanouts              ; ExeWBBuffer_Res[6], ExeWBBufferCtrl_AddrImm[6], RegisterBank:regBank|RegB[6],       ;
+;                              ;                           ; RegisterBank:regBank|RegA[6], RegisterBank:regBank|RegBank[0][6],                   ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][6], RegisterBank:regBank|RegBank[2][6],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][6], RegisterBank:regBank|RegBank[4][6]              ;
+; PC[7]                        ; Lost Fanouts              ; ExeWBBuffer_Res[7], ExeWBBufferCtrl_AddrImm[7], RegisterBank:regBank|RegB[7],       ;
+;                              ;                           ; RegisterBank:regBank|RegA[7], RegisterBank:regBank|RegBank[0][7],                   ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][7], RegisterBank:regBank|RegBank[2][7],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][7], RegisterBank:regBank|RegBank[4][7]              ;
+; PC[13]                       ; Lost Fanouts              ; ExeWBBuffer_Res[13], RegisterBank:regBank|RegB[13], RegisterBank:regBank|RegA[13],  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][13], RegisterBank:regBank|RegBank[1][13],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][13], RegisterBank:regBank|RegBank[3][13],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][13]                                                 ;
+; PC[12]                       ; Lost Fanouts              ; ExeWBBuffer_Res[12], RegisterBank:regBank|RegB[12], RegisterBank:regBank|RegA[12],  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][12], RegisterBank:regBank|RegBank[1][12],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][12], RegisterBank:regBank|RegBank[3][12],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][12]                                                 ;
+; PC[14]                       ; Lost Fanouts              ; ExeWBBuffer_Res[14], RegisterBank:regBank|RegB[14], RegisterBank:regBank|RegA[14],  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][14], RegisterBank:regBank|RegBank[1][14],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][14], RegisterBank:regBank|RegBank[3][14],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][14]                                                 ;
+; PC[15]                       ; Lost Fanouts              ; ExeWBBuffer_Res[15], RegisterBank:regBank|RegB[15], RegisterBank:regBank|RegA[15],  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][15], RegisterBank:regBank|RegBank[1][15],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][15], RegisterBank:regBank|RegBank[3][15],           ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][15]                                                 ;
+; RegisterBank:regBank|RegB[0] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][0], RegisterBank:regBank|RegBank[1][0],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][0], RegisterBank:regBank|RegBank[3][0],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][0],                                                 ;
+;                              ;                           ; ControlWriteback:ctrlWriteback|WriteBackState.WB0                                   ;
+; RegisterBank:regBank|RegB[1] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][1], RegisterBank:regBank|RegBank[1][1],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][1], RegisterBank:regBank|RegBank[3][1],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][1]                                                  ;
+; RegisterBank:regBank|RegB[2] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][2], RegisterBank:regBank|RegBank[1][2],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][2], RegisterBank:regBank|RegBank[3][2],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][2]                                                  ;
+; RegisterBank:regBank|RegB[3] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][3], RegisterBank:regBank|RegBank[1][3],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][3], RegisterBank:regBank|RegBank[3][3],             ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][3]                                                  ;
+; PC[3]                        ; Lost Fanouts              ; ExeWBBuffer_Res[3], ExeWBBufferCtrl_AddrImm[3], DecExeBufferCtrl_AddrImm[7],        ;
+;                              ;                           ; DecExeBufferCtrl_AddrImm[3], RegisterBank:regBank|RegA[3]                           ;
+; PC[2]                        ; Lost Fanouts              ; ExeWBBuffer_Res[2], ExeWBBufferCtrl_AddrImm[2], DecExeBufferCtrl_AddrImm[6],        ;
+;                              ;                           ; DecExeBufferCtrl_AddrImm[2], RegisterBank:regBank|RegA[2]                           ;
+; PC[1]                        ; Lost Fanouts              ; ExeWBBuffer_Res[1], ExeWBBufferCtrl_AddrImm[1], DecExeBufferCtrl_AddrImm[5],        ;
+;                              ;                           ; DecExeBufferCtrl_AddrImm[1], RegisterBank:regBank|RegA[1]                           ;
+; ExeWBBufferCtrl_HasWB        ; Lost Fanouts              ; DecExeBufferCtrl_HasWB                                                              ;
+; ExeWBBufferCtrl_HasStall     ; Lost Fanouts              ; ControlExecute:ctrlExecute|ExecutionState.EXE1                                      ;
++------------------------------+---------------------------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -734,31 +782,30 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
-; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |Microprocessor|ExeWBBufferCtrl_AddrImm[8]           ;
-; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Microprocessor|DecExeBufferCtrl_AddrImm[0]          ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[0][10]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[1][6]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[2][1]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |Microprocessor|ExeWBBufferCtrl_AddrImm[10]          ;
+; 3:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Microprocessor|DecExeBufferCtrl_IsJump              ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[0][5]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[1][14]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[2][15]  ;
 ; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[3][2]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[4][6]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[5][1]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[6][1]   ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[7][11]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[8][6]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[4][13]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[5][13]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[6][13]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[7][4]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[8][4]   ;
 ; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[9][15]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[10][11] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[11][10] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[12][9]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[13][8]  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[14][15] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[15][15] ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegA[4]         ;
-; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegB[7]         ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |Microprocessor|PC[15]                               ;
-; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |Microprocessor|PC[6]                                ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |Microprocessor|Mux16bit2x1:muxOpImm|S[13]           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Microprocessor|Mux16bit2x1:muxOpImm|S[3]            ;
-; 8:1                ; 15 bits   ; 75 LEs        ; 60 LEs               ; 15 LEs                 ; No         ; |Microprocessor|ULA:modULA|Mux13                     ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[10][8]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[11][7]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[12][10] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[13][12] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[14][11] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[15][9]  ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegA[1]         ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegB[0]         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |Microprocessor|PC[12]                               ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |Microprocessor|PC[10]                               ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|ExeWBBuffer_Res[0]                   ;
+; 8:1                ; 15 bits   ; 75 LEs        ; 60 LEs               ; 15 LEs                 ; No         ; |Microprocessor|ULA:modULA|Mux9                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 
 
@@ -1004,7 +1051,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Nov 30 20:04:03 2017
+    Info: Processing started: Fri Dec  1 01:28:32 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Microprocessor -c Microprocessor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -1042,8 +1089,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file Control
 Info (12021): Found 1 design units, including 1 entities, in source file ControlWriteback.v
     Info (12023): Found entity 1: ControlWriteback File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v Line: 11
 Info (12127): Elaborating entity "Microprocessor" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(30): object "ExeWBBuffer_FlagReg" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 30
-Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 77
+Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(33): object "ExeWBBuffer_FlagReg" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 33
+Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 86
 Info (12128): Elaborating entity "altsyncram" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
 Info (12130): Elaborated megafunction instantiation "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
 Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:altsyncram_component" with the following parameter: File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
@@ -1063,13 +1110,14 @@ Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:alts
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qu81.tdf
     Info (12023): Found entity 1: altsyncram_qu81 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_qu81" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated" File: /home/iuri/altera/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:decoder" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 90
-Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 101
-Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 108
-Info (12128): Elaborating entity "ControlDecode" for hierarchy "ControlDecode:ctrlDecode" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 117
-Info (12128): Elaborating entity "ControlExecute" for hierarchy "ControlExecute:ctrlExecute" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 122
-Info (12128): Elaborating entity "ControlWriteback" for hierarchy "ControlWriteback:ctrlWriteback" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 131
-Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxPCSource" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 137
+Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:decoder" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 102
+Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 113
+Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 120
+Info (12128): Elaborating entity "Mult" for hierarchy "Mult:modMult" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 128
+Info (12128): Elaborating entity "ControlDecode" for hierarchy "ControlDecode:ctrlDecode" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 137
+Info (12128): Elaborating entity "ControlExecute" for hierarchy "ControlExecute:ctrlExecute" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 142
+Info (12128): Elaborating entity "ControlWriteback" for hierarchy "ControlWriteback:ctrlWriteback" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 151
+Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxPCSource" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 157
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[12]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 274
@@ -1088,7 +1136,7 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[9]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 214
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[10]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 234
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[11]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 254
-Info (17049): 363 registers lost all their fanouts during netlist optimizations.
+Info (17049): 398 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/iuri/Projects/altera/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -1099,10 +1147,10 @@ Info (21057): Implemented 2 device resources after synthesis - the final resourc
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
-    Info: Peak virtual memory: 974 megabytes
-    Info: Processing ended: Thu Nov 30 20:04:18 2017
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Peak virtual memory: 973 megabytes
+    Info: Processing ended: Fri Dec  1 01:28:46 2017
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:36
 
 
 +------------------------------------------+
