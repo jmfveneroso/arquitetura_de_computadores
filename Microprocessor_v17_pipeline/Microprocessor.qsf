@@ -51,7 +51,6 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name VERILOG_FILE Mux16bit2x1.v
 set_global_assignment -name VERILOG_FILE Decoder.v
 set_global_assignment -name VERILOG_FILE ULA.v
-set_global_assignment -name VERILOG_FILE Control.v
 set_global_assignment -name VERILOG_FILE WrapperSim.v
 set_global_assignment -name VERILOG_FILE Mux4bit2x1.v
 set_global_assignment -name VERILOG_FILE Dec7Seg.v
@@ -69,7 +68,11 @@ set_global_assignment -name SEARCH_PATH cycloneiii_ver
 set_global_assignment -name SEARCH_PATH lpm_ver
 set_global_assignment -name SEARCH_PATH altera_mf_ver
 set_global_assignment -name VERILOG_FILE Mult.v
+set_global_assignment -name VERILOG_FILE TestStage.v
+set_global_assignment -name VERILOG_FILE ControlDecode.v
+set_global_assignment -name VERILOG_FILE ControlExecute.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE ControlWriteback.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

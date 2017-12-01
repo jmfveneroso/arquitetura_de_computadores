@@ -1,17 +1,17 @@
 
-State Machine - |Microprocessor|Control:ctrl|WriteBackState
+State Machine - |Microprocessor|ControlWriteback:ctrlWriteback|WriteBackState
 Name WriteBackState.WB0 WriteBackState.WB2 WriteBackState.WB1 
 WriteBackState.WB0 0 0 0 
 WriteBackState.WB1 1 0 1 
 WriteBackState.WB2 1 1 0 
 
-State Machine - |Microprocessor|Control:ctrl|ExecutionState
+State Machine - |Microprocessor|ControlExecute:ctrlExecute|ExecutionState
 Name ExecutionState.EXE0 ExecutionState.EXE2 ExecutionState.EXE1 
 ExecutionState.EXE0 0 0 0 
 ExecutionState.EXE1 1 0 1 
 ExecutionState.EXE2 1 1 0 
 
-State Machine - |Microprocessor|Control:ctrl|DecodeState
+State Machine - |Microprocessor|ControlDecode:ctrlDecode|DecodeState
 Name DecodeState.DEC0 DecodeState.DEC2 DecodeState.DEC1 
 DecodeState.DEC0 0 0 0 
 DecodeState.DEC1 1 0 1 

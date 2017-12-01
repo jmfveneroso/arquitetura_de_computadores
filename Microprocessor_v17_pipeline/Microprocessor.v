@@ -8,162 +8,225 @@ module Microprocessor(CLK, RST);
 
 	input CLK, RST;
 
-	wire isImm, wenRB, wenIR, wenPC, jmpCond, escCondCP, escCP, isMul, sigHiLo, HiLOwb;
-	wire [3:0] opCode, opA, opB, opC, opULA;
-	wire [11:0] addrImm, progCounter;
-	wire [15:0] regA, regB, res, outMuxImm, outMuxJmpBrc, outMuxPC;
-	wire [2:0] flagReg;
+	
+	
+	/*			Registradores		*/
+	reg [15:0]	PC;										// Program Counter
+	reg			FowardA, FowardB;						// Sinais de controle para encaminhamento
+	
+	//-- Buffer entre decodificacao e execucao (Dec/Exe)
+	reg [3:0]	DecExeBuffer_OpA;
+	reg [3:0]	DecExeBuffer_OpB;
+	reg [3:0]	DecExeBuffer_OpC;
+	reg [3:0]	DecExeBuffer_OpULA;
+	reg [11:0]	DecExeBufferCtrl_AddrImm;
+	reg			DecExeBufferCtrl_IsImm;
+	reg			DecExeBufferCtrl_HasWB;
+	reg			DecExeBufferCtrl_HasStall;
+	reg			DecExeBufferCtrl_IsJump;
+	
+	//-- Buffer entre execucao e writeback (Exe/WB)
+	reg [15:0]	ExeWBBuffer_Res;
+	reg [2:0]	ExeWBBuffer_FlagReg;
+	reg [3:0]	ExeWBBufferCtrl_RegDest;
+	reg [11:0]	ExeWBBufferCtrl_AddrImm;
+	reg 			ExeWBBufferCtrl_HasWB;
+	reg			ExeWBBufferCtrl_HasJumped;
+	reg			ExeWBBufferCtrl_HasStall;
+			
+	
+	
+	//-- Wires
 	wire [15:0]	instr;
-	wire [15:0] resHI, resLO;
-	wire [15:0] regMul, dataIn;
+	wire [11:0]	progCounter;
+	wire [3:0]	opCode, opA, opB, opC, opULA;
+	wire [11:0]	addrImm;
+	wire			isImm;									
+	wire			hasWB;								
+	wire			hasStall;
+	wire			isJump;
 	
-	reg [15:0] PC;				// Program Counter	12-bit
+	wire			decExeBufferWr;						// Sinal para escrita no buffer do pipe Dec/Exe
+	wire			exeWBBufferWr;							// Sinal para escrita no buffer do pipe Exe/WB
+	wire			pcRegWr;									// Sinal para escrita no PC
+	wire			regBankWr;								// Sinal para escrita no RegisterBank
 	
-	assign jmpCond = escCP | (escCondCP & flagReg[2]);		//flagReg[2]: ZeroBit
+	wire			isDecStall;
+	wire			clrStall;								// Sinal para tirar stall do decode
+	wire			hasJumped;								// Sinal que indica se o salto da instrucao aconteceu
+	wire			updateJmpPC;
+	
+	wire [15:0]	pcExtSrc;								// Valor do PC vindo externo
+	wire [15:0] newPC;									// Saida do Mux de selecao do PC
+	
+	wire [15:0] regA, regB;								// Saidas do banco de registradores
+	wire [15:0]	operandA, operandB;					// Operandos utilizados pela ULA
+	wire [15:0] res;										// Resultado da ULA
+	wire [2:0]	flagReg;									// Flags da ULA
+	wire [15:0]	outMuxImm;								// Saida do mux de selecao de operando ou imediato
+	
+	
 	assign progCounter = PC[11:0];
 	
+	// Indica se houve o jump, utilizado para tirar o estagio de decodificacao de stall
+	assign hasJumped = (DecExeBufferCtrl_IsJump & isDecStall ) | ( DecExeBufferCtrl_HasStall & flagReg[2] & exeWBBufferWr);
 	
+	/*			 Instancias 		*/
 	
-	//// Novos sinais
-	
-	wire decExeBufferWr;
-	wire decExeHasWB;
-	wire pcRegWr;
-	wire regBankWr;
-	wire exeWbBufferWr;
-	wire fowardA;
-	wire fowardB;
-	wire [15:0] operandA;
-	wire [15:0] operandB;
-	
-	/***** Buffer entre decodificacao e execucao	*/
-	reg [3:0] DecExeBuffer_OpCode;
-	reg [3:0] DecExeBuffer_OpA;
-	reg [3:0] DecExeBuffer_OpB;
-	reg [3:0] DecExeBuffer_OpC;
-	reg [11:0] DecExeBuffer_Imm;
-	reg DecExeBufferCtrl_IsImm;
-	reg DecExeBufferCtrl_HasWB;
-	reg [3:0] DecExeBufferCtrl_OpULA;
-	
-	/***** Buffer entre execucao e writeback	*/
-	reg [15:0] ExeWbBuffer_Res;
-	reg [2:0] ExeWbBuffer_FlagReg;
-	reg [3:0] ExeWbBufferCtrl_RegDest;			// Registro que vai ser escrito
-	reg ExeWbBufferCtrl_HasWB;						// Sinal de controle para WB para informar se deve ou nao escrever no banco de registro
-	
-	/* InstructionMemory: InstrMemory ( address,	clock, q) */
+	//-- Memoria de Instrucao
 	InstrMemory instrMemory ( progCounter,	CLK, instr);
 	
-	/* Decoder: Decoder ( Instr, OpCode, OpA, OpB, OpC, AddrIm, OpULA, IsImm, HasWB); */
-	Decoder instdecode(	instr,
-								opCode,
-								opA,
-								opB,
-								opC,
-								addrImm,
-								opULA,
-								isImm,
-								decExeHasWB );
+	//-- Decodificador de instrucoes
+	Decoder decoder (	instr,
+							opCode,
+							opA,
+							opB,
+							opC,
+							addrImm,
+							opULA,
+							isImm,
+							hasWB,
+							hasStall,
+							isJump	);
 
-	/* RegisterBank: RegisterBank ( CLK, RST, AddrRegA, AddrRegB, AddrWriteReg, Data, WEN, RegA, RegB ) */
+	//-- Banco de Registradores
 	RegisterBank regBank(CLK,
 								RST,
 								DecExeBuffer_OpA,
 								DecExeBuffer_OpB,
-								ExeWbBufferCtrl_RegDest,
-								ExeWbBuffer_Res,
-								ExeWbBufferCtrl_HasWB& regBankWr,		// Precisa estar no estagio de escrita e precisa ter wb
+								ExeWBBufferCtrl_RegDest,
+								ExeWBBuffer_Res,
+								ExeWBBufferCtrl_HasWB& regBankWr,
 								regA,
 								regB );
+							
+							
+	ULA modULA(	operandA,
+					outMuxImm,
+					res,
+					DecExeBuffer_OpULA,
+					flagReg );
+	
+	//-- Maquina de estados para controle do estagio de decodificacao
+	ControlDecode ctrlDecode (	CLK,
+										RST,
+										decExeBufferWr,
+										pcRegWr,
+										hasStall,
+										clrStall,
+										isDecStall	);
+	
+	//-- Maquina de estados para controle do estagio de execucao
+	ControlExecute ctrlExecute (	CLK,
+											RST,
+											exeWBBufferWr );
 
-	// Mux para encaminhamento do operando A
-	Mux16bit2x1 muxFowardA(regA, ExeWbBuffer_Res, operandA, fowardA);
+	//-- Maquina de estados para controle do estagio de writeback
+	ControlWriteback ctrlWriteback(	CLK,
+												RST,
+												regBankWr,
+												clrStall,
+												ExeWBBufferCtrl_HasJumped,
+												ExeWBBufferCtrl_HasStall,
+												updateJmpPC);
 	
-	// Mux para encaminhamento do operando B
-	Mux16bit2x1 muxFowardB(regB, ExeWbBuffer_Res, operandB, fowardB);
-								
-	//-- Selecao de imediato ou Registro B		(A, B, S, SEL)
-	Mux16bit2x1 muxOpImm(operandB,
-								{ 12'h000, DecExeBuffer_OpB },
-								outMuxImm,
-								DecExeBufferCtrl_IsImm );
-								
-	/* ULA: ULA (OpA, OpB, Res, CodeULA, FlagReg); */
-	ULA modULA(operandA, outMuxImm, res, DecExeBufferCtrl_OpULA, flagReg);
-
-	/* Mult: Mult(A, B, HI, LO, EN, CLK); */
-//	Mult mult(operandA, operandB, resHI, resLO, isMul, CLK);
+	//-- Mux de selacao da origem do PC
+	Mux16bit2x1 muxPCSource(	PC + 16'b1,
+										pcExtSrc,
+										newPC,
+										ExeWBBufferCtrl_HasJumped & isDecStall	);							
 	
+	//-- Mux para encaminhamento do operando A
+	Mux16bit2x1 muxFowardA(	regA,
+									ExeWBBuffer_Res,
+									operandA,
+									FowardA	);
 	
+	//-- Mux para encaminhamento do operando B
+	Mux16bit2x1 muxFowardB(	regB,
+									ExeWBBuffer_Res,
+									operandB,
+									FowardB	);
+									
+	//-- Mux para selecao imediato ou Registro B
+	Mux16bit2x1 muxOpImm(	operandB,
+									{ 12'h000, DecExeBuffer_OpB },
+									outMuxImm,
+									DecExeBufferCtrl_IsImm );
 	
+	//-- Mux para selecao de endereco externo do PC (Jump ou Branch)
+	Mux16bit2x1 muxExtPCSrc(	ExeWBBuffer_Res,
+										{ 4'b0, ExeWBBufferCtrl_AddrImm },
+										pcExtSrc,
+										DecExeBufferCtrl_IsJump );
 	
-	
-	
-	/* MUX: Mux16bit2x1 (A, B, S, SEL) */
-	
-//	Mux16bit2x1 muxJmpBrc(res, { PC[11:8], addrImm }, outMuxJmpBrc, escCP);
-//	Mux16bit2x1 muxSourcePC(PC + 16'b1, outMuxJmpBrc, outMuxPC, jmpCond);
-//	Mux16bit2x1 muxHiLo(resLO, resHI, regMul, sigHiLo);
-//	Mux16bit2x1 muxDataRegBank(res, regMul, dataIn, HiLOwb);
-	
-	/* Control: Control (CLK, RS, DecExeBufferWr, PCRegWr, ExeWbBufferWr, RegBankWr) */
-	Control ctrl(	CLK,
-						RST,
-						decExeBufferWr,
-						pcRegWr,
-						exeWbBufferWr,
-						regBankWr,
-						DecExeBuffer_OpA,
-						DecExeBuffer_OpB,
-						ExeWbBufferCtrl_RegDest,
-						ExeWbBufferCtrl_HasWB,
-						fowardA,
-						fowardB );
 	
 	always @ (posedge CLK) begin
 		if (RST) begin
-			PC								<= 16'h0000;
+			PC									<= 16'b0;
 			
-			DecExeBuffer_OpCode		<= 4'b0;
-			DecExeBuffer_OpA			<=	4'b0;
-			DecExeBuffer_OpB			<= 4'b0;
-			DecExeBuffer_OpC			<= 4'b0;
-			DecExeBuffer_Imm			<= 12'b0;
-			DecExeBufferCtrl_OpULA	<= 4'b0;		// Mudar para NOP
-			DecExeBufferCtrl_IsImm	<= 1'b0;
-			DecExeBufferCtrl_HasWB	<= 1'b0;
+			DecExeBuffer_OpA				<= 4'b0;
+			DecExeBuffer_OpB				<= 4'b0;
+			DecExeBuffer_OpC				<= 4'b0;
+			DecExeBuffer_OpULA			<= 4'b0;
+			DecExeBufferCtrl_AddrImm	<= 12'b0;
+			DecExeBufferCtrl_IsImm		<= 1'b0;
+			DecExeBufferCtrl_HasWB		<= 1'b0;
+			DecExeBufferCtrl_HasStall	<= 1'b0;
+			DecExeBufferCtrl_IsJump		<= 1'b0;
 			
-			ExeWbBuffer_Res			<= 16'b0;
-			ExeWbBuffer_FlagReg		<= 3'b0;
-			ExeWbBufferCtrl_HasWB	<= 1'b0;
-			ExeWbBufferCtrl_RegDest	<= 4'b0;
+			ExeWBBuffer_Res					<= 16'b0;
+			ExeWBBuffer_FlagReg				<= 3'b0;
+			ExeWBBufferCtrl_RegDest			<= 4'b0;
+			ExeWBBufferCtrl_HasWB			<= 1'b0;
+			ExeWBBufferCtrl_AddrImm			<= 12'b0;
+			ExeWBBufferCtrl_HasJumped		<= 1'b0;
 		end
 		else begin
-			// Atualizacao do PC
-			if (pcRegWr) begin
-				PC <= PC + 1;	// outMuxPC;
+			// Atualiza PC
+			if (pcRegWr | updateJmpPC) begin									
+				PC									<= newPC;
 			end
 			
-			// Atualizacao do buffer dec/exe
+			// Atualiza o buffer Dec/Exe
 			if (decExeBufferWr) begin
-				DecExeBuffer_OpCode		<= opCode;
-				DecExeBuffer_OpA			<=	opA;
-				DecExeBuffer_OpB			<= opB;
-				DecExeBuffer_OpC			<= opC;
-				DecExeBuffer_Imm			<= addrImm;
-				DecExeBufferCtrl_IsImm	<= isImm;
-				DecExeBufferCtrl_HasWB	<= decExeHasWB;
-				DecExeBufferCtrl_OpULA	<= opULA;
+				DecExeBuffer_OpA				<= opA;
+				DecExeBuffer_OpB				<= opB;
+				DecExeBuffer_OpC				<= opC;
+				DecExeBuffer_OpULA			<= opULA;
+				DecExeBufferCtrl_AddrImm	<= addrImm;
+				DecExeBufferCtrl_IsImm		<= isImm;
+				DecExeBufferCtrl_HasWB		<= hasWB;
+				DecExeBufferCtrl_HasStall	<= hasStall;
+				DecExeBufferCtrl_IsJump		<= isJump;
 			end
 			
-			// Atualizacao do buffer exe/wb
-			if (exeWbBufferWr) begin
-				ExeWbBuffer_Res			<= res;
-				ExeWbBuffer_FlagReg		<= flagReg;
-				ExeWbBufferCtrl_HasWB	<= DecExeBufferCtrl_HasWB;		// Apenas faz o forward
-				ExeWbBufferCtrl_RegDest	<= DecExeBuffer_OpC;				// Mantem endereço do registro que vai ser escrito
+			// Atualiza o buffer Exe/WB
+			if (exeWBBufferWr) begin
+				ExeWBBuffer_Res					<= res;
+				ExeWBBuffer_FlagReg				<= flagReg;
+				ExeWBBufferCtrl_RegDest			<= DecExeBuffer_OpC;
+				ExeWBBufferCtrl_HasWB			<= DecExeBufferCtrl_HasWB;
+				ExeWBBufferCtrl_AddrImm			<= DecExeBufferCtrl_AddrImm;
+				ExeWBBufferCtrl_HasJumped		<= hasJumped;
+				ExeWBBufferCtrl_HasStall		<= DecExeBufferCtrl_HasStall;
 			end
 		end
 	end
+	
+	/* Fowarding para A e B */
+	always @ (*) begin
+		if ( (ExeWBBufferCtrl_RegDest == DecExeBuffer_OpA) && ExeWBBufferCtrl_HasWB ) begin
+			FowardA <= 1'b1;
+		end else begin
+			FowardA <= 1'b0;
+		end
+		
+		if ( (ExeWBBufferCtrl_RegDest == DecExeBuffer_OpB) && ExeWBBufferCtrl_HasWB) begin
+			FowardB <= 1'b1;
+		end else begin
+			FowardB <= 1'b0;
+		end
+	end
+	
 endmodule

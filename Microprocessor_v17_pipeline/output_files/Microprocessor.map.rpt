@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Microprocessor
-Thu Nov 23 15:45:11 2017
+Thu Nov 30 20:04:18 2017
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -14,24 +14,29 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
-  9. State Machine - |Microprocessor|Control:ctrl|WriteBackState
- 10. State Machine - |Microprocessor|Control:ctrl|ExecutionState
- 11. State Machine - |Microprocessor|Control:ctrl|DecodeState
+  9. State Machine - |Microprocessor|ControlWriteback:ctrlWriteback|WriteBackState
+ 10. State Machine - |Microprocessor|ControlExecute:ctrlExecute|ExecutionState
+ 11. State Machine - |Microprocessor|ControlDecode:ctrlDecode|DecodeState
  12. Registers Removed During Synthesis
- 13. General Register Statistics
- 14. Source assignments for InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated
- 15. Parameter Settings for User Entity Instance: InstrMemory:instrMemory|altsyncram:altsyncram_component
- 16. Parameter Settings for User Entity Instance: Decoder:instdecode
- 17. Parameter Settings for User Entity Instance: ULA:modULA
- 18. Parameter Settings for User Entity Instance: Control:ctrl
- 19. altsyncram Parameter Settings by Entity Instance
- 20. Port Connectivity Checks: "ULA:modULA"
- 21. Port Connectivity Checks: "Mux16bit2x1:muxOpImm"
- 22. Port Connectivity Checks: "Decoder:instdecode"
- 23. Post-Synthesis Netlist Statistics for Top Partition
- 24. Elapsed Time Per Partition
- 25. Analysis & Synthesis Messages
- 26. Analysis & Synthesis Suppressed Messages
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated
+ 17. Parameter Settings for User Entity Instance: InstrMemory:instrMemory|altsyncram:altsyncram_component
+ 18. Parameter Settings for User Entity Instance: Decoder:decoder
+ 19. Parameter Settings for User Entity Instance: ULA:modULA
+ 20. Parameter Settings for User Entity Instance: ControlDecode:ctrlDecode
+ 21. Parameter Settings for User Entity Instance: ControlExecute:ctrlExecute
+ 22. Parameter Settings for User Entity Instance: ControlWriteback:ctrlWriteback
+ 23. altsyncram Parameter Settings by Entity Instance
+ 24. Port Connectivity Checks: "Mux16bit2x1:muxExtPCSrc"
+ 25. Port Connectivity Checks: "Mux16bit2x1:muxOpImm"
+ 26. Port Connectivity Checks: "ULA:modULA"
+ 27. Port Connectivity Checks: "Decoder:decoder"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
+ 31. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -57,7 +62,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Nov 23 15:45:11 2017       ;
+; Analysis & Synthesis Status        ; Successful - Thu Nov 30 20:04:18 2017       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Microprocessor                              ;
 ; Top-level Entity Name              ; Microprocessor                              ;
@@ -183,11 +188,13 @@ refer to the applicable agreement for further details.
 ; Mux16bit2x1.v                    ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit2x1.v          ;         ;
 ; Decoder.v                        ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v              ;         ;
 ; ULA.v                            ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v                  ;         ;
-; Control.v                        ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Control.v              ;         ;
 ; RegisterBank.v                   ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v         ;         ;
 ; MemoryInitFile.mif               ; yes             ; User Memory Initialization File  ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/MemoryInitFile.mif     ;         ;
 ; InstrMemory.v                    ; yes             ; User Wizard-Generated File       ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v          ;         ;
 ; Microprocessor.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v       ;         ;
+; ControlDecode.v                  ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v        ;         ;
+; ControlExecute.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v       ;         ;
+; ControlWriteback.v               ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v     ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/altsyncram.tdf         ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/stratix_ram_block.inc  ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/lpm_mux.inc            ;         ;
@@ -253,7 +260,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------+
-; State Machine - |Microprocessor|Control:ctrl|WriteBackState                       ;
+; State Machine - |Microprocessor|ControlWriteback:ctrlWriteback|WriteBackState     ;
 +--------------------+--------------------+--------------------+--------------------+
 ; Name               ; WriteBackState.WB0 ; WriteBackState.WB2 ; WriteBackState.WB1 ;
 +--------------------+--------------------+--------------------+--------------------+
@@ -265,7 +272,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------+
-; State Machine - |Microprocessor|Control:ctrl|ExecutionState                           ;
+; State Machine - |Microprocessor|ControlExecute:ctrlExecute|ExecutionState             ;
 +---------------------+---------------------+---------------------+---------------------+
 ; Name                ; ExecutionState.EXE0 ; ExecutionState.EXE2 ; ExecutionState.EXE1 ;
 +---------------------+---------------------+---------------------+---------------------+
@@ -277,7 +284,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +---------------------------------------------------------------------------+
-; State Machine - |Microprocessor|Control:ctrl|DecodeState                  ;
+; State Machine - |Microprocessor|ControlDecode:ctrlDecode|DecodeState      ;
 +------------------+------------------+------------------+------------------+
 ; Name             ; DecodeState.DEC0 ; DecodeState.DEC2 ; DecodeState.DEC1 ;
 +------------------+------------------+------------------+------------------+
@@ -287,23 +294,424 @@ Encoding Type:  One-Hot
 +------------------+------------------+------------------+------------------+
 
 
-+-------------------------------------------------------------+
-; Registers Removed During Synthesis                          ;
-+----------------------------------------+--------------------+
-; Register name                          ; Reason for Removal ;
-+----------------------------------------+--------------------+
-; PC[0..15]                              ; Lost fanout        ;
-; Control:ctrl|WriteBackState.WB1        ; Lost fanout        ;
-; Control:ctrl|WriteBackState.WB2        ; Lost fanout        ;
-; Control:ctrl|WriteBackState.WB0        ; Lost fanout        ;
-; Control:ctrl|ExecutionState.EXE1       ; Lost fanout        ;
-; Control:ctrl|ExecutionState.EXE2       ; Lost fanout        ;
-; Control:ctrl|ExecutionState.EXE0       ; Lost fanout        ;
-; Control:ctrl|DecodeState.DEC1          ; Lost fanout        ;
-; Control:ctrl|DecodeState.DEC2          ; Lost fanout        ;
-; Control:ctrl|DecodeState.DEC0          ; Lost fanout        ;
-; Total Number of Removed Registers = 25 ;                    ;
-+----------------------------------------+--------------------+
++----------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                           ;
++---------------------------------------------------+------------------------------------------+
+; Register name                                     ; Reason for Removal                       ;
++---------------------------------------------------+------------------------------------------+
+; DecExeBuffer_OpA[0]                               ; Merged with DecExeBufferCtrl_AddrImm[0]  ;
+; DecExeBuffer_OpB[3]                               ; Merged with DecExeBufferCtrl_AddrImm[7]  ;
+; DecExeBuffer_OpB[2]                               ; Merged with DecExeBufferCtrl_AddrImm[6]  ;
+; DecExeBuffer_OpB[1]                               ; Merged with DecExeBufferCtrl_AddrImm[5]  ;
+; DecExeBuffer_OpB[0]                               ; Merged with DecExeBufferCtrl_AddrImm[4]  ;
+; DecExeBuffer_OpA[3]                               ; Merged with DecExeBufferCtrl_AddrImm[3]  ;
+; DecExeBuffer_OpA[2]                               ; Merged with DecExeBufferCtrl_AddrImm[2]  ;
+; DecExeBuffer_OpA[1]                               ; Merged with DecExeBufferCtrl_AddrImm[1]  ;
+; DecExeBuffer_OpC[0]                               ; Merged with DecExeBufferCtrl_AddrImm[8]  ;
+; DecExeBuffer_OpC[1]                               ; Merged with DecExeBufferCtrl_AddrImm[9]  ;
+; DecExeBuffer_OpC[2]                               ; Merged with DecExeBufferCtrl_AddrImm[10] ;
+; DecExeBuffer_OpC[3]                               ; Merged with DecExeBufferCtrl_AddrImm[11] ;
+; ExeWBBufferCtrl_RegDest[0]                        ; Merged with ExeWBBufferCtrl_AddrImm[8]   ;
+; ExeWBBufferCtrl_RegDest[1]                        ; Merged with ExeWBBufferCtrl_AddrImm[9]   ;
+; ExeWBBufferCtrl_RegDest[2]                        ; Merged with ExeWBBufferCtrl_AddrImm[10]  ;
+; ExeWBBufferCtrl_RegDest[3]                        ; Merged with ExeWBBufferCtrl_AddrImm[11]  ;
+; DecExeBuffer_OpULA[3]                             ; Stuck at GND due to stuck port data_in   ;
+; ExeWBBufferCtrl_HasStall                          ; Lost fanout                              ;
+; DecExeBufferCtrl_HasStall                         ; Lost fanout                              ;
+; PC[0..15]                                         ; Lost fanout                              ;
+; ExeWBBuffer_Res[0]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[0]                        ; Lost fanout                              ;
+; DecExeBufferCtrl_IsJump                           ; Lost fanout                              ;
+; ExeWBBufferCtrl_HasJumped                         ; Lost fanout                              ;
+; ExeWBBuffer_Res[1]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[1]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[2]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[2]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[3]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[3]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[4]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[4]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[5]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[5]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[6]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[6]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[7]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[7]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[8]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[8]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[9]                                ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[9]                        ; Lost fanout                              ;
+; ExeWBBuffer_Res[10]                               ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[10]                       ; Lost fanout                              ;
+; ExeWBBuffer_Res[11]                               ; Lost fanout                              ;
+; ExeWBBufferCtrl_AddrImm[11]                       ; Lost fanout                              ;
+; ExeWBBuffer_Res[12..15]                           ; Lost fanout                              ;
+; DecExeBuffer_OpULA[0..2]                          ; Lost fanout                              ;
+; RegisterBank:regBank|RegB[0]                      ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[4..7]                    ; Lost fanout                              ;
+; ExeWBBufferCtrl_HasWB                             ; Lost fanout                              ;
+; DecExeBufferCtrl_IsImm                            ; Lost fanout                              ;
+; RegisterBank:regBank|RegB[1..15]                  ; Lost fanout                              ;
+; RegisterBank:regBank|RegA[0]                      ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[0..3]                    ; Lost fanout                              ;
+; RegisterBank:regBank|RegA[1..15]                  ; Lost fanout                              ;
+; DecExeBufferCtrl_AddrImm[8..11]                   ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][0]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][0]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][0]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][0]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][0]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][0]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][0]               ; Lost fanout                              ;
+; DecExeBufferCtrl_HasWB                            ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][1]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][1]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][2]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][2]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][3]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][3]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][4]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][4]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][5]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][5]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][6]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][6]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][7]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][7]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][8]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][8]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][9]                ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][9]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][10]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][10]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][11]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][11]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][12]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][12]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][13]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][13]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][14]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][14]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[0][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[1][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[2][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[3][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[4][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[5][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[6][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[7][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[8][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[9][15]               ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[10][15]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[11][15]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[12][15]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[13][15]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[14][15]              ; Lost fanout                              ;
+; RegisterBank:regBank|RegBank[15][15]              ; Lost fanout                              ;
+; ControlWriteback:ctrlWriteback|WriteBackState.WB1 ; Lost fanout                              ;
+; ControlWriteback:ctrlWriteback|WriteBackState.WB2 ; Lost fanout                              ;
+; ControlWriteback:ctrlWriteback|WriteBackState.WB0 ; Lost fanout                              ;
+; ControlExecute:ctrlExecute|ExecutionState.EXE1    ; Lost fanout                              ;
+; ControlExecute:ctrlExecute|ExecutionState.EXE2    ; Lost fanout                              ;
+; ControlExecute:ctrlExecute|ExecutionState.EXE0    ; Lost fanout                              ;
+; ControlDecode:ctrlDecode|DecodeState.DEC1         ; Lost fanout                              ;
+; ControlDecode:ctrlDecode|DecodeState.DEC2         ; Lost fanout                              ;
+; ControlDecode:ctrlDecode|DecodeState.DEC0         ; Lost fanout                              ;
+; Total Number of Removed Registers = 380           ;                                          ;
++---------------------------------------------------+------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; Register name                ; Reason for Removal        ; Registers Removed due to This Register                                             ;
++------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; PC[1]                        ; Lost Fanouts              ; ExeWBBuffer_Res[1], ExeWBBufferCtrl_AddrImm[1], DecExeBufferCtrl_AddrImm[5],       ;
+;                              ;                           ; DecExeBufferCtrl_IsImm, RegisterBank:regBank|RegB[1], DecExeBufferCtrl_AddrImm[1], ;
+;                              ;                           ; RegisterBank:regBank|RegA[1], RegisterBank:regBank|RegBank[0][1],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][1], RegisterBank:regBank|RegBank[2][1],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][1], RegisterBank:regBank|RegBank[4][1]             ;
+; PC[2]                        ; Lost Fanouts              ; ExeWBBuffer_Res[2], ExeWBBufferCtrl_AddrImm[2], DecExeBufferCtrl_AddrImm[6],       ;
+;                              ;                           ; RegisterBank:regBank|RegB[2], DecExeBufferCtrl_AddrImm[2],                         ;
+;                              ;                           ; RegisterBank:regBank|RegA[2], RegisterBank:regBank|RegBank[0][2],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][2], RegisterBank:regBank|RegBank[2][2],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][2], RegisterBank:regBank|RegBank[4][2]             ;
+; PC[3]                        ; Lost Fanouts              ; ExeWBBuffer_Res[3], ExeWBBufferCtrl_AddrImm[3], DecExeBufferCtrl_AddrImm[7],       ;
+;                              ;                           ; RegisterBank:regBank|RegB[3], DecExeBufferCtrl_AddrImm[3],                         ;
+;                              ;                           ; RegisterBank:regBank|RegA[3], RegisterBank:regBank|RegBank[0][3],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][3], RegisterBank:regBank|RegBank[2][3],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][3], RegisterBank:regBank|RegBank[4][3]             ;
+; PC[4]                        ; Lost Fanouts              ; ExeWBBuffer_Res[4], ExeWBBufferCtrl_AddrImm[4], DecExeBufferCtrl_AddrImm[4],       ;
+;                              ;                           ; RegisterBank:regBank|RegB[4], RegisterBank:regBank|RegA[4],                        ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][4], RegisterBank:regBank|RegBank[1][4],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][4], RegisterBank:regBank|RegBank[3][4],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][4]                                                 ;
+; PC[8]                        ; Lost Fanouts              ; ExeWBBuffer_Res[8], ExeWBBufferCtrl_AddrImm[8], RegisterBank:regBank|RegB[8],      ;
+;                              ;                           ; RegisterBank:regBank|RegA[8], DecExeBufferCtrl_AddrImm[8],                         ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][8], RegisterBank:regBank|RegBank[1][8],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][8], RegisterBank:regBank|RegBank[3][8],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][8]                                                 ;
+; PC[9]                        ; Lost Fanouts              ; ExeWBBuffer_Res[9], ExeWBBufferCtrl_AddrImm[9], RegisterBank:regBank|RegB[9],      ;
+;                              ;                           ; RegisterBank:regBank|RegA[9], DecExeBufferCtrl_AddrImm[9],                         ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][9], RegisterBank:regBank|RegBank[1][9],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][9], RegisterBank:regBank|RegBank[3][9],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][9]                                                 ;
+; PC[10]                       ; Lost Fanouts              ; ExeWBBuffer_Res[10], ExeWBBufferCtrl_AddrImm[10], RegisterBank:regBank|RegB[10],   ;
+;                              ;                           ; RegisterBank:regBank|RegA[10], DecExeBufferCtrl_AddrImm[10],                       ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][10], RegisterBank:regBank|RegBank[1][10],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][10], RegisterBank:regBank|RegBank[3][10],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][10]                                                ;
+; PC[11]                       ; Lost Fanouts              ; ExeWBBuffer_Res[11], ExeWBBufferCtrl_AddrImm[11], RegisterBank:regBank|RegB[11],   ;
+;                              ;                           ; RegisterBank:regBank|RegA[11], DecExeBufferCtrl_AddrImm[11],                       ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][11], RegisterBank:regBank|RegBank[1][11],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][11], RegisterBank:regBank|RegBank[3][11],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][11]                                                ;
+; PC[0]                        ; Lost Fanouts              ; ExeWBBuffer_Res[0], ExeWBBufferCtrl_AddrImm[0], ExeWBBufferCtrl_HasJumped,         ;
+;                              ;                           ; DecExeBuffer_OpULA[0], DecExeBuffer_OpULA[1], DecExeBuffer_OpULA[2],               ;
+;                              ;                           ; DecExeBufferCtrl_AddrImm[0], ControlWriteback:ctrlWriteback|WriteBackState.WB1,    ;
+;                              ;                           ; ControlDecode:ctrlDecode|DecodeState.DEC2                                          ;
+; PC[5]                        ; Lost Fanouts              ; ExeWBBuffer_Res[5], ExeWBBufferCtrl_AddrImm[5], RegisterBank:regBank|RegB[5],      ;
+;                              ;                           ; RegisterBank:regBank|RegA[5], RegisterBank:regBank|RegBank[0][5],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][5], RegisterBank:regBank|RegBank[2][5],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][5], RegisterBank:regBank|RegBank[4][5]             ;
+; PC[6]                        ; Lost Fanouts              ; ExeWBBuffer_Res[6], ExeWBBufferCtrl_AddrImm[6], RegisterBank:regBank|RegB[6],      ;
+;                              ;                           ; RegisterBank:regBank|RegA[6], RegisterBank:regBank|RegBank[0][6],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][6], RegisterBank:regBank|RegBank[2][6],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][6], RegisterBank:regBank|RegBank[4][6]             ;
+; PC[7]                        ; Lost Fanouts              ; ExeWBBuffer_Res[7], ExeWBBufferCtrl_AddrImm[7], RegisterBank:regBank|RegB[7],      ;
+;                              ;                           ; RegisterBank:regBank|RegA[7], RegisterBank:regBank|RegBank[0][7],                  ;
+;                              ;                           ; RegisterBank:regBank|RegBank[1][7], RegisterBank:regBank|RegBank[2][7],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[3][7], RegisterBank:regBank|RegBank[4][7]             ;
+; PC[14]                       ; Lost Fanouts              ; ExeWBBuffer_Res[14], RegisterBank:regBank|RegB[14], RegisterBank:regBank|RegA[14], ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][14], RegisterBank:regBank|RegBank[1][14],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][14], RegisterBank:regBank|RegBank[3][14],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][14]                                                ;
+; PC[13]                       ; Lost Fanouts              ; ExeWBBuffer_Res[13], RegisterBank:regBank|RegB[13], RegisterBank:regBank|RegA[13], ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][13], RegisterBank:regBank|RegBank[1][13],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][13], RegisterBank:regBank|RegBank[3][13],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][13]                                                ;
+; PC[15]                       ; Lost Fanouts              ; ExeWBBuffer_Res[15], RegisterBank:regBank|RegB[15], RegisterBank:regBank|RegA[15], ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][15], RegisterBank:regBank|RegBank[1][15],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][15], RegisterBank:regBank|RegBank[3][15],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][15]                                                ;
+; PC[12]                       ; Lost Fanouts              ; ExeWBBuffer_Res[12], RegisterBank:regBank|RegB[12], RegisterBank:regBank|RegA[12], ;
+;                              ;                           ; RegisterBank:regBank|RegBank[0][12], RegisterBank:regBank|RegBank[1][12],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][12], RegisterBank:regBank|RegBank[3][12],          ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][12]                                                ;
+; RegisterBank:regBank|RegB[0] ; Lost Fanouts              ; RegisterBank:regBank|RegBank[0][0], RegisterBank:regBank|RegBank[1][0],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[2][0], RegisterBank:regBank|RegBank[3][0],            ;
+;                              ;                           ; RegisterBank:regBank|RegBank[4][0],                                                ;
+;                              ;                           ; ControlWriteback:ctrlWriteback|WriteBackState.WB0                                  ;
+; DecExeBuffer_OpULA[3]        ; Stuck at GND              ; DecExeBufferCtrl_HasStall, DecExeBufferCtrl_IsJump,                                ;
+;                              ; due to stuck port data_in ; ControlDecode:ctrlDecode|DecodeState.DEC1                                          ;
+; ExeWBBufferCtrl_HasStall     ; Lost Fanouts              ; ControlExecute:ctrlExecute|ExecutionState.EXE1                                     ;
+; ExeWBBufferCtrl_HasWB        ; Lost Fanouts              ; DecExeBufferCtrl_HasWB                                                             ;
++------------------------------+---------------------------+------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -319,6 +727,39 @@ Encoding Type:  One-Hot
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |Microprocessor|ExeWBBufferCtrl_AddrImm[8]           ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Microprocessor|DecExeBufferCtrl_AddrImm[0]          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[0][10]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[1][6]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[2][1]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[3][2]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[4][6]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[5][1]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[6][1]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[7][11]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[8][6]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[9][15]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[10][11] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[11][10] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[12][9]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[13][8]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[14][15] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Microprocessor|RegisterBank:regBank|RegBank[15][15] ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegA[4]         ;
+; 16:1               ; 16 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; Yes        ; |Microprocessor|RegisterBank:regBank|RegB[7]         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |Microprocessor|PC[15]                               ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |Microprocessor|PC[6]                                ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |Microprocessor|Mux16bit2x1:muxOpImm|S[13]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Microprocessor|Mux16bit2x1:muxOpImm|S[3]            ;
+; 8:1                ; 15 bits   ; 75 LEs        ; 60 LEs               ; 15 LEs                 ; No         ; |Microprocessor|ULA:modULA|Mux13                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------+
@@ -391,36 +832,36 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Decoder:instdecode ;
-+----------------+-------+----------------------------------------+
-; Parameter Name ; Value ; Type                                   ;
-+----------------+-------+----------------------------------------+
-; InsADD         ; 0000  ; Unsigned Binary                        ;
-; InsSUB         ; 0001  ; Unsigned Binary                        ;
-; InsSLTI        ; 0010  ; Unsigned Binary                        ;
-; InsAND         ; 0011  ; Unsigned Binary                        ;
-; InsOR          ; 0100  ; Unsigned Binary                        ;
-; InsXOR         ; 0101  ; Unsigned Binary                        ;
-; InsANDI        ; 0110  ; Unsigned Binary                        ;
-; InsORI         ; 0111  ; Unsigned Binary                        ;
-; InsXORI        ; 1000  ; Unsigned Binary                        ;
-; InsADDI        ; 1001  ; Unsigned Binary                        ;
-; InsSUBI        ; 1010  ; Unsigned Binary                        ;
-; InsJ           ; 1011  ; Unsigned Binary                        ;
-; InsBEZ         ; 1100  ; Unsigned Binary                        ;
-; InsMUL         ; 1101  ; Unsigned Binary                        ;
-; InsGHI         ; 1110  ; Unsigned Binary                        ;
-; InsGLO         ; 1111  ; Unsigned Binary                        ;
-; ULAADD         ; 0000  ; Unsigned Binary                        ;
-; ULASUB         ; 0001  ; Unsigned Binary                        ;
-; ULASLT         ; 0010  ; Unsigned Binary                        ;
-; ULAAND         ; 0011  ; Unsigned Binary                        ;
-; ULAOR          ; 0100  ; Unsigned Binary                        ;
-; ULAXOR         ; 0101  ; Unsigned Binary                        ;
-; ULABEZ         ; 0110  ; Unsigned Binary                        ;
-; ULANOP         ; 0111  ; Unsigned Binary                        ;
-+----------------+-------+----------------------------------------+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Decoder:decoder ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; InsADD         ; 0000  ; Unsigned Binary                     ;
+; InsSUB         ; 0001  ; Unsigned Binary                     ;
+; InsSLTI        ; 0010  ; Unsigned Binary                     ;
+; InsAND         ; 0011  ; Unsigned Binary                     ;
+; InsOR          ; 0100  ; Unsigned Binary                     ;
+; InsXOR         ; 0101  ; Unsigned Binary                     ;
+; InsANDI        ; 0110  ; Unsigned Binary                     ;
+; InsORI         ; 0111  ; Unsigned Binary                     ;
+; InsXORI        ; 1000  ; Unsigned Binary                     ;
+; InsADDI        ; 1001  ; Unsigned Binary                     ;
+; InsSUBI        ; 1010  ; Unsigned Binary                     ;
+; InsJ           ; 1011  ; Unsigned Binary                     ;
+; InsBEZ         ; 1100  ; Unsigned Binary                     ;
+; InsMUL         ; 1101  ; Unsigned Binary                     ;
+; InsGHI         ; 1110  ; Unsigned Binary                     ;
+; InsGLO         ; 1111  ; Unsigned Binary                     ;
+; ULAADD         ; 0000  ; Unsigned Binary                     ;
+; ULASUB         ; 0001  ; Unsigned Binary                     ;
+; ULASLT         ; 0010  ; Unsigned Binary                     ;
+; ULAAND         ; 0011  ; Unsigned Binary                     ;
+; ULAOR          ; 0100  ; Unsigned Binary                     ;
+; ULAXOR         ; 0101  ; Unsigned Binary                     ;
+; ULABEZ         ; 0110  ; Unsigned Binary                     ;
+; ULANOP         ; 0111  ; Unsigned Binary                     ;
++----------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -444,45 +885,39 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Control:ctrl ;
-+----------------+-------+----------------------------------+
-; Parameter Name ; Value ; Type                             ;
-+----------------+-------+----------------------------------+
-; DEC0           ; 00    ; Unsigned Binary                  ;
-; DEC1           ; 01    ; Unsigned Binary                  ;
-; DEC2           ; 10    ; Unsigned Binary                  ;
-; EXE0           ; 00    ; Unsigned Binary                  ;
-; EXE1           ; 01    ; Unsigned Binary                  ;
-; EXE2           ; 10    ; Unsigned Binary                  ;
-; WB0            ; 00    ; Unsigned Binary                  ;
-; WB1            ; 01    ; Unsigned Binary                  ;
-; WB2            ; 10    ; Unsigned Binary                  ;
-; InsADD         ; 0000  ; Unsigned Binary                  ;
-; InsSUB         ; 0001  ; Unsigned Binary                  ;
-; InsSLTI        ; 0010  ; Unsigned Binary                  ;
-; InsAND         ; 0011  ; Unsigned Binary                  ;
-; InsOR          ; 0100  ; Unsigned Binary                  ;
-; InsXOR         ; 0101  ; Unsigned Binary                  ;
-; InsANDI        ; 0110  ; Unsigned Binary                  ;
-; InsORI         ; 0111  ; Unsigned Binary                  ;
-; InsXORI        ; 1000  ; Unsigned Binary                  ;
-; InsADDI        ; 1001  ; Unsigned Binary                  ;
-; InsSUBI        ; 1010  ; Unsigned Binary                  ;
-; InsJ           ; 1011  ; Unsigned Binary                  ;
-; InsBEZ         ; 1100  ; Unsigned Binary                  ;
-; InsMUL         ; 1101  ; Unsigned Binary                  ;
-; InsGHI         ; 1110  ; Unsigned Binary                  ;
-; InsGLO         ; 1111  ; Unsigned Binary                  ;
-; ULAADD         ; 0000  ; Unsigned Binary                  ;
-; ULASUB         ; 0001  ; Unsigned Binary                  ;
-; ULASLT         ; 0010  ; Unsigned Binary                  ;
-; ULAAND         ; 0011  ; Unsigned Binary                  ;
-; ULAOR          ; 0100  ; Unsigned Binary                  ;
-; ULAXOR         ; 0101  ; Unsigned Binary                  ;
-; ULABEZ         ; 0110  ; Unsigned Binary                  ;
-; ULANOP         ; 0111  ; Unsigned Binary                  ;
-+----------------+-------+----------------------------------+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ControlDecode:ctrlDecode ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; DEC0           ; 00    ; Unsigned Binary                              ;
+; DEC1           ; 01    ; Unsigned Binary                              ;
+; DEC2           ; 10    ; Unsigned Binary                              ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ControlExecute:ctrlExecute ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; EXE0           ; 00    ; Unsigned Binary                                ;
+; EXE1           ; 01    ; Unsigned Binary                                ;
+; EXE2           ; 10    ; Unsigned Binary                                ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ControlWriteback:ctrlWriteback ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; WB0            ; 00    ; Unsigned Binary                                    ;
+; WB1            ; 01    ; Unsigned Binary                                    ;
+; WB2            ; 10    ; Unsigned Binary                                    ;
++----------------+-------+----------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -506,13 +941,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+---------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ULA:modULA"                                                                            ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; FlagReg ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------------------+
+; Port Connectivity Checks: "Mux16bit2x1:muxExtPCSrc" ;
++-----------+-------+----------+----------------------+
+; Port      ; Type  ; Severity ; Details              ;
++-----------+-------+----------+----------------------+
+; B[15..12] ; Input ; Info     ; Stuck at GND         ;
++-----------+-------+----------+----------------------+
 
 
 +--------------------------------------------------+
@@ -524,14 +959,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+--------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Decoder:instdecode"                                                                    ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; OpCode  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; AddrImm ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ULA:modULA"                                                                                  ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; FlagReg[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Decoder:decoder"                                                                      ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; OpCode ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -561,7 +1004,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Nov 23 15:44:57 2017
+    Info: Processing started: Thu Nov 30 20:04:03 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Microprocessor -c Microprocessor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -571,8 +1014,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file Decoder
     Info (12023): Found entity 1: Decoder File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file ULA.v
     Info (12023): Found entity 1: ULA File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v Line: 26
-Info (12021): Found 1 design units, including 1 entities, in source file Control.v
-    Info (12023): Found entity 1: Control File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Control.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file WrapperSim.v
     Info (12023): Found entity 1: WrapperSim File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/WrapperSim.v Line: 17
 Info (12021): Found 1 design units, including 1 entities, in source file Mux4bit2x1.v
@@ -591,15 +1032,18 @@ Info (12021): Found 1 design units, including 1 entities, in source file Micropr
     Info (12023): Found entity 1: Microprocessor File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file Mult.v
     Info (12023): Found entity 1: Mult File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v Line: 9
+Info (12021): Found 2 design units, including 2 entities, in source file TestStage.v
+    Info (12023): Found entity 1: TestStageExecution File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/TestStage.v Line: 9
+    Info (12023): Found entity 2: TestStage File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/TestStage.v Line: 109
+Info (12021): Found 1 design units, including 1 entities, in source file ControlDecode.v
+    Info (12023): Found entity 1: ControlDecode File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v Line: 12
+Info (12021): Found 1 design units, including 1 entities, in source file ControlExecute.v
+    Info (12023): Found entity 1: ControlExecute File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v Line: 12
+Info (12021): Found 1 design units, including 1 entities, in source file ControlWriteback.v
+    Info (12023): Found entity 1: ControlWriteback File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v Line: 11
 Info (12127): Elaborating entity "Microprocessor" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(11): object "jmpCond" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 11
-Warning (10858): Verilog HDL warning at Microprocessor.v(11): object escCondCP used but never assigned File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 11
-Warning (10858): Verilog HDL warning at Microprocessor.v(11): object escCP used but never assigned File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 11
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(40): object "DecExeBuffer_OpCode" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 40
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(44): object "DecExeBuffer_Imm" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 44
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(51): object "ExeWbBuffer_FlagReg" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 51
-Warning (10230): Verilog HDL assignment warning at Microprocessor.v(145): truncated value with size 32 to match size of target (16) File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 145
-Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 56
+Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(30): object "ExeWBBuffer_FlagReg" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 30
+Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 77
 Info (12128): Elaborating entity "altsyncram" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
 Info (12130): Elaborated megafunction instantiation "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
 Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:altsyncram_component" with the following parameter: File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
@@ -619,30 +1063,32 @@ Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:alts
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qu81.tdf
     Info (12023): Found entity 1: altsyncram_qu81 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_qu81" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated" File: /home/iuri/altera/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:instdecode" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 67
-Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 78
-Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxFowardA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 81
-Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 93
-Info (12128): Elaborating entity "Control" for hierarchy "Control:ctrl" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 122
+Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:decoder" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 90
+Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 101
+Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 108
+Info (12128): Elaborating entity "ControlDecode" for hierarchy "ControlDecode:ctrlDecode" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 117
+Info (12128): Elaborating entity "ControlExecute" for hierarchy "ControlExecute:ctrlExecute" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 122
+Info (12128): Elaborating entity "ControlWriteback" for hierarchy "ControlWriteback:ctrlWriteback" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 131
+Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxPCSource" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 137
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[0]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 34
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[1]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 54
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[2]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 74
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[3]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 94
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[4]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 114
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[5]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 134
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[6]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 154
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[7]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 174
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[8]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 194
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[9]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 214
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[10]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 234
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[11]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 254
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[12]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 274
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[13]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 294
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[14]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 314
         Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[15]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 334
-Info (17049): 25 registers lost all their fanouts during netlist optimizations.
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[7]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 174
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[6]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 154
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[5]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 134
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[4]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 114
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[3]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 94
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[2]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 74
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[1]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 54
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[0]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 34
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[8]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 194
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[9]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 214
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[10]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 234
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[11]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 254
+Info (17049): 363 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/iuri/Projects/altera/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -652,11 +1098,11 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 29 warnings
-    Info: Peak virtual memory: 972 megabytes
-    Info: Processing ended: Thu Nov 23 15:45:11 2017
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:35
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 974 megabytes
+    Info: Processing ended: Thu Nov 30 20:04:18 2017
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:37
 
 
 +------------------------------------------+

@@ -144,13 +144,13 @@ module ULA (OpA, OpB, Res, CodeULA, FlagReg);
 			end
 			InsNOP: begin			// No Operation
 				Res <= 16'h0000;
-				FlagReg[ZeroFlag] <= 1'b0;
+				FlagReg[ZeroFlag] <= 1'b1;
 				FlagReg[OverflowFlag] <= 1'b0;
 				FlagReg[NegFlag] <= 1'b0;
 			end
 			default: begin
 				Res <= 16'h0000;
-				FlagReg[ZeroFlag] <= 1'b0;
+				FlagReg[ZeroFlag] <= 1'b1;
 				FlagReg[OverflowFlag] <= 1'b0;
 				FlagReg[NegFlag] <= 1'b0;
 			end

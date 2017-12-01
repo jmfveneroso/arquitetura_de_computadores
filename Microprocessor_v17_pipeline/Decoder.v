@@ -6,14 +6,16 @@
 /* 	Decodificar de instruçoes
 	Recebe uma instruçao de 16-bit na forma	INSTR	DST, IMM|REGB, REGA
 */
-module Decoder ( Instr, OpCode, OpA, OpB, OpC, AddrImm, OpULA, IsImm, HasWB);//, IsULA, IsMult );
+module Decoder ( Instr, OpCode, OpA, OpB, OpC, AddrImm, OpULA, IsImm, HasWB, HasStall, IsJump);//, IsULA, IsMult );
 	
 	input [15:0] Instr;
 	output [3:0] OpCode, OpA, OpB, OpC;
 	output [11:0] AddrImm;
 	output reg [3:0] OpULA;
 	output reg IsImm;					// Indica se instrucao e' imediata
+	output reg IsJump;				// Indica se e instrucao de jump
 	output reg HasWB;					// Indica se instrucai faz wb
+	output reg HasStall;				// Indica que a instrucao gera stall
 //	output reg IsULA;					// Indica que instrucao vai usar a ULA
 //	output reg IsMult;				// Indica que instrucai vai usar o Multiplicador
 	
@@ -57,118 +59,152 @@ module Decoder ( Instr, OpCode, OpA, OpB, OpC, AddrImm, OpULA, IsImm, HasWB);//,
 			InsADD: begin
 				IsImm		<= 1'b0;
 				HasWB		<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAADD;
+				OpULA		<= ULAADD;
 			end
 			InsSUB: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULASUB;
+				OpULA 	<= ULASUB;
 			end
 			InsSLTI:	begin
-				IsImm <= 1'b1;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULASLT;
+				OpULA 	<= ULASLT;
 			end
 			InsAND: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b1;	
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b1;	
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAAND;
+				OpULA 	<= ULAAND;
 			end
 			InsOR: begin
-				IsImm <= 1'b0; 
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b0; 
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAOR;
+				OpULA 	<= ULAOR;
 			end
 			InsXOR: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b1;	
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b1;	
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAXOR;
+				OpULA 	<= ULAXOR;
 			end
 			InsANDI: begin
-				IsImm <= 1'b1;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAAND;
+				OpULA 	<= ULAAND;
 			end
 			InsORI: begin
-				IsImm <= 1'b1;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAOR;
+				OpULA 	<= ULAOR;
 			end
 			InsXORI: begin
-				IsImm <= 1'b1; 
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1; 
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAXOR;
+				OpULA 	<= ULAXOR;
 			end
 			InsADDI: begin
-				IsImm <= 1'b1; 
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1; 
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULAADD;
+				OpULA 	<= ULAADD;
 			end
 			InsSUBI: begin
-				IsImm <= 1'b1; 
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b1; 
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULASUB;
+				OpULA 	<= ULASUB;
 			end
 			InsJ:	begin
-				IsImm <= 1'b0; 
-				HasWB <= 1'b0;
+				IsImm		<= 1'b0; 
+				HasWB 	<= 1'b0;
+				HasStall	<= 1'b1;
+				IsJump	<= 1'b1;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULANOP;
+				OpULA 	<= ULANOP;
 			end
 			InsBEZ: begin
-				IsImm <= 1'b0; 
-				HasWB <= 1'b0;
+				IsImm 	<= 1'b0; 
+				HasWB 	<= 1'b0;
+				HasStall	<= 1'b1;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
-				OpULA <= ULABEZ;
+				OpULA 	<= ULABEZ;
 			end
 			InsMUL: begin
-				IsImm <= 1'b0; 
-				HasWB <= 1'b0;
+				IsImm 	<= 1'b0; 
+				HasWB 	<= 1'b0;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b0;
 //				IsMult	<= 1'b1;
-				OpULA <= ULANOP;
+				OpULA 	<= ULANOP;
 			end
 			InsGHI: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b0;
 //				IsMult	<= 1'b1;
-				OpULA <= ULANOP;
+				OpULA 	<= ULANOP;
 			end
 			InsGLO: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b1;
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b1;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b0;
 //				IsMult	<= 1'b1;
-				OpULA <= ULANOP;
+				OpULA 	<= ULANOP;
 			end
 			default: begin
-				IsImm <= 1'b0;
-				HasWB <= 1'b0;
+				IsImm 	<= 1'b0;
+				HasWB 	<= 1'b0;
+				HasStall	<= 1'b0;
+				IsJump	<= 1'b0;
 //				IsULA		<= 1'b1;
 //				IsMult	<= 1'b0;
 				OpULA <= ULANOP;
