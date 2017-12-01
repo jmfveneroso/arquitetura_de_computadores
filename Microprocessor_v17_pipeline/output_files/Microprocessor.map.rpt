@@ -1,6 +1,6 @@
 Analysis & Synthesis report for Microprocessor
-Fri Dec  1 01:28:46 2017
-Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Fri Dec  1 17:03:20 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
 ---------------------
@@ -51,19 +51,20 @@ functions, and any output files from any of the foregoing
 associated documentation or information are expressly subject 
 to the terms and conditions of the Intel Program License 
 Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
-agreement, including, without limitation, that your use is for
-the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
 
 
 
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec  1 01:28:46 2017       ;
-; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec  1 17:03:20 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Microprocessor                              ;
 ; Top-level Entity Name              ; Microprocessor                              ;
 ; Family                             ; Cyclone IV E                                ;
@@ -92,7 +93,7 @@ refer to the applicable agreement for further details.
 ; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
 ; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
 ; Preserve fewer node names                                                  ; On                 ; On                 ;
-; Intel FPGA IP Evaluation Mode                                              ; Enable             ; Enable             ;
+; OpenCore Plus hardware evaluation                                          ; Enable             ; Enable             ;
 ; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
 ; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
 ; State Machine Processing                                                   ; Auto               ; Auto               ;
@@ -145,7 +146,7 @@ refer to the applicable agreement for further details.
 ; Report Connectivity Checks                                                 ; On                 ; On                 ;
 ; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
 ; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
-; Power Optimization During Synthesis                                        ; Normal compilation ; Normal compilation ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
 ; HDL message level                                                          ; Level2             ; Level2             ;
 ; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
 ; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
@@ -170,7 +171,7 @@ refer to the applicable agreement for further details.
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
 ; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -180,33 +181,33 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                          ;
-+----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                  ; Library ;
-+----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------------+---------+
-; Mux16bit2x1.v                    ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit2x1.v          ;         ;
-; Decoder.v                        ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v              ;         ;
-; ULA.v                            ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v                  ;         ;
-; RegisterBank.v                   ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v         ;         ;
-; MemoryInitFile.mif               ; yes             ; User Memory Initialization File  ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/MemoryInitFile.mif     ;         ;
-; InstrMemory.v                    ; yes             ; User Wizard-Generated File       ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v          ;         ;
-; Microprocessor.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v       ;         ;
-; Mult.v                           ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v                 ;         ;
-; ControlDecode.v                  ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v        ;         ;
-; ControlExecute.v                 ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v       ;         ;
-; ControlWriteback.v               ; yes             ; User Verilog HDL File            ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v     ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/altsyncram.tdf         ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/stratix_ram_block.inc  ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/lpm_mux.inc            ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/lpm_decode.inc         ;         ;
-; aglobal171.inc                   ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/aglobal171.inc         ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/a_rdenreg.inc          ;         ;
-; altrom.inc                       ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/altrom.inc             ;         ;
-; altram.inc                       ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/altram.inc             ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                     ; /home/iuri/altera/17.1/quartus/libraries/megafunctions/altdpram.inc           ;         ;
-; db/altsyncram_qu81.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf ;         ;
-+----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                           ;
++----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                                   ; Library ;
++----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------------------------------+---------+
+; Mux16bit2x1.v                    ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mux16bit2x1.v          ;         ;
+; Decoder.v                        ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Decoder.v              ;         ;
+; ULA.v                            ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ULA.v                  ;         ;
+; RegisterBank.v                   ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/RegisterBank.v         ;         ;
+; MemoryInitFile.mif               ; yes             ; User Memory Initialization File  ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/MemoryInitFile.mif     ;         ;
+; InstrMemory.v                    ; yes             ; User Wizard-Generated File       ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/InstrMemory.v          ;         ;
+; Microprocessor.v                 ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v       ;         ;
+; Mult.v                           ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mult.v                 ;         ;
+; ControlDecode.v                  ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlDecode.v        ;         ;
+; ControlExecute.v                 ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlExecute.v       ;         ;
+; ControlWriteback.v               ; yes             ; User Verilog HDL File            ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlWriteback.v     ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf                  ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/stratix_ram_block.inc           ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/lpm_mux.inc                     ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/lpm_decode.inc                  ;         ;
+; aglobal170.inc                   ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/aglobal170.inc                  ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/a_rdenreg.inc                   ;         ;
+; altrom.inc                       ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/altrom.inc                      ;         ;
+; altram.inc                       ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/altram.inc                      ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                     ; /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/altdpram.inc                    ;         ;
+; db/altsyncram_qu81.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf ;         ;
++----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -1050,50 +1051,50 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Fri Dec  1 01:28:32 2017
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Fri Dec  1 17:03:07 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Microprocessor -c Microprocessor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file Mux16bit2x1.v
-    Info (12023): Found entity 1: Mux16bit2x1 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit2x1.v Line: 7
+    Info (12023): Found entity 1: Mux16bit2x1 File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mux16bit2x1.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file Decoder.v
-    Info (12023): Found entity 1: Decoder File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Decoder.v Line: 9
+    Info (12023): Found entity 1: Decoder File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Decoder.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file ULA.v
-    Info (12023): Found entity 1: ULA File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ULA.v Line: 26
+    Info (12023): Found entity 1: ULA File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ULA.v Line: 26
 Info (12021): Found 1 design units, including 1 entities, in source file WrapperSim.v
-    Info (12023): Found entity 1: WrapperSim File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/WrapperSim.v Line: 17
+    Info (12023): Found entity 1: WrapperSim File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/WrapperSim.v Line: 17
 Info (12021): Found 1 design units, including 1 entities, in source file Mux4bit2x1.v
-    Info (12023): Found entity 1: Mux4bit2x1 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux4bit2x1.v Line: 7
+    Info (12023): Found entity 1: Mux4bit2x1 File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mux4bit2x1.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file Dec7Seg.v
-    Info (12023): Found entity 1: Dec7Seg File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Dec7Seg.v Line: 7
+    Info (12023): Found entity 1: Dec7Seg File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Dec7Seg.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file RegisterBank.v
-    Info (12023): Found entity 1: RegisterBank File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/RegisterBank.v Line: 7
+    Info (12023): Found entity 1: RegisterBank File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/RegisterBank.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file WrapperDE2.v
-    Info (12023): Found entity 1: WrapperDE2 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/WrapperDE2.v Line: 7
+    Info (12023): Found entity 1: WrapperDE2 File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/WrapperDE2.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file InstrMemory.v
-    Info (12023): Found entity 1: InstrMemory File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 39
+    Info (12023): Found entity 1: InstrMemory File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/InstrMemory.v Line: 39
 Info (12021): Found 1 design units, including 1 entities, in source file Mux16bit3x1.v
-    Info (12023): Found entity 1: Mux16bit3x1 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mux16bit3x1.v Line: 7
+    Info (12023): Found entity 1: Mux16bit3x1 File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mux16bit3x1.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file Microprocessor.v
-    Info (12023): Found entity 1: Microprocessor File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 7
+    Info (12023): Found entity 1: Microprocessor File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file Mult.v
-    Info (12023): Found entity 1: Mult File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Mult.v Line: 9
+    Info (12023): Found entity 1: Mult File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Mult.v Line: 9
 Info (12021): Found 2 design units, including 2 entities, in source file TestStage.v
-    Info (12023): Found entity 1: TestStageExecution File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/TestStage.v Line: 9
-    Info (12023): Found entity 2: TestStage File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/TestStage.v Line: 109
+    Info (12023): Found entity 1: TestStageExecution File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/TestStage.v Line: 9
+    Info (12023): Found entity 2: TestStage File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/TestStage.v Line: 109
 Info (12021): Found 1 design units, including 1 entities, in source file ControlDecode.v
-    Info (12023): Found entity 1: ControlDecode File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlDecode.v Line: 12
+    Info (12023): Found entity 1: ControlDecode File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlDecode.v Line: 12
 Info (12021): Found 1 design units, including 1 entities, in source file ControlExecute.v
-    Info (12023): Found entity 1: ControlExecute File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlExecute.v Line: 12
+    Info (12023): Found entity 1: ControlExecute File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlExecute.v Line: 12
 Info (12021): Found 1 design units, including 1 entities, in source file ControlWriteback.v
-    Info (12023): Found entity 1: ControlWriteback File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/ControlWriteback.v Line: 11
+    Info (12023): Found entity 1: ControlWriteback File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/ControlWriteback.v Line: 11
 Info (12127): Elaborating entity "Microprocessor" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(33): object "ExeWBBuffer_FlagReg" assigned a value but never read File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 33
-Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 86
-Info (12128): Elaborating entity "altsyncram" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
-Info (12130): Elaborated megafunction instantiation "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
-Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:altsyncram_component" with the following parameter: File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
+Warning (10036): Verilog HDL or VHDL warning at Microprocessor.v(33): object "ExeWBBuffer_FlagReg" assigned a value but never read File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 33
+Info (12128): Elaborating entity "InstrMemory" for hierarchy "InstrMemory:instrMemory" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 86
+Info (12128): Elaborating entity "altsyncram" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
+Info (12130): Elaborated megafunction instantiation "InstrMemory:instrMemory|altsyncram:altsyncram_component" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
+Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:altsyncram_component" with the following parameter: File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/InstrMemory.v Line: 81
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
     Info (12134): Parameter "init_file" = "MemoryInitFile.mif"
@@ -1108,54 +1109,54 @@ Info (12133): Instantiated megafunction "InstrMemory:instrMemory|altsyncram:alts
     Info (12134): Parameter "width_a" = "16"
     Info (12134): Parameter "width_byteena_a" = "1"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qu81.tdf
-    Info (12023): Found entity 1: altsyncram_qu81 File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 27
-Info (12128): Elaborating entity "altsyncram_qu81" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated" File: /home/iuri/altera/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:decoder" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 102
-Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 113
-Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 120
-Info (12128): Elaborating entity "Mult" for hierarchy "Mult:modMult" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 128
-Info (12128): Elaborating entity "ControlDecode" for hierarchy "ControlDecode:ctrlDecode" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 137
-Info (12128): Elaborating entity "ControlExecute" for hierarchy "ControlExecute:ctrlExecute" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 142
-Info (12128): Elaborating entity "ControlWriteback" for hierarchy "ControlWriteback:ctrlWriteback" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 151
-Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxPCSource" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 157
+    Info (12023): Found entity 1: altsyncram_qu81 File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_qu81" for hierarchy "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated" File: /home/joao/intelFPGA_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "Decoder" for hierarchy "Decoder:decoder" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 102
+Info (12128): Elaborating entity "RegisterBank" for hierarchy "RegisterBank:regBank" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 113
+Info (12128): Elaborating entity "ULA" for hierarchy "ULA:modULA" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 120
+Info (12128): Elaborating entity "Mult" for hierarchy "Mult:modMult" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 128
+Info (12128): Elaborating entity "ControlDecode" for hierarchy "ControlDecode:ctrlDecode" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 137
+Info (12128): Elaborating entity "ControlExecute" for hierarchy "ControlExecute:ctrlExecute" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 142
+Info (12128): Elaborating entity "ControlWriteback" for hierarchy "ControlWriteback:ctrlWriteback" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 151
+Info (12128): Elaborating entity "Mux16bit2x1" for hierarchy "Mux16bit2x1:muxPCSource" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 157
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[12]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 274
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[13]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 294
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[14]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 314
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[15]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 334
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[7]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 174
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[6]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 154
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[5]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 134
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[4]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 114
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[3]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 94
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[2]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 74
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[1]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 54
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[0]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 34
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[8]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 194
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[9]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 214
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[10]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 234
-        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[11]" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 254
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[12]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 275
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[13]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 295
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[14]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 315
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[15]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 335
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[7]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 175
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[6]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 155
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[5]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 135
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[4]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 115
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[3]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 95
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[2]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 75
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[1]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 55
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[0]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 35
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[8]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 195
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[9]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 215
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[10]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 235
+        Warning (14320): Synthesized away node "InstrMemory:instrMemory|altsyncram:altsyncram_component|altsyncram_qu81:auto_generated|q_a[11]" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/db/altsyncram_qu81.tdf Line: 255
 Info (17049): 398 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file /home/iuri/Projects/altera/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg
+Info (144001): Generated suppressed messages file /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "RST" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 9
-    Warning (15610): No output dependent on input pin "CLK" File: /home/iuri/Projects/altera/Microprocessor_v17_pipeline/Microprocessor.v Line: 9
+    Warning (15610): No output dependent on input pin "RST" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 9
+    Warning (15610): No output dependent on input pin "CLK" File: /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/Microprocessor.v Line: 9
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
-    Info: Peak virtual memory: 973 megabytes
-    Info: Processing ended: Fri Dec  1 01:28:46 2017
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:36
+    Info: Peak virtual memory: 966 megabytes
+    Info: Processing ended: Fri Dec  1 17:03:20 2017
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:23
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in /home/iuri/Projects/altera/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg.
+The suppressed messages can be found in /home/joao/Code/arquitetura_de_computadores/Microprocessor_v17_pipeline/output_files/Microprocessor.map.smsg.
 
 

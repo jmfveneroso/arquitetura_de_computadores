@@ -1,0 +1,46 @@
+# Esse programa calcula o resto da divisão de 1024 (R1) por 100 (R2) e
+# armazena o valor em R3. O valor esperado de R3 ao fim do programa é 24 (0000 0000 0001 1000).
+
+ADDI R1, 8, R0
+ADDI R2, 8, R0
+MUL  R3, R2, R1
+GLO  R1, -, -      # R1 = 64.
+ADDI R2, 15, R0    # R2 = 15.
+ADDI R2, 1, R2     # R2 = 16.
+MUL  R1, R1, R2    # 64 * 16 = 1024.
+GLO  R1, -, -      # R1 = 1024.
+ADDI R2, 10, R0    # R2 = 10.
+MUL  R2, R2, R2    # 10 * 10.
+GLO  R2, -, -      # R2 = 100.
+ADDI R3, 0, R1     # R3 = 1024.
+ADDI R4, 0, R0     # R4 = 0.
+ADDI R6, 15, R0    # R6 = 15.
+ADDI R6, 8, R6     # R6 = 23.
+ADDI R4, 1, R4     # R4 = R4 + 1
+SUB  R3, R2, R3    # R3 = R3 - R2.
+SLTI R5, 9, R4     # R5 = R4 > 9
+BEZ   -, R6, R5    # If (R5 == 0) { jump to R6 (23) }
+
+====================================================================================================
+# Para testar no modelsim.
+vsim -L altera_mf_ver -L cycloneiv_ver Microprocessor
+add wave -position insertpoint  \
+sim:/Microprocessor/opA \
+sim:/Microprocessor/opB \
+sim:/Microprocessor/opC \
+sim:/Microprocessor/opCode
+add wave -position insertpoint  \
+sim:/Microprocessor/PC
+add wave -position insertpoint  \
+sim:/Microprocessor/ExeWBBuffer_Res
+add wave -position insertpoint  \
+sim:/Microprocessor/CLK
+add wave -position insertpoint  \
+sim:/Microprocessor/RST
+force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Microprocessor/RST 1 0
+force -freeze sim:/Microprocessor/PC 0000000000001000 0
+run
+noforce sim:/Microprocessor/PC
+force -freeze sim:/Microprocessor/RST 0 0
+run

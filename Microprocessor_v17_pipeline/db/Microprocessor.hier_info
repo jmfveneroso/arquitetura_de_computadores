@@ -2485,7 +2485,7 @@ SEL => S.OUTPUTSELECT
 SEL => S.OUTPUTSELECT
 
 
-|Microprocessor|Mux16bit2x1:muxSelHiLo
+|Microprocessor|Mux16bit2x1:muxSel
 A[0] => S.DATAB
 A[1] => S.DATAB
 A[2] => S.DATAB

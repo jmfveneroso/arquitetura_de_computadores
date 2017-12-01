@@ -181,7 +181,7 @@ module Microprocessor(CLK, RST);
 										DecExeBufferCtrl_IsJump );
 	
 	//-- Mux para selecao Hi Lo
-	Mux16bit2x1 muxSelHiLo(	regLo,
+	Mux16bit2x1 muxSel(	regLo,
 									regHi,
 									outMuxHilo,
 									DecExeBufferCtrl_HiLo	);
