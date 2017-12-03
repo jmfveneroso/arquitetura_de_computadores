@@ -227,12 +227,89 @@ significativos na velocidade de execução como será mostrado na seção de exp
 
 \section{Implementação}
 
-Mostrar implementação de cada módulo. Descrever ISA final do sistema
+O processador finalizado conta com quatro módulos principais, além de uma série de módulos
+de controle secundários e multiplexadores. Os módulos principais são:
 
+\begin{itemize}
+
+\item \textit{Decoder}: recebe a instrução de 16 bits e decodifica o \textit{Opcode},
+identificando os operandos e preparando os registradores que sinalizam se a instrução é uma 
+multiplicação, se é um \textit{Jump}, se haverá \textit{Stall}, se haverá \textit{Write Back},
+qual registrador da multiplicação será armazenado se for o caso e se o segundo operando é
+um imediato.
+
+\item \textit{Register Bank}: o banco de registradores conta com 16 registradores de 16 bits,
+duas portas de leituras para os operandos A e B e uma porta de escrita.
+
+\item \textit{Unidade Lógica Aritmética}: a unidade lógica aritmética executa as instruções: 
+ADD, SUB, SLT, AND, OR, XOR e BEZ.
+
+\item \textit{Unidade multiplicadora}: a unidade multiplicadora recebe dois operandos de 16-bits
+e executa uma multiplicação produzindo um resultado de 32-bits que é armazenado em dois registradores:
+HI, que armazena os 16-bits mais significativos e LO, que armazena os 16-bits menos significativos.
+O resultado da operação armazenado nos registradores pode ser acessado por meio das instruções 
+GHI e GLO, que escrevem o conteúdo dos registradores HI e LO, respectivamente, em um registrador
+do banco de registradores.
+
+\end{itemize}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{| c | c | c | c | c | l |}
+\hline
+Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
+\hline
+\hline
+ ADD  & 0000 & C & A & B   & Reg(C) = Reg(A) + Reg(B) \\
+\hline
+ SUB  & 0001 & C & A & B   & Reg(C) = Reg(A) - Reg(B) \\
+\hline
+ SLTI & 0010 & C & A & Imm & Reg(C) = Reg(A) > Imm \\
+\hline
+ AND  & 0011 & C & A & B   & Reg(C) = Reg(A) AND Reg(B) \\
+\hline
+ OR   & 0100 & C & A & B   & Reg(C) = Reg(A) OR Reg(B) \\
+\hline
+ XOR  & 0101 & C & A & B   & Reg(C) = Reg(A) XOR Reg(B) \\
+\hline
+ ANDI & 0110 & C & A & Imm & Reg(C) = Reg(A) + Imm \\
+\hline
+ ORI  & 0111 & C & A & Imm & Reg(C) = Reg(A) OR Imm \\
+\hline
+ XORI & 1000 & C & A & Imm & Reg(C) = Reg(A) XOR Imm \\
+\hline
+ ADDI & 1001 & C & A & Imm & Reg(C) = Reg(A) + Imm \\
+\hline
+ SUBI & 1010 & C & A & Imm & Reg(C) = Reg(A) - Imm \\
+\hline
+ J    & 1011 & \multicolumn{3}{c|}{Imm} & PC = Imm \\
+\hline
+ BEZ  & 1100 & - & A & B   & If (Reg(A) = 0) PC = Reg(B) \\
+\hline
+ MUL  & 1101 & C & A & B   & Reg(C) = Reg(A) * Reg(B) \\
+\hline
+ GHI  & 1110 & C & - & -   & Reg(C) = HI \\
+\hline
+ GLO  & 1111 & C & - & -   & Reg(C) = LO \\
+\hline
+\end{tabular}
+\caption{Instruções}
+\label{tab:instructions}
+\end{table}
+\captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
+
+O conjunto de instruções final do processador está descrito na tabela \ref{tab:instructions}.
+Todas as instruções aritméticas e lógicas recebem o operando A do banco de registradores e o
+operando B pode ser um imediato de 4-bits ou um registrador dependendo da instrução. A instrução
+BEZ não utiliza os bits 11-8 e as instruções GHI e GLO não utilizam os bits de 7-0. A instrução
+J altera o PC para um valor imediato de 12-bits que comporta qualquer endereço da memória de
+4096 posições.
 
 \section{Integração}
 
 Mostrar divisão de estágios. Mostrar buffers entre estágios. Mostrar sistema inteiro
+Adicionar diagrama da pipeline.
+Adicionar diagrama da estrutura do processador.
 
 \section{Simulação e Testes}
 
