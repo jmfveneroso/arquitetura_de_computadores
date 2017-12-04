@@ -20,6 +20,16 @@ ADDI R4, 1, R4     # R4 = R4 + 1
 SUB  R3, R2, R3    # R3 = R3 - R2.
 SLTI R5, 9, R4     # R5 = R4 > 9
 BEZ   -, R6, R5    # If (R5 == 0) { jump to R6 (23) }
+====================================================================================================
+
+#loop simples para adicionar 1 em R1 4 vezes. No final R1=5 já que ele começa em 1.
+0 ADDI R1, 1, R0
+1 ADDI R2, 4, R0
+2 ADDI R6, 10, R0
+3 BEZ -,R6,R2
+4 ADDI R1,1,R1
+5 SUBI R2,1,R2 
+6 J 3
 
 ====================================================================================================
 # Para testar no modelsim.

@@ -282,7 +282,12 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \hline
  ADDI & 1001 & C & A & Imm & Reg(C) = Reg(A) + Imm \\
 \hline
- SUBI & 1010 & C & A & Imm & Reg(C) = Reg(A) - Imm \\ \hline J    & 1011 & \multicolumn{3}{c|}{Imm} & PC = Imm \\ \hline BEZ  & 1100 & - & A & B   & If (Reg(A) = 0) PC = Reg(B) \\ \hline
+ SUBI & 1010 & C & A & Imm & Reg(C) = Reg(A) - Imm \\
+\hline
+ J    & 1011 & \multicolumn{3}{c|}{Imm} & PC = Imm \\
+\hline
+ BEZ  & 1100 & - & A & B   & If (Reg(A) = 0) PC = Reg(B) \\
+\hline
  MUL  & 1101 & C & A & B   & Reg(C) = Reg(A) * Reg(B) \\
 \hline
  GHI  & 1110 & C & - & -   & Reg(C) = HI \\
