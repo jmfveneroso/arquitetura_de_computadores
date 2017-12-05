@@ -214,9 +214,13 @@ Para a implementação do \textit{pipeline}, propôs-se uma divisão do processa
 Entre os estágios estão as \textit{register bridges}, ou registradores de ponte, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
 
 \begin{itemize}
+
 \item \textit{Decode}: busca de instrução e decodificação de instrução;
+
 \item \textit{Execute}: busca de registros e execução;
+
 \item \textit{WriteBack}: escrita de resultados.
+
 \end{itemize}
 
 Para aplicação do \textit{pipeline} necessita-se que os estágios utilizem o mesmo tempo de execução, assim cada estágio executa em duas transições do sinal de \textit{clock}, mesmo o estágio de \textit{WriteBack} que ficará então uma transição \textit{idle} para adequar ao tempo dos outros estágios.
@@ -273,6 +277,12 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 
 \section{Implementação}
 
+Foram reutilizados os módulos desenvolvidos nos trabalhos anteriores, fazendo-se apenas pequenas alterações nos módulos. A maior parte das alterações foram feitas nos caminhos dos dados, utilizando multiplexadores e os registros de ponte entre os estágios. As subseções abaixo descrevem a implementação dos três estágios definidos.
+
+\subsection{Decode}
+
+O estágio de decodificação mantém os módulos da memória de instruções e do decodificador de instruções, além do registrador Contador de Programa. Uma máquina de estados é utilizada para controlar o funcionamento do estágio. A Figura \ref{fig:decodepipe} mostra uma versão simplificada de como é a organização do estágio.
+
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{images/decodepipe.pdf}
@@ -280,12 +290,26 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \label{fig:decodepipe}
 \end{figure}
 
+No primeiro ciclo de \textit{clock} busca-se a instrução na memória de instruções. No segundo ciclo, atualiza-se o valor do \textit{PC} e carrega os dados no registrador de ponte para o estágio de execução (\textit{Execute}). Para os casos em que o estágio estiver em \textit{stall}, o \textit{PC} não é atualizado e nem o registrador de ponte, até que o controle saia da condição de \textit{stall}.
+
+A seleção entre os valores do \textit{PC} será entre o incrimento (PC + 1) ou, caso haja uma condição de desvio (\textit{branch} ou \textit{jump}), um valor externo.
+
+\subsection{Execute}
+
+O estágio de execução é responsável pela busca de registradores no \textit{Banco de Registradores} e a execução da instrução pela \textit{Unidade Lógica Aritmética} (ULA) ou pela unidade de multiplicação. A Figura \ref{fig:executepipe} mostra uma versão simplificada de como é a organização do estágio.
+
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{images/executepipe.pdf}
 \caption{Diagrama simplificado do estágio \textit{Execute} do \textit{pipeline}.}
 \label{fig:executepipe}
 \end{figure}
+
+O estágio também possui uma maquina de estados para comandar a execução do mesmo. No primeiro ciclo de \textit{clock}, busca-se os registradores no \textit{Banco de Registradores} ou no registrador de ponte, caso a instrução atual necessite de dados calculados pela instrução que está sendo executa, fazendo o encaminhamento. No segundo ciclo os valores recuperados dos registros são utilizados pela ULA ou pelo módulo de multiplicação. A decisão de qual módulo será executado vem de sinais de controle enviados através do registrador de ponte com o estágio de \textit{Decode}.
+
+\subsection{Writeback}
+
+
 
 \begin{figure}[!h]
 \centering
