@@ -196,6 +196,10 @@ Para este trabalho, propõe-se a implementação de um \textit{Pipeline} de trê
 
 \section{Descrição}\label{sec:desc}
 
+Nessa seção, descreve-se a organização e a arquitetura do processador proposto neste trabalho.
+
+\subsection{Organização}
+
 O processador desenvolvido nos trabalhos anteriores possuia 5 estágios de execução, sendo, busca de instrução, decodificação, busca de registradores, execução e armazenamento de resultados. Cada estágio requeria um passo de relógio, ou uma transição do sinal de \textit{clock}, e não possuia qualquer paralelismo a nível de instrução.
 
 Para a implementação do \textit{pipeline}, propos-se uma divisão do processador em 3 estágios, sendo, decodificação, execução e armazenamento de resultados. A Figura \ref{fig:pipeline3stage} abaixo mostra a divisão dos estágios.
@@ -207,60 +211,21 @@ Para a implementação do \textit{pipeline}, propos-se uma divisão do processad
 \label{fig:pipeline3stage}
 \end{figure}
 
-Os estágios, então, serão responsáveis pelas seguintes tarefas:
+Entre os estágios estão as \textit{register bridges}, ou registradores de ponte, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
 
 \begin{itemize}
-
-\item \textit{Decode}:
-
-\item \textit{Execute}:
-
-\item \textit{WriteBack}:
-
+\item \textit{Decode}: busca de instrução e decodificação de instrução;
+\item \textit{Execute}: busca de registros e execução;
+\item \textit{WriteBack}: escrita de resultados.
 \end{itemize}
 
+Para aplicação do \textit{pipeline} necessita-se que os estágios utilizem o mesmo tempo de execução, assim cada estágio executa em duas transições do sinal de \textit{clock}, mesmo o estágio de \textit{WriteBack} que ficará então uma transição \textit{idle} para adequar ao tempo dos outros estágios.
 
-<-- ponto final de revisão
+O \textit{pipeline} insere no sistema \textit{Hazards}, como descrito anteriormente, e para isso precisa-se utilizar de algumas técnicas para eliminar ou amenizar o problema. Eliminou-se o \textit{hazard} de dados utilizando a técnica de encaminhamento, assim dados que são encaminhados da saída do estágio de execução para a entrada do mesmo estágio, não havendo \textit{stalls}. O sistema não possui \textit{hazards} estruturais, pois todos os estágios requerem o mesmo tempo de execução e o \textit{Banco de Registradores} possui duas portas de leitura e uma de escrita. Além disso o estágio de execução possui uma unidade dedicada para executar multiplicações, conseguindo, assim, executar instruções de multiplicação em um ciclo. Para instruções de desvio de fluxo \textit{hazards} de controle acontecem, e são gerados dois \textit{stalls} quando tais instruções são detectadas.
 
+\subsection{Arquitetura}
 
-O processador desenvolvido até o trabalho prático IV executava instruções de maneira sequencial. Com a introdução do \textit{Pipeline} neste trabalho, obtivemos ganhos significativos na velocidade de execução como será mostrado na seção de experimentos.
-
- No caso do nosso processador, o caminho de dados possui uma única via, portanto existe apenas um módulo para executar cada etapa da \textit{pipeline}, com exceção da etapa de execução que possui uma Unidade Lógica Aritmética e uma Unidade Multiplicadora.
-
-
-teriores espere até que os resultados estejam disponíveis antes de ser executada. Caso não haja encaminhamento de dados, o processador é forçado a paralizar a execução de novas instruções por meio de \textit{stalls} até que o dado esteja disponível. Nosso processador implementa o encaminhamento de dados da saída da unidade multiplicadora e da Unidade Lógica Aritmética para evitar o \textit{stall}.
-
- Nosso processador introduz um \textit{stall} nos \textit{branches} com o intuito de terminar a avaliação do \textit{Program Counter} antes de prosseguir com a execução da próxima instrução.
-
-
-
-\section{Implementação}
-
-O processador finalizado conta com quatro módulos principais, além de uma série de módulos
-de controle secundários e multiplexadores. Os módulos principais são:
-
-\begin{itemize}
-
-\item \textit{Decoder}: recebe a instrução de 16 bits e decodifica o \textit{Opcode},
-identificando os operandos e preparando os registradores que sinalizam se a instrução é uma 
-multiplicação, se é um \textit{Jump}, se haverá \textit{Stall}, se haverá \textit{Write Back},
-qual registrador da multiplicação será armazenado se for o caso e se o segundo operando é
-um imediato.
-
-\item \textit{Register Bank}: o banco de registradores conta com 16 registradores de 16 bits,
-duas portas de leituras para os operandos A e B e uma porta de escrita.
-
-\item \textit{Unidade Lógica Aritmética}: a unidade lógica aritmética executa as instruções: 
-ADD, SUB, SLT, AND, OR, XOR e BEZ.
-
-\item \textit{Unidade multiplicadora}: a unidade multiplicadora recebe dois operandos de 16-bits
-e executa uma multiplicação produzindo um resultado de 32-bits que é armazenado em dois registradores:
-HI, que armazena os 16-bits mais significativos e LO, que armazena os 16-bits menos significativos.
-O resultado da operação armazenado nos registradores pode ser acessado por meio das instruções 
-GHI e GLO, que escrevem o conteúdo dos registradores HI e LO, respectivamente, em um registrador
-do banco de registradores.
-
-\end{itemize}
+O conjunto de instruções final do processador está descrito na tabela \ref{tab:instructions}. Todas as instruções aritméticas e lógicas recebem o operando A do banco de registradores e o operando B pode ser um imediato de 4-bits ou um registrador dependendo da instrução. A instrução BEZ não utiliza os bits 11-8 e as instruções GHI e GLO não utilizam os bits de 7-0. A instrução J altera o PC para um valor imediato de 12-bits que comporta qualquer endereço da memória de 4096 posições.
 
 \begin{table}[!h]
 \centering
@@ -307,12 +272,37 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-O conjunto de instruções final do processador está descrito na tabela \ref{tab:instructions}.
-Todas as instruções aritméticas e lógicas recebem o operando A do banco de registradores e o
-operando B pode ser um imediato de 4-bits ou um registrador dependendo da instrução. A instrução
-BEZ não utiliza os bits 11-8 e as instruções GHI e GLO não utilizam os bits de 7-0. A instrução
-J altera o PC para um valor imediato de 12-bits que comporta qualquer endereço da memória de
-4096 posições.
+
+
+\section{Implementação}
+
+O processador finalizado conta com quatro módulos principais, além de uma série de módulos
+de controle secundários e multiplexadores. Os módulos principais são:
+
+\begin{itemize}
+
+\item \textit{Decoder}: recebe a instrução de 16 bits e decodifica o \textit{Opcode},
+identificando os operandos e preparando os registradores que sinalizam se a instrução é uma 
+multiplicação, se é um \textit{Jump}, se haverá \textit{Stall}, se haverá \textit{Write Back},
+qual registrador da multiplicação será armazenado se for o caso e se o segundo operando é
+um imediato.
+
+\item \textit{Register Bank}: o banco de registradores conta com 16 registradores de 16 bits,
+duas portas de leituras para os operandos A e B e uma porta de escrita.
+
+\item \textit{Unidade Lógica Aritmética}: a unidade lógica aritmética executa as instruções: 
+ADD, SUB, SLT, AND, OR, XOR e BEZ.
+
+\item \textit{Unidade multiplicadora}: a unidade multiplicadora recebe dois operandos de 16-bits
+e executa uma multiplicação produzindo um resultado de 32-bits que é armazenado em dois registradores:
+HI, que armazena os 16-bits mais significativos e LO, que armazena os 16-bits menos significativos.
+O resultado da operação armazenado nos registradores pode ser acessado por meio das instruções 
+GHI e GLO, que escrevem o conteúdo dos registradores HI e LO, respectivamente, em um registrador
+do banco de registradores.
+
+\end{itemize}
+
+
 
 \section{Integração}
 
