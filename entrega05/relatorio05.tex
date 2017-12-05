@@ -262,37 +262,37 @@ do banco de registradores.
 Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \hline
 \hline
- ADD  & 0000 & C & A & B   & Reg(C) = Reg(A) + Reg(B) \\
+ ADD  & 0000 & C & B & A   & Reg(C) = Reg(A) + Reg(B) \\
 \hline
- SUB  & 0001 & C & A & B   & Reg(C) = Reg(A) - Reg(B) \\
+ SUB  & 0001 & C & B & A   & Reg(C) = Reg(A) - Reg(B) \\
 \hline
- SLTI & 0010 & C & A & Imm & Reg(C) = Reg(A) > Imm \\
+ SLTI & 0010 & C & Imm & A & Reg(C) = Reg(A) > Imm \\
 \hline
- AND  & 0011 & C & A & B   & Reg(C) = Reg(A) AND Reg(B) \\
+ AND  & 0011 & C & B & A   & Reg(C) = Reg(A) AND Reg(B) \\
 \hline
- OR   & 0100 & C & A & B   & Reg(C) = Reg(A) OR Reg(B) \\
+ OR   & 0100 & C & B & A   & Reg(C) = Reg(A) OR Reg(B) \\
 \hline
- XOR  & 0101 & C & A & B   & Reg(C) = Reg(A) XOR Reg(B) \\
+ XOR  & 0101 & C & B & A   & Reg(C) = Reg(A) XOR Reg(B) \\
 \hline
- ANDI & 0110 & C & A & Imm & Reg(C) = Reg(A) + Imm \\
+ ANDI & 0110 & C & Imm & A & Reg(C) = Reg(A) + Imm \\
 \hline
- ORI  & 0111 & C & A & Imm & Reg(C) = Reg(A) OR Imm \\
+ ORI  & 0111 & C & Imm & A & Reg(C) = Reg(A) OR Imm \\
 \hline
- XORI & 1000 & C & A & Imm & Reg(C) = Reg(A) XOR Imm \\
+ XORI & 1000 & C & Imm & A & Reg(C) = Reg(A) XOR Imm \\
 \hline
- ADDI & 1001 & C & A & Imm & Reg(C) = Reg(A) + Imm \\
+ ADDI & 1001 & C & Imm & A & Reg(C) = Reg(A) + Imm \\
 \hline
- SUBI & 1010 & C & A & Imm & Reg(C) = Reg(A) - Imm \\
+ SUBI & 1010 & C & Imm & A & Reg(C) = Reg(A) - Imm \\
 \hline
  J    & 1011 & \multicolumn{3}{c|}{Imm} & PC = Imm \\
 \hline
- BEZ  & 1100 & - & A & B   & If (Reg(A) = 0) PC = Reg(B) \\
+ BEZ  & 1100 & 0000 & B & A   & If (Reg(A) = 0) PC = Reg(B) \\
 \hline
- MUL  & 1101 & C & A & B   & Reg(C) = Reg(A) * Reg(B) \\
+ MUL  & 1101 & C & B & A   & Reg(C) = Reg(A) * Reg(B) \\
 \hline
- GHI  & 1110 & C & - & -   & Reg(C) = HI \\
+ GHI  & 1110 & C & 0000 & 0000   & Reg(C) = HI \\
 \hline
- GLO  & 1111 & C & - & -   & Reg(C) = LO \\
+ GLO  & 1111 & C & 0000 & 0000   & Reg(C) = LO \\
 \hline
 \end{tabular}
 \caption{Instruções}
