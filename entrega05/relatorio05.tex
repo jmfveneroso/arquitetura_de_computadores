@@ -296,7 +296,7 @@ A seleção entre os valores do \textit{PC} será entre o incrimento (PC + 1) ou
 
 \subsection{Execute}
 
-O estágio de execução é responsável pela busca de registradores no \textit{Banco de Registradores} e a execução da instrução pela \textit{Unidade Lógica Aritmética} (ULA) ou pela unidade de multiplicação. A Figura \ref{fig:executepipe} mostra uma versão simplificada de como é a organização do estágio.
+O estágio de execução é responsável pela busca de registradores no \textit{Banco de Registradores} e a execução da instrução pela \textit{Unidade Lógica Aritmética} (ULA) ou pela unidade de multiplicação (Mult). A Figura \ref{fig:executepipe} mostra uma versão simplificada de como é a organização do estágio.
 
 \begin{figure}[!h]
 \centering
@@ -309,7 +309,7 @@ O estágio também possui uma maquina de estados para comandar a execução do m
 
 \subsection{Writeback}
 
-
+O estágio de \textit{Writeback} faz a escrita do resultado da operação no \textit{Banco de Registradores}. A Figura \ref{fig:writebackpipe} mostra um diagrama simplificado da organização do estágio. Vale resaltar que o \textit{Banco de Registradores} no estágio de \textit{writeback} é o mesmo do estágio de \textit{execute}, sendo colocado separado no diagrama apenas para facilitar a visualização dos estágios e compreensão.
 
 \begin{figure}[!h]
 \centering
@@ -318,35 +318,11 @@ O estágio também possui uma maquina de estados para comandar a execução do m
 \label{fig:writebackpipe}
 \end{figure}
 
-O processador finalizado conta com quatro módulos principais, além de uma série de módulos
-de controle secundários e multiplexadores. Os módulos principais são:
-
-\begin{itemize}
-
-\item \textit{Decoder}: recebe a instrução de 16 bits e decodifica o \textit{Opcode},
-identificando os operandos e preparando os registradores que sinalizam se a instrução é uma 
-multiplicação, se é um \textit{Jump}, se haverá \textit{Stall}, se haverá \textit{Write Back},
-qual registrador da multiplicação será armazenado se for o caso e se o segundo operando é
-um imediato.
-
-\item \textit{Register Bank}: o banco de registradores conta com 16 registradores de 16 bits,
-duas portas de leituras para os operandos A e B e uma porta de escrita.
-
-\item \textit{Unidade Lógica Aritmética}: a unidade lógica aritmética executa as instruções: 
-ADD, SUB, SLT, AND, OR, XOR e BEZ.
-
-\item \textit{Unidade multiplicadora}: a unidade multiplicadora recebe dois operandos de 16-bits
-e executa uma multiplicação produzindo um resultado de 32-bits que é armazenado em dois registradores:
-HI, que armazena os 16-bits mais significativos e LO, que armazena os 16-bits menos significativos.
-O resultado da operação armazenado nos registradores pode ser acessado por meio das instruções 
-GHI e GLO, que escrevem o conteúdo dos registradores HI e LO, respectivamente, em um registrador
-do banco de registradores.
-
-\end{itemize}
-
-
+No primeiro ciclo o estágio verifica se a instrução executada deve ou não escrever o resultado no banco. Se for necessário a escrita, os dados da posição e valor são utilizados para escrever no banco. Ainda no primeiro ciclo, verifica-se se a instrução executada gerou \textit{stall} no estágio de \textit{Decode}, liberando-o caso o mesmo esteja na condição de \textit{stall}. No segundo ciclo o estágio fica \textit{idle}. O estágio é executado em dois ciclos apenas para manter o mesmo tempo que os outros, requisito para que a técnica de \textit{pipeline} seja aplicada. Uma máquina de estados é utilizada para coordenar a execução do estágio.
 
 \section{Integração}
+
+A integração dos estágios desenvolvidos gera o processador que pode ser visto na Figura \ref{fig:pipeline_diagram}.
 
 \begin{figure}[!h]
 \centering
