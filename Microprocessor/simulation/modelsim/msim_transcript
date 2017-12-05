@@ -1,0 +1,814 @@
+# Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
+# ERROR: No extended dataflow license exists
+# do Microprocessor_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Mux16bit2x1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:15 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Mux16bit2x1.v 
+# -- Compiling module Mux16bit2x1
+# 
+# Top level modules:
+# 	Mux16bit2x1
+# End time: 17:31:15 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Decoder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:16 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Decoder.v 
+# -- Compiling module Decoder
+# 
+# Top level modules:
+# 	Decoder
+# End time: 17:31:16 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/ULA.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:16 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/ULA.v 
+# -- Compiling module ULA
+# 
+# Top level modules:
+# 	ULA
+# End time: 17:31:16 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Control.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:16 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Control.v 
+# -- Compiling module Control
+# 
+# Top level modules:
+# 	Control
+# End time: 17:31:16 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/RegisterBank.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:16 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/RegisterBank.v 
+# -- Compiling module RegisterBank
+# 
+# Top level modules:
+# 	RegisterBank
+# End time: 17:31:16 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/InstrMemory.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:16 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/InstrMemory.v 
+# -- Compiling module InstrMemory
+# 
+# Top level modules:
+# 	InstrMemory
+# End time: 17:31:16 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Microprocessor.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:17 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Microprocessor.v 
+# -- Compiling module Microprocessor
+# 
+# Top level modules:
+# 	Microprocessor
+# End time: 17:31:17 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Mult.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:31:17 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor/Mult.v 
+# -- Compiling module Mult
+# 
+# Top level modules:
+# 	Mult
+# End time: 17:31:17 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim -L altera_mf_ver -L cycloneiv_ver Microprocessor
+# vsim -L altera_mf_ver -L cycloneiv_ver Microprocessor 
+# Start time: 17:31:43 on Dec 05,2017
+# Loading work.Microprocessor
+# Loading work.InstrMemory
+# Loading altera_mf_ver.altsyncram
+# Loading work.Decoder
+# Loading work.RegisterBank
+# Loading work.ULA
+# Loading work.Mult
+# Loading work.Mux16bit2x1
+# Loading work.Control
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+add wave -position insertpoint  \
+sim:/Microprocessor/opA \
+sim:/Microprocessor/opB \
+sim:/Microprocessor/opC \
+sim:/Microprocessor/opCode
+add wave -position insertpoint  \
+sim:/Microprocessor/PC
+add wave -position insertpoint  \
+sim:/Microprocessor/ExeWBBuffer_Res
+# (vish-4014) No objects found matching '/Microprocessor/ExeWBBuffer_Res'.
+add wave -position insertpoint  \
+sim:/Microprocessor/CLK
+add wave -position insertpoint  \
+sim:/Microprocessor/RST
+force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Microprocessor/RST 1 0
+#force -freeze sim:/Microprocessor/PC 0000000000011100 0
+run
+noforce sim:/Microprocessor/PC
+force -freeze sim:/Microprocessor/RST 0 0
+run
+mem load -filltype value -filldata {1000000000000000 } -fillradix symbolic /Microprocessor/regBank/RegBank(9)
+mem load -filltype value -filldata {0000000000000100 } -fillradix symbolic /Microprocessor/regBank/RegBank(11)
+mem load -filltype value -filldata {0000000000000011 } -fillradix symbolic /Microprocessor/regBank/RegBank(12)
+mem load -filltype value -filldata {0000000000000010 } -fillradix symbolic /Microprocessor/regBank/RegBank(13)
+mem load -filltype value -filldata {0000000000000101 } -fillradix symbolic /Microprocessor/regBank/RegBank(14)
+mem load -filltype value -filldata {0000000000000001 } -fillradix symbolic /Microprocessor/regBank/RegBank(15)
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# End time: 17:40:21 on Dec 05,2017, Elapsed time: 0:08:38
+# Errors: 1, Warnings: 0

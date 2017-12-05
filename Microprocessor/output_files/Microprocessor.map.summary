@@ -1,8 +1,8 @@
-Analysis & Synthesis Status : Successful - Sat Nov 18 03:45:34 2017
-Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Analysis & Synthesis Status : Successful - Tue Dec 05 17:30:40 2017
+Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : Microprocessor
 Top-level Entity Name : Microprocessor
-Family : Cyclone II
+Family : Cyclone IV E
 Total logic elements : 0
     Total combinational functions : 0
     Dedicated logic registers : 0

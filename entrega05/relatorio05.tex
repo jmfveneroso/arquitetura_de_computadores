@@ -656,6 +656,17 @@ Note que o vetor está ordenado e que a simulação terminou com 28300 ps.
 \caption{Fim da ordenação}
 \label{fig:ordena2}
 \end{figure}
+
+Para mostrar a melhoria ao introduzir o pipeline, executamos o mesmo programa na implementação que não possuía o pipeline.
+A Figura~\ref{fig:ordenasp2} mostra o resultado desta execução.
+Note que, sem o pipeline, a execução termina somente por volta de 60800 ps, significando que com o pipeline, neste programa, o ganho foi de aproximadamente 56\% de tempo.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/ordenasp2.png}
+\caption{Fim da ordenação sem pipeline}
+\label{fig:ordenasp2}
+\end{figure}
 \section{Conclusão}
 
 A incorporação da \textit{pipeline} de três estágios exigiu a introdução de \textit{buffers} e unidades de
