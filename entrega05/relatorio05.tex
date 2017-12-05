@@ -415,6 +415,210 @@ simulação no processador novo. Como percebemos pelos resultados, o processador
 em Y \textit{clocks} e o processador antigo executou o programa em X \textit{clocks}. Portanto, a
 \textit{pipeline} obteve uma melhora de 99\% nesse caso específico.
 
+Além deste, fizemos um programa para ordenar um vetor de 5 valores.
+O código do programa está descrito a seguir.
+Para melhor visualização e entendimento do código, ele foi dividido em blocos de 12 instruções.
+Os blocos são equivalentes, o que muda são os valores dos registradores.
+
+O vetor está armazenado nos registradores 11 a 15.
+A cada bloco, o valor de um registrador é trocado com outro caso o seguinte seja menor do que ele.
+As trocas começam no registrador 11 (R11) e vão até o 14 (R14).
+No R11, primeiro verificamos se o valor de R12 é menor do que o dele, caso seja, troca os valores.
+Então o mesmo processo é feito com o R13, R14 e R15.
+Depois de finalizada as comparações do R11, olhamos para o R12 e fazemos o mesmo processo, \textit{i.e.}, comparamos primeiro com o R13, depois com o R14 e por último com o R15.
+Este processo se repete até fazermos a última comparação de R14 e R15.
+Após isso, o vetor está ordenado.
+
+Devido ao limitado número de instruções disponíveis, algumas adaptações precisaram ser feitas.
+A primeira é que não existe comparação de valores de registradores, logo para fazer isso, os valores a serem comparados são armazenados nos registradores R1 e R2.
+Para saber se devemos trocar, fazemos a subtração desses valores e armazenamos em R3.
+A partir daí, devemos saber se o número é positivo ou negativo.
+Caso seja positivo, R2>R1 e a troca não deve acontecer.
+Caso negativo, R2<R1 e a troca deve ocorrer.
+Porém, a instrução de comparação SLTI não funciona com valores negativos, logo não podemos simplesmente comparar o valor de R3 com 0.
+Para isso, utilizamos o registrador R9 que em seu bit mais significativo possui o valor 1 e nos demais o valor 0.
+Com este registrador, fazemos um AND entre R9 e R3, dessa forma, sabemos o sinal de R3.
+Agora podemos comparar R3 com 0 e descobrir se o resultado é positivo ou negativo.
+Repare que caso R3=1, a subtração foi negativa, logo a troca deve ocorrer.
+A decisão de se devemos ou não trocar os valores é armazenada em R4 que é utilizado em um \textit{branch}.
+Se R4=0, então R3=0 e a troca não deve ocorrer, logo o \textit{branch} deve ser tomado.
+
+Para realizar a troca, utilizamos o próprio R3 como registrador auxiliar.
+Se o \textit{branch} precisar ser tomado, o programa pula para o valor armazenado em R8.
+Para encontrar o valor de R8, utilizamos 3 registradores: R5, R6 e R7.
+R5 armazena em qual bloco de 13 instruções estamos: no primeiro ele recebe o valor 1 e é incrementado em 1 a cada início de bloco.
+R6 armazena a multiplicação de R5 e R7, cujo valor é 13 (tamanho do bloco de instruções).
+Por fim, R8 pega os bits menos significativos da multiplicação e descobre para qual endereço deve pular caso necessário.
+
+\begin{lstlisting}
+ADDI R5,1,R0
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R11,R0
+ADD R2,R12,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R11,R0
+ADD R11,R12,R0
+ADD R12,R3,R0
+# 2
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R11,R0
+ADD R2,R13,R0
+SUB R3,R1,R2
+AND R3,R9,R3
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R11,R0
+ADD R11,R13,R0
+ADD R13,R3,R0
+# 3
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R11,R0
+ADD R2,R14,R0
+SUB R3,R1,R2
+AND R3,R9,R3
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R11,R0
+ADD R11,R14,R0
+ADD R14,R3,R0
+# 4
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R11,R0
+ADD R2,R15,R0
+SUB R3,R1,R2
+AND R3,R9,R3
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R11,R0
+ADD R11,R15,R0
+ADD R15,R3,R0
+##### 5
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R12,R0
+ADD R2,R13,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R12,R0
+ADD R12,R13,R0
+ADD R13,R3,R0
+# 6
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R12,R0
+ADD R2,R14,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R12,R0
+ADD R12,R14,R0
+ADD R14,R3,R0
+# 7
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R12,R0
+ADD R2,R15,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R12,R0
+ADD R12,R15,R0
+ADD R15,R3,R0
+##### 8
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R13,R0
+ADD R2,R14,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R13,R0
+ADD R13,R14,R0
+ADD R14,R3,R0
+# 9
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R13,R0
+ADD R2,R15,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R13,R0
+ADD R13,R15,R0
+ADD R15,R3,R0
+###### 10
+ADDI R5,1,R5
+ADDI R7,13,R0
+MULL R6,R5,R7
+GLO R8,-,-
+ADD R1,R14,R0
+ADD R2,R15,R0
+SUB R3,R1,R2
+AND R3,R9,R3 
+SLTI R4,0,R3
+BEZ -,R8,R4
+ADD R3,R14,R0
+ADD R14,R15,R04
+ADD R15,R3,R0
+\end{lstlisting}
+
+A Figura~\ref{fig:ordena1} mostra como o vetor está distribuído nos registradores:
+\begin{itemize}
+\item R11 = 4
+\item R12 = 3
+\item R13 = 2
+\item R14 = 5
+\item R15 = 1
+\end{itemize}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/ordena1.png}
+\caption{Início da ordenação}
+\label{fig:ordena1}
+\end{figure}
+
+Repare que R9 possui o bit mais significativo com valor 1 e os outros bits 0, como dito anteriormente.
+A Figura~\ref{fig:ordena2} mostra o fim da simulação.
+Note que o vetor está ordenado e que a simulação terminou com 28300 ps.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/ordena2.png}
+\caption{Fim da ordenação}
+\label{fig:ordena2}
+\end{figure}
 \section{Conclusão}
 
 A incorporação da \textit{pipeline} de três estágios exigiu a introdução de \textit{buffers} e unidades de
