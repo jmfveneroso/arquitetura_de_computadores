@@ -339,12 +339,9 @@ Após integrado, parte-se para os testes do processador.
 
 \section{Simulação e Testes}
 
-Os testes realizados procuraram medir a melhora de desempenho após a implementação da \textit{pipeline}.
-Para isso, um programa de teste foi executado no processador antigo sem \textit{pipeline} e no processador
-novo com a \textit{pipeline} de três estágios. Perceba que a ordem dos operandos está invertida no
-\textit{Assembly}. Isso ocorre porque no nosso processador o operando 2, que pode ser um imediato, é o
-operando referente aos bits 7-4 da instrução e não 3-0. Portanto, o código foi alterado para refletir
-a característica das instruções armazenadas na memória.
+Os testes propostos tem o intuito de validar a implementação e medir a melhora de desempenho após a implementação da \textit{pipeline}. Para isso, programas de teste foram desenvolvidos para serem executados no processador do trabalho anterior, sem \textit{pipeline}, e na implementação atual com \textit{pipeline} de três estágios.
+
+O primeiro programa de teste realiza a divisão de 1024 por 100, calculando o resto por meio de um \textit{loop} e armazenando o resultado no resgistrador R3. A Tabela \ref{tab:program} mostra o código e descreve o primeiro programa desenvolvido.
 
 \begin{table}[!h]
 \centering
@@ -375,8 +372,7 @@ BEZ   -, R6, R5  &  If (R5 == 0) { jump to \#R6 }        \\
 \label{tab:program}
 \end{table}
 
-O programa de teste realiza a divisão de 1024 por 100, calculando o resto por meio de um loop e armazenando 
-o resultado no resgistrador R3. O programa está decrito na tabela \ref{tab:program}.
+<--- Final da edição Iuri --->
 
 A figura XXX mostra o resultado da simulação no processador antigo e a figura YYY mostra o resultado da 
 simulação no processador novo. Como percebemos pelos resultados, o processador novo executou o programa
