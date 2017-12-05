@@ -211,7 +211,7 @@ Para a implementação do \textit{pipeline}, propôs-se uma divisão do processa
 \label{fig:pipeline3stage}
 \end{figure}
 
-Entre os estágios estão as \textit{register bridges}, ou registradores de ponte, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
+Entre os estágios estão as \textit{register bridges} (registradores de ponte) ou \textit{buffers}, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
 
 \begin{itemize}
 
@@ -322,6 +322,10 @@ No primeiro ciclo o estágio verifica se a instrução executada deve ou não es
 
 \section{Integração}
 
+A grande chave da técnica de \textit{pipeline} está nos registradores de ponte, ou \textit{buffers}, entre os estágios. Eles mantém o estado e as informações da instrução que deve ser executada pelo estágio, passando também os sinais de controle necessários.
+
+Vários multiplexadores são utilizados pelo controle para fazer o correto direcionamento dos dados e encaminhamentos.
+
 A integração dos estágios desenvolvidos gera o processador que pode ser visto na Figura \ref{fig:pipeline_diagram}.
 
 \begin{figure}[!h]
@@ -331,56 +335,7 @@ A integração dos estágios desenvolvidos gera o processador que pode ser visto
 \label{fig:pipeline_diagram}
 \end{figure}
 
-A pipeline implementada possui três estágios: Decodificação, Execução e \textit{Write Back}.
-O estágio de execução é dividido entre dois módulos independentes: o módulo de multiplicação e a 
-Unidade Lógica Aritmética. O diagrama na figura \ref{fig:pipeline_diagram} descreve a \textit{pipeline}.
-
-Cada um dos estágios da \textit{pipeline} tem uma máquina de estados associada que executa as operações
-necessárias em múltiplos ciclos de \textit{clock}. Ao fim de cada estágio, cada módulo
-define os valores de um conjunto de registradores que passa os dados para o próximo estágio por
-meio de um \textit{buffer}. Na nossa implementação existem dois \textit{buffers}: Decode/Execute
-e Execute/Write Back.
-
-O estágio \textit{Decoder} (D) recebe a próxima instrução da memória de instruções e define 
-os valores dos registradores a seguir com base no \textit{Opcode} da instrução, atualizando
-o \textit{buffer} Decode/Execute:
-
-\begin{itemize}
-\item OpULA: o opcode da instrução para a ULA com 4-bits que indica a operação aritmética 
-a ser realizada. Por exemplo: ADDI e ADD tem o mesmo OpULA.
-\item OpA, OpB, OpC: os operandos A, B e C.
-\item IsImm: indica se o segundo operando da instrução é um imediato.
-\item IsJump: indica se a instrução é um \textit{Jump} (J).
-\item HasWB: indica se a instrução faz \textit{Write Back}.
-\item HasStall: indica se a instrução gera \textit{Stall}.
-\item IsMult: indica se a instrução vai utilizar a unidade multiplicadora.
-\item HiLo: indica qual registrador da multiplicação vai ser armazenado.
-\item StoreHiLo: indica que vai armazenar um registrador da unidade multiplicadora.
-\item AddrImm: endereço de memória de 12-bits para o \textit{Jump}.
-\end{itemize}
-
-O estágio \textit{Execução} (X e M) pode ocorrer em dois módulos separados: a ULA e a unidade
-multiplicadora. As entradas dos módulos são os registradores de saída da etapa anterior
-descritos acima. O resultado da ULA é armazenado no registrador Res e as flags da operação
-são armazenadas no registrador FlagReg. Já a unidade de multiplicação produz um resultado
-que é armazenado nos registradores Hi e Lo de 16-bits. O \textit{buffer} Execute/Write Back
-conta com os seguintes registradores:
-
-\begin{itemize}
-\item Res: indica o resultado da operação na ULA ou os registradores Hi ou Lo da unidade multiplicadora.
-\item FlagReg: indica as flags da ULA.
-\item RegDest: indica o registrador de destino da operação de \textit{Write Back}.
-\item HasWB: indica se o \textit{Write Back} vai ser executado.
-\item AddrImm: indica o endereço do imediato da operação \textit{Jump} (J).
-\item HasJumped: indica se um \textit{Jump} foi executado.
-\item HasStall: indica se houve \textit{Stall}.
-\end{itemize}
-
-Um multiplexador redireciona a saída da ULA e da unidade multiplexadora para o estágio de 
-\textit{WriteBack}. Perceba que a operação de multiplicação não passa efetivamente pelo estágio de 
-\textit{WriteBack} uma vez que o resultado da operação fica armazenado apenas nos registradores Hi
-e Lo, que podem ser escritos no banco de registradores por meio da execução de mais duas 
-instruções: GHI e GLO.
+Após integrado, parte-se para os testes do processador.
 
 \section{Simulação e Testes}
 
