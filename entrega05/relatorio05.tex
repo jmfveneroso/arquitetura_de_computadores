@@ -362,12 +362,10 @@ conta com os seguintes registradores:
 \end{itemize}
 
 Um multiplexador redireciona a saída da ULA e da unidade multiplexadora para o estágio de 
-\textit{WriteBack}. Perceba que a operação de multiplicação não passa pelo estágio de 
-\textit{WriteBack}. O resultado da operação fica armazenado apenas nos registradores Hi
-e Lo que podem ser escritos no banco de registradores por meio da execução de mais duas 
+\textit{WriteBack}. Perceba que a operação de multiplicação não passa efetivamente pelo estágio de 
+\textit{WriteBack} uma vez que o resultado da operação fica armazenado apenas nos registradores Hi
+e Lo, que podem ser escritos no banco de registradores por meio da execução de mais duas 
 instruções: GHI e GLO.
-
-Adicionar diagrama da estrutura do processador.
 
 \section{Simulação e Testes}
 
