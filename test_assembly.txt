@@ -33,57 +33,144 @@ BEZ   -, R6, R5    # If (R5 == 0) { jump to R6 (23) }
 ====================================================================================================
 ***** 1
 0   ADDI R5,1,R0
-1   ADDI R7,12,R0
+1   ADDI R7,13,R0
 2   MULL R6,R5,R7
 3   GLO R8,-,-
 4   ADD R1,R11,R0
 5   ADD R2,R12,R0
 6   SUB R3,R1,R2
 7   AND R3,R9,R3 #Se R3 > 0, R2<R1
-7   SLTI R4,0,R3 #Se R2<R1, R4=1, não troca -> tem que pular
-8   BEZ -,R8,R4 #Se R4=0, trocar -> não tem que pular
-9   ADD R3,R11,R0
-10  ADD R11,R12,R0
-11  ADD R12,R3,R0
+8   SLTI R4,0,R3 #Se R2<R1, R4=1, troca
+9   BEZ -,R8,R4 #Se R4=0, não troca
+10  ADD R3,R11,R0
+11  ADD R11,R12,R0
+12  ADD R12,R3,R0
 * 2
-12  ADDI R5,1,R5
-13  ADDI R7,12,R0
-14  MULL R6,R5,R7
-15  GLO R8,-,-
-16  ADD R1,R11,R0
-17  ADD R2,R13,R0
-18  SUB R3,R1,R2
-19  SLTI R4,0,R3
-20  BEZ -,R8,R4
-21  ADD R3,R11,R0
-22  ADD R11,R13,R0
-23  ADD R13,R3,R0
+13  ADDI R5,1,R5
+14  ADDI R7,13,R0
+15  MULL R6,R5,R7
+16  GLO R8,-,-
+17  ADD R1,R11,R0
+18  ADD R2,R13,R0
+19  SUB R3,R1,R2
+20  AND R3,R9,R3 #Se R3 > 0, R2<R1
+21  SLTI R4,0,R3
+22  BEZ -,R8,R4
+23  ADD R3,R11,R0
+24  ADD R11,R13,R0
+25  ADD R13,R3,R0
 * 3
-24  ADDI R5,1,R5
-25  ADDI R7,12,R0
-26  MULL R6,R5,R7
-27  GLO R8,-,-
-28  ADD R1,R11,R0
-29  ADD R2,R14,R0
-30  SUB R3,R1,R2
-31  SLTI R4,0,R3
-32  BEZ -,R8,R4
-33  ADD R3,R11,R0
-34  ADD R11,R14,R0
-35  ADD R14,R3,R0
+26  ADDI R5,1,R5
+27  ADDI R7,13,R0
+28  MULL R6,R5,R7
+29  GLO R8,-,-
+30  ADD R1,R11,R0
+31  ADD R2,R14,R0
+32  SUB R3,R1,R2
+33  AND R3,R9,R3 #Se R3 > 0, R2<R1
+34  SLTI R4,0,R3
+35  BEZ -,R8,R4
+36  ADD R3,R11,R0
+37  ADD R11,R14,R0
+38  ADD R14,R3,R0
 * 4
-36  ADDI R5,1,R5
-37  ADDI R7,12,R0
-38  MULL R6,R5,R7
-39  GLO R8,-,-
-40  ADD R1,R11,R0
-41  ADD R2,R15,R0
-42  SUB R3,R1,R2
-43  SLTI R4,0,R3
-44  BEZ -,R8,R4
-45  ADD R3,R11,R0
-46  ADD R11,R15,R0
-47  ADD R15,R3,R0
+39  ADDI R5,1,R5
+40  ADDI R7,13,R0
+41  MULL R6,R5,R7
+42  GLO R8,-,-
+43  ADD R1,R11,R0
+44  ADD R2,R15,R0
+45  SUB R3,R1,R2
+46  AND R3,R9,R3 #Se R3 > 0, R2<R1
+47  SLTI R4,0,R3
+48  BEZ -,R8,R4
+49  ADD R3,R11,R0
+50  ADD R11,R15,R0
+51  ADD R15,R3,R0
+**** 5
+13  ADDI R5,1,R5
+14  ADDI R7,13,R0
+15  MULL R6,R5,R7
+16  GLO R8,-,-
+17  ADD R1,R12,R0
+18  ADD R2,R13,R0
+19  SUB R3,R1,R2
+20  AND R3,R9,R3 #Se R3 > 0, R2<R1
+21  SLTI R4,0,R3
+22  BEZ -,R8,R4
+23  ADD R3,R12,R0
+24  ADD R12,R13,R0
+25  ADD R13,R3,R0
+* 6
+26  ADDI R5,1,R5
+27  ADDI R7,13,R0
+28  MULL R6,R5,R7
+29  GLO R8,-,-
+30  ADD R1,R12,R0
+31  ADD R2,R14,R0
+32  SUB R3,R1,R2
+33  AND R3,R9,R3 #Se R3 > 0, R2<R1
+34  SLTI R4,0,R3
+35  BEZ -,R8,R4
+36  ADD R3,R12,R0
+37  ADD R12,R14,R0
+38  ADD R14,R3,R0
+* 7
+39  ADDI R5,1,R5
+40  ADDI R7,13,R0
+41  MULL R6,R5,R7
+42  GLO R8,-,-
+43  ADD R1,R12,R0
+44  ADD R2,R15,R0
+45  SUB R3,R1,R2
+46  AND R3,R9,R3 #Se R3 > 0, R2<R1
+47  SLTI R4,0,R3
+48  BEZ -,R8,R4
+49  ADD R3,R12,R0
+50  ADD R12,R15,R0
+51  ADD R15,R3,R0
+**** 8
+13  ADDI R5,1,R5
+14  ADDI R7,13,R0
+15  MULL R6,R5,R7
+16  GLO R8,-,-
+17  ADD R1,R13,R0
+18  ADD R2,R14,R0
+19  SUB R3,R1,R2
+20  AND R3,R9,R3 #Se R3 > 0, R2<R1
+21  SLTI R4,0,R3
+22  BEZ -,R8,R4
+23  ADD R3,R13,R0
+24  ADD R13,R14,R0
+25  ADD R14,R3,R0
+* 9
+26  ADDI R5,1,R5
+27  ADDI R7,13,R0
+28  MULL R6,R5,R7
+29  GLO R8,-,-
+30  ADD R1,R13,R0
+31  ADD R2,R15,R0
+32  SUB R3,R1,R2
+33  AND R3,R9,R3 #Se R3 > 0, R2<R1
+34  SLTI R4,0,R3
+35  BEZ -,R8,R4
+36  ADD R3,R13,R0
+37  ADD R13,R15,R0
+38  ADD R15,R3,R0
+***** 10
+26  ADDI R5,1,R5
+27  ADDI R7,13,R0
+28  MULL R6,R5,R7
+29  GLO R8,-,-
+30  ADD R1,R14,R0
+31  ADD R2,R15,R0
+32  SUB R3,R1,R2
+33  AND R3,R9,R3 #Se R3 > 0, R2<R1
+34  SLTI R4,0,R3
+35  BEZ -,R8,R4
+36  ADD R3,R14,R0
+37  ADD R14,R15,R0
+38  ADD R15,R3,R0
 
 ====================================================================================================
 # Para testar no modelsim.
@@ -103,13 +190,14 @@ add wave -position insertpoint  \
 sim:/Microprocessor/RST
 force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/Microprocessor/RST 1 0
-force -freeze sim:/Microprocessor/PC 0000000000011100 0
+#force -freeze sim:/Microprocessor/PC 0000000000011100 0
 run
 noforce sim:/Microprocessor/PC
 force -freeze sim:/Microprocessor/RST 0 0
 run
+mem load -filltype value -filldata {1000000000000000 } -fillradix symbolic /Microprocessor/regBank/RegBank(9)
 mem load -filltype value -filldata {0000000000000100 } -fillradix symbolic /Microprocessor/regBank/RegBank(11)
-mem load -filltype value -filldata {0000000000000010 } -fillradix symbolic /Microprocessor/regBank/RegBank(12)
-mem load -filltype value -filldata {0000000000000011 } -fillradix symbolic /Microprocessor/regBank/RegBank(13)
-mem load -filltype value -filldata {0000000000000001 } -fillradix symbolic /Microprocessor/regBank/RegBank(14)
-mem load -filltype value -filldata {0000000000000101 } -fillradix symbolic /Microprocessor/regBank/RegBank(15)
+mem load -filltype value -filldata {0000000000000011 } -fillradix symbolic /Microprocessor/regBank/RegBank(12)
+mem load -filltype value -filldata {0000000000000010 } -fillradix symbolic /Microprocessor/regBank/RegBank(13)
+mem load -filltype value -filldata {0000000000000101 } -fillradix symbolic /Microprocessor/regBank/RegBank(14)
+mem load -filltype value -filldata {0000000000000001 } -fillradix symbolic /Microprocessor/regBank/RegBank(15)

@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/simulation/modelsim
 vControlDecode
-Z1 !s110 1512445315
+Z1 !s110 1512451759
 !i10b 1
 !s100 G^Y_lR3W`lCmmVLRN_ZJB2
 I>joDXAR;dHi`0lC^Ia0Uz3
@@ -23,7 +23,7 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1512445315.000000
+Z6 !s108 1512451759.000000
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlDecode.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlDecode.v|
 !i113 1
@@ -55,7 +55,7 @@ R8
 R9
 n@control@execute
 vControlWriteback
-!s110 1512445316
+R1
 !i10b 1
 !s100 QgcM;@SU;MFO^EDdl4DgH2
 IhabE]3ba>e?Ia;mj4;=]41
@@ -78,7 +78,7 @@ R8
 R9
 n@control@writeback
 vDecoder
-R1
+Z10 !s110 1512451758
 !i10b 1
 !s100 EkF@o0zm6bGF_UI4Cn;1X2
 IkbTc0C;XfWVc]BZ2eeh?60
@@ -92,7 +92,7 @@ R5
 r1
 !s85 0
 31
-R6
+Z11 !s108 1512451758.000000
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Decoder.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Decoder.v|
 !i113 1
@@ -101,7 +101,7 @@ R8
 R9
 n@decoder
 vInstrMemory
-R1
+R10
 !i10b 1
 !s100 _B09Q[ciSjQoT;>eY6j[32
 I?UT^fnge;mlVNgkYU53f@2
@@ -115,7 +115,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/InstrMemory.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/InstrMemory.v|
 !i113 1
@@ -124,7 +124,7 @@ R8
 R9
 n@instr@memory
 vMicroprocessor
-R1
+R10
 !i10b 1
 !s100 Pgg>?i>82EIf;N2HMCfG10
 IFl`z2AIlmWkCHY<G6Q70A0
@@ -138,7 +138,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Microprocessor.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Microprocessor.v|
 !i113 1
@@ -161,7 +161,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mult.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mult.v|
 !i113 1
@@ -170,7 +170,7 @@ R8
 R9
 n@mult
 vMux16bit2x1
-!s110 1512445314
+!s110 1512451757
 !i10b 1
 !s100 cmEzF3GzZdMjAB?aLN?<k0
 I2=TODz0_kk:>z2RE060aC0
@@ -184,7 +184,7 @@ R5
 r1
 !s85 0
 31
-!s108 1512445314.000000
+!s108 1512451757.000000
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v|
 !i113 1
@@ -193,7 +193,7 @@ R8
 R9
 n@mux16bit2x1
 vRegisterBank
-R1
+R10
 !i10b 1
 !s100 Vc@Jo>O@T:aK=]B?6o=U>0
 IQQRLIQ@j4W0?`2zC]EEL03
@@ -207,7 +207,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/RegisterBank.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/RegisterBank.v|
 !i113 1
@@ -216,13 +216,13 @@ R8
 R9
 n@register@bank
 vULA
-R1
+R10
 !i10b 1
-!s100 =bNX1DVVa=afOKRX^cD>n1
-II[mnB`PSLbbeDz7C00:LI1
+!s100 zAO@fZJ>QOQnlhINmNXj=3
+IX7R:=W`4n]8M5;1m8MP8W0
 R2
 R0
-w1512445287
+w1512445386
 8C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v
 FC:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v
 L0 26
@@ -230,7 +230,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2|C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v|
 !i113 1

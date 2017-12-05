@@ -13,108 +13,135 @@
 # 
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:54 on Dec 05,2017
+# Start time: 03:29:17 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v 
 # -- Compiling module Mux16bit2x1
 # 
 # Top level modules:
 # 	Mux16bit2x1
-# End time: 01:41:54 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:17 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Decoder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Decoder.v 
 # -- Compiling module Decoder
 # 
 # Top level modules:
 # 	Decoder
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:18 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ULA.v 
 # -- Compiling module ULA
 # 
 # Top level modules:
 # 	ULA
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:18 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/RegisterBank.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/RegisterBank.v 
 # -- Compiling module RegisterBank
 # 
 # Top level modules:
 # 	RegisterBank
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:18 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/InstrMemory.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/InstrMemory.v 
 # -- Compiling module InstrMemory
 # 
 # Top level modules:
 # 	InstrMemory
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:18 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Microprocessor.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Microprocessor.v 
 # -- Compiling module Microprocessor
 # 
 # Top level modules:
 # 	Microprocessor
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:18 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mult.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:18 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/Mult.v 
 # -- Compiling module Mult
 # 
 # Top level modules:
 # 	Mult
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:19 on Dec 05,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlDecode.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:19 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlDecode.v 
 # -- Compiling module ControlDecode
 # 
 # Top level modules:
 # 	ControlDecode
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:19 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlExecute.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:19 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlExecute.v 
 # -- Compiling module ControlExecute
 # 
 # Top level modules:
 # 	ControlExecute
-# End time: 01:41:55 on Dec 05,2017, Elapsed time: 0:00:00
+# End time: 03:29:19 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2 {C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlWriteback.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 01:41:55 on Dec 05,2017
+# Start time: 03:29:19 on Dec 05,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2" C:/Users/Ricardo/Documents/GitHub/arquitetura_de_computadores/Microprocessor_v17_pipeline_v2/ControlWriteback.v 
 # -- Compiling module ControlWriteback
 # 
 # Top level modules:
 # 	ControlWriteback
-# End time: 01:41:56 on Dec 05,2017, Elapsed time: 0:00:01
+# End time: 03:29:19 on Dec 05,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
+
+26  ADDI R5,1,R5
+# invalid command name "26"
+27  ADDI R7,13,R0
+# invalid command name "27"
+28  MULL R6,R5,R7
+# invalid command name "28"
+29  GLO R8,-,-
+# invalid command name "29"
+30  ADD R1,R13,R0
+# invalid command name "30"
+31  ADD R2,R15,R0
+# invalid command name "31"
+32  SUB R3,R1,R2
+# invalid command name "32"
+33  AND R3,R9,R3 #Se R3 > 0, R2<R1
+# invalid command name "33"
+34  SLTI R4,0,R3
+# invalid command name "34"
+35  BEZ -,R8,R4
+# invalid command name "35"
+36  ADD R3,R13,R0
+# invalid command name "36"
+37  ADD R13,R15,R0
+# invalid command name "37"
+38  ADD R15,R3,R0
+# invalid command name "38"
 vsim -L altera_mf_ver -L cycloneiv_ver Microprocessor
 # vsim -L altera_mf_ver -L cycloneiv_ver Microprocessor 
-# Start time: 01:41:58 on Dec 05,2017
+# Start time: 03:29:31 on Dec 05,2017
 # Loading work.Microprocessor
 # Loading work.InstrMemory
 # Loading altera_mf_ver.altsyncram
@@ -144,39 +171,21 @@ add wave -position insertpoint  \
 sim:/Microprocessor/RST
 force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/Microprocessor/RST 1 0
-force -freeze sim:/Microprocessor/PC 0000000000011100 0
+#force -freeze sim:/Microprocessor/PC 0000000000011100 0
 run
 noforce sim:/Microprocessor/PC
 force -freeze sim:/Microprocessor/RST 0 0
 run
+mem load -filltype value -filldata {1000000000000000 } -fillradix symbolic /Microprocessor/regBank/RegBank(9)
 mem load -filltype value -filldata {0000000000000100 } -fillradix symbolic /Microprocessor/regBank/RegBank(11)
-mem load -filltype value -filldata {0000000000000010 } -fillradix symbolic /Microprocessor/regBank/RegBank(12)
-mem load -filltype value -filldata {0000000000000011 } -fillradix symbolic /Microprocessor/regBank/RegBank(13)
-mem load -filltype value -filldata {0000000000000001 } -fillradix symbolic /Microprocessor/regBank/RegBank(14)
-mem load -filltype value -filldata {0000000000000101 } -fillradix symbolic /Microprocessor/regBank/RegBank(15)
+mem load -filltype value -filldata {0000000000000011 } -fillradix symbolic /Microprocessor/regBank/RegBank(12)
+mem load -filltype value -filldata {0000000000000010 } -fillradix symbolic /Microprocessor/regBank/RegBank(13)
+mem load -filltype value -filldata {0000000000000101 } -fillradix symbolic /Microprocessor/regBank/RegBank(14)
+mem load -filltype value -filldata {0000000000000001 } -fillradix symbolic /Microprocessor/regBank/RegBank(15)
 
 run
 run
 run
-# Res 1111111111111111
-# Res 1111111111111111
-# Res 0000000000000000
-# Res 0000000000000000
-# Res 0000000000000001
-run
-run
-# Res 0000000000000001
-# Res 0000000000000000
-# Res 0000000000000000
-# Res 0000000000000001
-run
-run
-# Res 0000000000000001
-run
-run
-run
-run
-mem load -filltype value -filldata 1010000100010000 -fillradix symbolic /Microprocessor/instrMemory/altsyncram_component/m_default/altsyncram_inst/mem_data(35)
 run
 run
 run
@@ -184,5 +193,305 @@ run
 run
 run
 run
-# End time: 02:02:04 on Dec 05,2017, Elapsed time: 0:20:06
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# End time: 03:30:19 on Dec 05,2017, Elapsed time: 0:00:48
 # Errors: 0, Warnings: 0
