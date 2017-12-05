@@ -1,0 +1,8 @@
+
+State Machine - |Microprocessor|Control:ctrl|State
+Name State.EX State.RF State.ID State.IF State.WB 
+State.IF 0 0 0 0 0 
+State.ID 0 0 1 1 0 
+State.RF 0 1 0 1 0 
+State.EX 1 0 0 1 0 
+State.WB 0 0 0 1 1 

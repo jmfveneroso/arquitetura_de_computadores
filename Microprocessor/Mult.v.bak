@@ -1,0 +1,14 @@
+//							Iuri Silva Castro
+//			Mestrando em Engenharia Eletrica - PPGEE
+//			Universidade Federal de Minas Gerais - UFMG
+//									2º/2017
+
+
+module Mult(A, B, S);
+
+input [15:0] A, B;
+output [31:0] S;
+
+assign S = A * B;
+
+endmodule

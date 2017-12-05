@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at WrapperDE2.v(86): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at WrapperDE2.v(36): object "RST" differs only in case from object "rst" in the same scope
