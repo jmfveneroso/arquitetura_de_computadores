@@ -1,0 +1,33 @@
+
+
+
+/* Wrapper para simulaçao do ULA */
+
+module WrapperSim(Instr, CLK, RST, RDY, START);
+
+	input [15:0] Instr;
+	input CLK, RST, START;
+	output RDY;
+
+	wire isImm, isValid, wen;
+	wire [3:0] opALU, opA, opB, opC;
+	wire [15:0] regA, regB, res, outMux;
+	wire [2:0] flagReg;
+
+	/* Decoder: Decoder ( Instr[15:0], isImm, isValid, OpALU[3:0]}, Op[3:0], OpB[3:0], OpC[3:0], CLK ) */
+	Decoder instdecode(Instr, isImm, isValid, opALU, opA, opB, opC, CLK);
+
+	/* RegisterBank: RegisterBank ( AddrRegA[3:0], AddrRegB[3:0], AddrWriteReg[3:0], Data[15:0], WEN, CLK, RST, RegA[15:0]], RegB[15:0] ) */
+	RegisterBank regBank(opA, opB, opC, res, wen, CLK, RST, regA, regB);
+
+	/* ULA: ULA (OpA, OpB, Res, Op, FlagReg) */
+	ULA modULA(regA, outMux, res, opALU, flagReg);
+
+	/* MUX: Mux16bit2x1 (A, B, S, SEL) */
+	Mux16bit2x1 muxOpImm(regB, { 12'h000, opB }, outMux, isImm);
+
+	/* Control: Control (CLK, RST, Start, Ready, Wen, Go) */
+	Control ctrl(CLK, RST, START, RDY, wen, 1'b1);
+
+
+endmodule

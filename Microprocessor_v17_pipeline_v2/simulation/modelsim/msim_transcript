@@ -1,0 +1,274 @@
+# do Microprocessor_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Modifying /home/iuri/altera/17.1/modelsim_ase/linuxaloem/../modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:09 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Mux16bit2x1.v 
+# -- Compiling module Mux16bit2x1
+# 
+# Top level modules:
+# 	Mux16bit2x1
+# End time: 00:20:09 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Decoder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:09 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Decoder.v 
+# -- Compiling module Decoder
+# 
+# Top level modules:
+# 	Decoder
+# End time: 00:20:09 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ULA.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:09 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ULA.v 
+# -- Compiling module ULA
+# 
+# Top level modules:
+# 	ULA
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/RegisterBank.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/RegisterBank.v 
+# -- Compiling module RegisterBank
+# 
+# Top level modules:
+# 	RegisterBank
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/InstrMemory.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/InstrMemory.v 
+# -- Compiling module InstrMemory
+# 
+# Top level modules:
+# 	InstrMemory
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Microprocessor.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Microprocessor.v 
+# -- Compiling module Microprocessor
+# 
+# Top level modules:
+# 	Microprocessor
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Mult.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/Mult.v 
+# -- Compiling module Mult
+# 
+# Top level modules:
+# 	Mult
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlDecode.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlDecode.v 
+# -- Compiling module ControlDecode
+# 
+# Top level modules:
+# 	ControlDecode
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlExecute.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlExecute.v 
+# -- Compiling module ControlExecute
+# 
+# Top level modules:
+# 	ControlExecute
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2 {/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlWriteback.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 00:20:10 on Dec 05,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2" /home/iuri/Projects/altera/Microprocessor_v17_pipeline_v2/ControlWriteback.v 
+# -- Compiling module ControlWriteback
+# 
+# Top level modules:
+# 	ControlWriteback
+# End time: 00:20:10 on Dec 05,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# 
+# stdin: <EOF>
+vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver Microprocessor
+# vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver Microprocessor 
+# Start time: 00:20:23 on Dec 05,2017
+# Loading work.Microprocessor
+# Loading work.InstrMemory
+# Loading altera_mf_ver.altsyncram
+# Loading work.Decoder
+# Loading work.RegisterBank
+# Loading work.ULA
+# Loading work.Mult
+# Loading work.ControlDecode
+# Loading work.ControlExecute
+# Loading work.ControlWriteback
+# Loading work.Mux16bit2x1
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+
+add wave -position end  sim:/Microprocessor/CLK
+add wave -position end  sim:/Microprocessor/RST
+# add wave -position end  sim:/Microprocessor/FowardA
+# add wave -position end  sim:/Microprocessor/FowardB
+# add wave -position end  sim:/Microprocessor/DecExeBuffer_OpA
+# add wave -position end  sim:/Microprocessor/DecExeBuffer_OpB
+# add wave -position end  sim:/Microprocessor/DecExeBuffer_OpC
+# add wave -position end  sim:/Microprocessor/DecExeBuffer_OpULA
+add wave -position end  sim:/Microprocessor/DecExeBufferCtrl_AddrImm
+add wave -position end  sim:/Microprocessor/DecExeBufferCtrl_IsImm
+add wave -position end  sim:/Microprocessor/DecExeBufferCtrl_HasWB
+add wave -position end  sim:/Microprocessor/DecExeBufferCtrl_HasStall
+add wave -position end  sim:/Microprocessor/DecExeBufferCtrl_IsJump
+add wave -position end  sim:/Microprocessor/ExeWBBuffer_Res
+add wave -position end  sim:/Microprocessor/ExeWBBuffer_FlagReg
+add wave -position end  sim:/Microprocessor/ExeWBBufferCtrl_RegDest
+add wave -position end  sim:/Microprocessor/ExeWBBufferCtrl_AddrImm
+add wave -position end  sim:/Microprocessor/ExeWBBufferCtrl_HasWB
+add wave -position end  sim:/Microprocessor/ExeWBBufferCtrl_HasJumped
+add wave -position end  sim:/Microprocessor/ExeWBBufferCtrl_HasStall
+add wave -position end  sim:/Microprocessor/updateJmpPC
+add wave -position end  sim:/Microprocessor/instr
+# add wave -position end  sim:/Microprocessor/progCounter
+# add wave -position end  sim:/Microprocessor/opCode
+# add wave -position end  sim:/Microprocessor/opA
+# add wave -position end  sim:/Microprocessor/opB
+# add wave -position end  sim:/Microprocessor/opC
+# add wave -position end  sim:/Microprocessor/opULA
+add wave -position end  sim:/Microprocessor/addrImm
+add wave -position end  sim:/Microprocessor/isImm
+add wave -position end  sim:/Microprocessor/hasWB
+add wave -position end  sim:/Microprocessor/hasStall
+add wave -position end  sim:/Microprocessor/isJump
+add wave -position end  sim:/Microprocessor/decExeBufferWr
+add wave -position end  sim:/Microprocessor/exeWBBufferWr
+add wave -position end  sim:/Microprocessor/pcRegWr
+add wave -position end  sim:/Microprocessor/regBankWr
+add wave -position end  sim:/Microprocessor/isDecStall
+add wave -position end  sim:/Microprocessor/clrStall
+add wave -position end  sim:/Microprocessor/hasJumped
+add wave -position end  sim:/Microprocessor/pcExtSrc
+add wave -position end  sim:/Microprocessor/newPC
+add wave -position end  sim:/Microprocessor/PC
+add wave -position end  sim:/Microprocessor/regA
+add wave -position end  sim:/Microprocessor/regB
+add wave -position end  sim:/Microprocessor/operandA
+add wave -position end  sim:/Microprocessor/operandB
+add wave -position end  sim:/Microprocessor/res
+add wave -position end  sim:/Microprocessor/flagReg
+add wave -position end  sim:/Microprocessor/outMuxImm
+add wave -position end  sim:/Microprocessor/ExeWBBuffer_HasJumped
+# (vish-4014) No objects found matching '/Microprocessor/ExeWBBuffer_HasJumped'.
+add wave -position end  sim:/Microprocessor/ctrlDecode/DecodeState
+add wave -position end  sim:/Microprocessor/ctrlExecute/ExecutionState
+add wave -position end  sim:/Microprocessor/ctrlWriteback/WriteBackState
+
+
+force -freeze sim:/Microprocessor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Microprocessor/RST 1 0
+run
+force -freeze sim:/Microprocessor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# End time: 00:25:05 on Dec 05,2017, Elapsed time: 0:04:42
+# Errors: 1, Warnings: 0
