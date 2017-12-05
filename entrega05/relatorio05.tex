@@ -225,14 +225,13 @@ O \textit{pipeline} insere no sistema \textit{Hazards}, como descrito anteriorme
 
 \subsection{Arquitetura}
 
-O conjunto de instruções final do processador está descrito na tabela \ref{tab:instructions}. Todas as instruções aritméticas e lógicas recebem o operando A do banco de registradores e o operando B pode ser um imediato de 4-bits ou um registrador dependendo da instrução. A instrução BEZ não utiliza os bits 11-8 e as instruções GHI e GLO não utilizam os bits de 7-0. A instrução J altera o PC para um valor imediato de 12-bits que comporta qualquer endereço da memória de 4096 posições.
+O conjunto final de instruções do processador está descrito na tabela \ref{tab:instructions}. Todas as instruções aritméticas e lógicas recebem o operando A do banco de registradores e o operando B pode ser um imediato de 4-bit ou um registrador, dependendo da instrução. A instrução \textit{BEZ} não utiliza os bits 11-8 e as instruções \textit{GHI} e \textit{GLO} não utilizam os bits de 7-0. A instrução \textit{J} altera o \textit{PC} para um valor imediato de 12-bit que comporta qualquer endereço da memória de 4096 posições.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{| c | c | c | c | c | l |}
 \hline
 Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
-\hline
 \hline
  ADD  & 0000 & C & B & A   & Reg(C) = Reg(A) + Reg(B) \\
 \hline
@@ -272,9 +271,28 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \end{table}
 \captionsetup{font={footnotesize,rm},justification=centering,labelsep=period}%
 
-
-
 \section{Implementação}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{images/decodepipe.pdf}
+\caption{Diagrama simplificado do estágio \textit{Decode} do \textit{pipeline}.}
+\label{fig:decodepipe}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{images/executepipe.pdf}
+\caption{Diagrama simplificado do estágio \textit{Execute} do \textit{pipeline}.}
+\label{fig:executepipe}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{images/writebackpipe.pdf}
+\caption{Diagrama simplificado do estágio \textit{Writeback} do \textit{pipeline}.}
+\label{fig:writebackpipe}
+\end{figure}
 
 O processador finalizado conta com quatro módulos principais, além de uma série de módulos
 de controle secundários e multiplexadores. Os módulos principais são:
