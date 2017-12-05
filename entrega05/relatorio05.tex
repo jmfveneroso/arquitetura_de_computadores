@@ -176,56 +176,63 @@ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\\ Ricardo Pagoto Marinho \\
 
 \section{Introdução}\label{sec:desc}
 
-Este documento descreve a implementação do trabalho prático V da disciplina
-Organização de Computadores II. O trabalho visou incorporar uma \textit{Pipeline}
-de três estágios sobre o caminho de dados implementado nos trabalhos anteriores.
-O processador de 16-bits finalizado faz encaminhamento de dados e gera um ciclo
-de \textit{stall} ao executar uma instrução de \textit{branch}.
+O \textit{pipeline} é uma técnica de \textit{hardware} para promover paralelismo à nível de instrução dentro de um processador. O objetivo da técnica é dividir a execução da instrução em estágios, de forma que quando a instrução termina o estágio a próxima já pode ser processada por esse estágio, matendo então todos os estágios do processador ocupados com alguma instrução pelo máximo de tempo possível. Essa técnica se assemelha com uma linha de montagem, permitindo aumentar consideravelmente o \textit{throughput} do processador em comparação à execução puramente sequencial, pois várias tarefas podem ser executadas em um mesmo ciclo de \textit{clock}.
 
-\section{Descrição}\label{sec:desc}
-
-O \textit{pipeline} é uma técnica de \textit{hardware} para promover paralelismo
-à nível de instrução dentro de um único processador. O objetivo da técnica é 
-manter todas os módulos do processador ocupados com alguma instrução pelo
-máximo de tempo possível. Esse objetivo é realizado por meio da divisão das 
-instruções em múltiplas etapas sequenciais, de forma que diferentes etapas de
-diferentes instruções possam ser executadas em paralelo como em uma linha de 
-montagem. Essa técnica permite aumentar consideravelmente a velocidade do processador
-em comparação à execução puramente sequencial, pois várias tarefas podem ser
-executadas em um mesmo ciclo de \textit{clock}.
-
-No entanto, a técnica de \textit{Pipelining} complexifica o controle do 
-processador, uma vez que a execução paralela introduz \textit{Hazards} no caminho
-de dados que não existiriam no caso da execução sequencial:
+No entanto, a técnica de \textit{Pipelining} complexifica o controle do processador, uma vez que a execução paralela introduz \textit{Hazards} no caminho de dados, que não existiriam no caso da execução sequencial, como:
 
 \begin{itemize}
 
-\item \textit{Hazards Estruturais} impõem restrições no número de instruções que podem
-utilizar um módulo do processador ao mesmo tempo. No caso do nosso processador,
-o caminho de dados possui uma única via, portanto existe apenas um módulo para 
-executar cada etapa da \textit{pipeline}, com exceção da etapa de execução que
-possui uma Unidade Lógica Aritmética e uma Unidade Multiplicadora.
+\item \textit{Hazards Estruturais}: restrições no número de instruções que podem utilizar um módulo do processador ao mesmo tempo, pois apenas uma intrução pode utilizar uma unidade funcional por vez. Pode ser amenizado com o aumento de unidades funcionais;
 
-\item \textit{Hazards de Dados} forçam que uma instrução dependente de dados
-de instruções anteriores espere até que os resultados estejam disponíveis antes
-de ser executada. Caso não haja encaminhamento de dados, o processador é forçado
-a paralizar a execução de novas instruções por meio de \textit{stalls} até que
-o dado esteja disponível. Nosso processador implementa o encaminhamento de dados
-da saída da unidade multiplicadora e da Unidade Lógica Aritmética para evitar
-o \textit{stall}.
+\item \textit{Hazards de Dados}: dependência de dados entre instruções. A instrução depende do resultado de uma instrução que ainda não terminou de executar. Pode ser amenizado com técnicas de encaminhamento de dados dentro dos estágios de pipeline;
 
-\item \textit{Hazards de Controle} acontecem quando existe um desvio de fluxo
-que altera o \textit{Program Counter} e torna a próxima execução indefinida até
-que o processador avalie o novo valor do \textit{Program Counter}. Nosso processador
-introduz um \textit{stall} nos \textit{branches} com o intuito de terminar a 
-avaliação do \textit{Program Counter} antes de prosseguir com a execução da próxima
-instrução.
+\item \textit{Hazards de Controle}: instruções que fazem desvio do fluxo do programa, alterando o Contador de Programa (\textit{Program Counter}), tornam as próximas instruões indefinidas até que o novo valor do \textit{Program Counter} seja definido/calculado. Pode ser amenizado com técnicas de previsão de \textit{branches}.
 
 \end{itemize}
 
-O processador desenvolvido até o trabalho prático IV executava instruções de maneira
-sequencial. Com a introdução do \textit{Pipeline} neste trabalho, obtivemos ganhos
-significativos na velocidade de execução como será mostrado na seção de experimentos.
+Os \textit{Hazards}, quando ocorrem, necessitam que seja introduzido no fluxo do \textit{pipeline} bolhas, ou \textit{stalls}, para resolver esses conflitos.
+
+Para este trabalho, propõe-se a implementação de um \textit{Pipeline} de três estágios sobre o caminho de dados implementado nos trabalhos anteriores. O processador de 16-bits finalizado faz encaminhamento de dados e gera dois ciclo de \textit{stall} ao executar instruções de \textit{branch} e \textit{jump}.
+
+\section{Descrição}\label{sec:desc}
+
+O processador desenvolvido nos trabalhos anteriores possuia 5 estágios de execução, sendo, busca de instrução, decodificação, busca de registradores, execução e armazenamento de resultados. Cada estágio requeria um passo de relógio, ou uma transição do sinal de \textit{clock}, e não possuia qualquer paralelismo a nível de instrução.
+
+Para a implementação do \textit{pipeline}, propos-se uma divisão do processador em 3 estágios, sendo, decodificação, execução e armazenamento de resultados. A Figura \ref{fig:pipeline3stage} abaixo mostra a divisão dos estágios.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{images/pipeline.pdf}
+\caption{Estrutura de \textit{pipeline} de 3 estágios proposta.}
+\label{fig:pipeline3stage}
+\end{figure}
+
+Os estágios, então, serão responsáveis pelas seguintes tarefas:
+
+\begin{itemize}
+
+\item \textit{Decode}:
+
+\item \textit{Execute}:
+
+\item \textit{WriteBack}:
+
+\end{itemize}
+
+
+<-- ponto final de revisão
+
+
+O processador desenvolvido até o trabalho prático IV executava instruções de maneira sequencial. Com a introdução do \textit{Pipeline} neste trabalho, obtivemos ganhos significativos na velocidade de execução como será mostrado na seção de experimentos.
+
+ No caso do nosso processador, o caminho de dados possui uma única via, portanto existe apenas um módulo para executar cada etapa da \textit{pipeline}, com exceção da etapa de execução que possui uma Unidade Lógica Aritmética e uma Unidade Multiplicadora.
+
+
+teriores espere até que os resultados estejam disponíveis antes de ser executada. Caso não haja encaminhamento de dados, o processador é forçado a paralizar a execução de novas instruções por meio de \textit{stalls} até que o dado esteja disponível. Nosso processador implementa o encaminhamento de dados da saída da unidade multiplicadora e da Unidade Lógica Aritmética para evitar o \textit{stall}.
+
+ Nosso processador introduz um \textit{stall} nos \textit{branches} com o intuito de terminar a avaliação do \textit{Program Counter} antes de prosseguir com a execução da próxima instrução.
+
+
 
 \section{Implementação}
 
@@ -286,13 +293,13 @@ Instrução & Opcode & Bits 11-8 & Bits 7-4 & Bits 3-0 & Descrição \\
 \hline
  J    & 1011 & \multicolumn{3}{c|}{Imm} & PC = Imm \\
 \hline
- BEZ  & 1100 & 0000 & B & A   & If (Reg(A) = 0) PC = Reg(B) \\
+ BEZ  & 1100 & - & B & A   & If (Reg(A) = 0) PC = Reg(B) \\
 \hline
  MUL  & 1101 & C & B & A   & Reg(C) = Reg(A) * Reg(B) \\
 \hline
- GHI  & 1110 & C & 0000 & 0000   & Reg(C) = HI \\
+ GHI  & 1110 & C & - & -   & Reg(C) = HI \\
 \hline
- GLO  & 1111 & C & 0000 & 0000   & Reg(C) = LO \\
+ GLO  & 1111 & C & - & -   & Reg(C) = LO \\
 \hline
 \end{tabular}
 \caption{Instruções}
