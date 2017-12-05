@@ -176,15 +176,15 @@ Iuri Silva Castro\\ João Mateus de Freitas Veneroso\\ Ricardo Pagoto Marinho \\
 
 \section{Introdução}\label{sec:desc}
 
-O \textit{pipeline} é uma técnica de \textit{hardware} para promover paralelismo à nível de instrução dentro de um processador. O objetivo da técnica é dividir a execução da instrução em estágios, de forma que quando a instrução termina o estágio a próxima já pode ser processada por esse estágio, matendo então todos os estágios do processador ocupados com alguma instrução pelo máximo de tempo possível. Essa técnica se assemelha com uma linha de montagem, permitindo aumentar consideravelmente o \textit{throughput} do processador em comparação à execução puramente sequencial, pois várias tarefas podem ser executadas em um mesmo ciclo de \textit{clock}.
+O \textit{pipeline} é uma técnica de \textit{hardware} para promover paralelismo à nível de instrução dentro de um processador. O objetivo da técnica é dividir a execução da instrução em estágios, de forma que, quando a instrução termina o estágio, a próxima já pode ser processada por esse estágio, mantendo então todos os estágios do processador ocupados com alguma instrução pelo máximo de tempo possível. Essa técnica se assemelha a uma linha de montagem, permitindo aumentar consideravelmente o \textit{throughput} do processador em comparação à execução puramente sequencial, pois várias tarefas podem ser executadas em um mesmo ciclo de \textit{clock}.
 
 No entanto, a técnica de \textit{Pipelining} complexifica o controle do processador, uma vez que a execução paralela introduz \textit{Hazards} no caminho de dados, que não existiriam no caso da execução sequencial, como:
 
 \begin{itemize}
 
-\item \textit{Hazards Estruturais}: restrições no número de instruções que podem utilizar um módulo do processador ao mesmo tempo, pois apenas uma intrução pode utilizar uma unidade funcional por vez. Pode ser amenizado com o aumento de unidades funcionais;
+\item \textit{Hazards Estruturais}: restrições no número de instruções que podem utilizar um módulo do processador ao mesmo tempo, pois apenas uma intrução pode utilizar uma unidade funcional por vez. Pode ser amenizado com o aumento do número de unidades funcionais;
 
-\item \textit{Hazards de Dados}: dependência de dados entre instruções. A instrução depende do resultado de uma instrução que ainda não terminou de executar. Pode ser amenizado com técnicas de encaminhamento de dados dentro dos estágios de pipeline;
+\item \textit{Hazards de Dados}: dependência de dados entre instruções. A instrução depende do resultado de uma instrução que ainda não terminou de executar. Pode ser amenizado com técnicas de encaminhamento de dados dentro dos estágios da pipeline;
 
 \item \textit{Hazards de Controle}: instruções que fazem desvio do fluxo do programa, alterando o Contador de Programa (\textit{Program Counter}), tornam as próximas instruões indefinidas até que o novo valor do \textit{Program Counter} seja definido/calculado. Pode ser amenizado com técnicas de previsão de \textit{branches}.
 
@@ -202,7 +202,7 @@ Nessa seção, descreve-se a organização e a arquitetura do processador propos
 
 O processador desenvolvido nos trabalhos anteriores possuia 5 estágios de execução, sendo, busca de instrução, decodificação, busca de registradores, execução e armazenamento de resultados. Cada estágio requeria um passo de relógio, ou uma transição do sinal de \textit{clock}, e não possuia qualquer paralelismo a nível de instrução.
 
-Para a implementação do \textit{pipeline}, propos-se uma divisão do processador em 3 estágios, sendo, decodificação, execução e armazenamento de resultados. A Figura \ref{fig:pipeline3stage} abaixo mostra a divisão dos estágios.
+Para a implementação do \textit{pipeline}, propôs-se uma divisão do processador em 3 estágios: decodificação, execução e armazenamento de resultados. A Figura \ref{fig:pipeline3stage} abaixo mostra a divisão dos estágios.
 
 \begin{figure}[!h]
 \centering
