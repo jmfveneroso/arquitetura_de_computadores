@@ -374,10 +374,22 @@ BEZ   -, R6, R5  &  If (R5 == 0) { jump to \#R6 }        \\
 
 <--- Final da edição Iuri --->
 
-A figura XXX mostra o resultado da simulação no processador antigo e a figura YYY mostra o resultado da 
-simulação no processador novo. Como percebemos pelos resultados, o processador novo executou o programa
-em Y \textit{clocks} e o processador antigo executou o programa em X \textit{clocks}. Portanto, a
-\textit{pipeline} obteve uma melhora de 99\% nesse caso específico.
+A Figura~\ref{fig:sim1} mostra o resultado da simulação no processador com pipeline e a Figura~\ref{fig:sim2} mostra o resultado da simulação no processador sem pipeline. Como percebemos pelos resultados, o processador com pipeline executou o programa em 39 \textit{clocks} e o processador antigo executou o programa em 97 \textit{clocks}. Portanto, a
+\textit{pipeline} obteve uma melhora de 60\% nesse caso específico.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/sim1.png}
+\caption{Execução com pipeline}
+\label{fig:sim1}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/sim2.png}
+\caption{Execução sem pipeline}
+\label{fig:sim2}
+\end{figure}
 
 Além deste, fizemos um programa para ordenar um vetor de 5 valores.
 O código do programa está descrito a seguir.
@@ -574,7 +586,7 @@ A Figura~\ref{fig:ordena1} mostra como o vetor está distribuído nos registrado
 
 Repare que R9 possui o bit mais significativo com valor 1 e os outros bits 0, como dito anteriormente.
 A Figura~\ref{fig:ordena2} mostra o fim da simulação.
-Note que o vetor está ordenado e que a simulação terminou com 28300 ps.
+Note que o vetor está ordenado e que a simulação terminou com 282 ciclos.
 
 
 \begin{figure}[!h]
@@ -586,7 +598,7 @@ Note que o vetor está ordenado e que a simulação terminou com 28300 ps.
 
 Para mostrar a melhoria ao introduzir o pipeline, executamos o mesmo programa na implementação que não possuía o pipeline.
 A Figura~\ref{fig:ordenasp2} mostra o resultado desta execução.
-Note que, sem o pipeline, a execução termina somente por volta de 60800 ps, significando que com o pipeline, neste programa, o ganho foi de aproximadamente 56\% de tempo.
+Note que, sem o pipeline, a execução termina somente por volta de 607 ciclos, significando que com o pipeline, neste programa, o ganho foi de aproximadamente 56\% de tempo.
 
 \begin{figure}[!h]
 \centering
@@ -600,7 +612,7 @@ A incorporação da \textit{pipeline} de três estágios exigiu a introdução d
 controle adicionais no processador, complexificando consideravelmente o projeto. Os \textit{branches} exigiram
 a introdução de um ciclo de \textit{stall} para esperar pelo novo \textit{Program Counter}, o que limitou
 os ganhos de velocidade de execução. A lógica de encaminhamento foi implementada para evitar \textit{stalls}
-devido à \textit{Hazards de dados}. Ao final, o ganho de desempenho obtido foi de cerca de 99\% no cenário de 
+devido à \textit{Hazards de dados}. Ao final, o ganho de desempenho obtido foi de cerca de 58\% nos cenários de 
 teste, o que mostra claramente a importância dos \textit{pipelines} em processadores de alto desempenho.
 
 \bibliographystyle{unsrt}
