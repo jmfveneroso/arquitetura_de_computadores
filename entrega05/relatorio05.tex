@@ -211,7 +211,7 @@ Para a implementação do \textit{pipeline}, propôs-se uma divisão do processa
 \label{fig:pipeline3stage}
 \end{figure}
 
-Entre os estágios estão as \textit{register bridges}, ou registradores de ponte, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
+Entre os estágios estão as \textit{register bridges} (registradores de ponte) ou \textit{buffers}, que são utilizados para passar as informações e sinais de controle de um estágio para o outro. Os estágios, então, serão responsáveis pelas seguintes tarefas:
 
 \begin{itemize}
 
@@ -296,7 +296,7 @@ A seleção entre os valores do \textit{PC} será entre o incrimento (PC + 1) ou
 
 \subsection{Execute}
 
-O estágio de execução é responsável pela busca de registradores no \textit{Banco de Registradores} e a execução da instrução pela \textit{Unidade Lógica Aritmética} (ULA) ou pela unidade de multiplicação. A Figura \ref{fig:executepipe} mostra uma versão simplificada de como é a organização do estágio.
+O estágio de execução é responsável pela busca de registradores no \textit{Banco de Registradores} e a execução da instrução pela \textit{Unidade Lógica Aritmética} (ULA) ou pela unidade de multiplicação (Mult). A Figura \ref{fig:executepipe} mostra uma versão simplificada de como é a organização do estágio.
 
 \begin{figure}[!h]
 \centering
@@ -309,7 +309,7 @@ O estágio também possui uma maquina de estados para comandar a execução do m
 
 \subsection{Writeback}
 
-
+O estágio de \textit{Writeback} faz a escrita do resultado da operação no \textit{Banco de Registradores}. A Figura \ref{fig:writebackpipe} mostra um diagrama simplificado da organização do estágio. Vale resaltar que o \textit{Banco de Registradores} no estágio de \textit{writeback} é o mesmo do estágio de \textit{execute}, sendo colocado separado no diagrama apenas para facilitar a visualização dos estágios e compreensão.
 
 \begin{figure}[!h]
 \centering
@@ -318,35 +318,15 @@ O estágio também possui uma maquina de estados para comandar a execução do m
 \label{fig:writebackpipe}
 \end{figure}
 
-O processador finalizado conta com quatro módulos principais, além de uma série de módulos
-de controle secundários e multiplexadores. Os módulos principais são:
-
-\begin{itemize}
-
-\item \textit{Decoder}: recebe a instrução de 16 bits e decodifica o \textit{Opcode},
-identificando os operandos e preparando os registradores que sinalizam se a instrução é uma 
-multiplicação, se é um \textit{Jump}, se haverá \textit{Stall}, se haverá \textit{Write Back},
-qual registrador da multiplicação será armazenado se for o caso e se o segundo operando é
-um imediato.
-
-\item \textit{Register Bank}: o banco de registradores conta com 16 registradores de 16 bits,
-duas portas de leituras para os operandos A e B e uma porta de escrita.
-
-\item \textit{Unidade Lógica Aritmética}: a unidade lógica aritmética executa as instruções: 
-ADD, SUB, SLT, AND, OR, XOR e BEZ.
-
-\item \textit{Unidade multiplicadora}: a unidade multiplicadora recebe dois operandos de 16-bits
-e executa uma multiplicação produzindo um resultado de 32-bits que é armazenado em dois registradores:
-HI, que armazena os 16-bits mais significativos e LO, que armazena os 16-bits menos significativos.
-O resultado da operação armazenado nos registradores pode ser acessado por meio das instruções 
-GHI e GLO, que escrevem o conteúdo dos registradores HI e LO, respectivamente, em um registrador
-do banco de registradores.
-
-\end{itemize}
-
-
+No primeiro ciclo o estágio verifica se a instrução executada deve ou não escrever o resultado no banco. Se for necessário a escrita, os dados da posição e valor são utilizados para escrever no banco. Ainda no primeiro ciclo, verifica-se se a instrução executada gerou \textit{stall} no estágio de \textit{Decode}, liberando-o caso o mesmo esteja na condição de \textit{stall}. No segundo ciclo o estágio fica \textit{idle}. O estágio é executado em dois ciclos apenas para manter o mesmo tempo que os outros, requisito para que a técnica de \textit{pipeline} seja aplicada. Uma máquina de estados é utilizada para coordenar a execução do estágio.
 
 \section{Integração}
+
+A grande chave da técnica de \textit{pipeline} está nos registradores de ponte, ou \textit{buffers}, entre os estágios. Eles mantém o estado e as informações da instrução que deve ser executada pelo estágio, passando também os sinais de controle necessários.
+
+Vários multiplexadores são utilizados pelo controle para fazer o correto direcionamento dos dados e encaminhamentos.
+
+A integração dos estágios desenvolvidos gera o processador que pode ser visto na Figura \ref{fig:pipeline_diagram}.
 
 \begin{figure}[!h]
 \centering
@@ -355,65 +335,13 @@ do banco de registradores.
 \label{fig:pipeline_diagram}
 \end{figure}
 
-A pipeline implementada possui três estágios: Decodificação, Execução e \textit{Write Back}.
-O estágio de execução é dividido entre dois módulos independentes: o módulo de multiplicação e a 
-Unidade Lógica Aritmética. O diagrama na figura \ref{fig:pipeline_diagram} descreve a \textit{pipeline}.
-
-Cada um dos estágios da \textit{pipeline} tem uma máquina de estados associada que executa as operações
-necessárias em múltiplos ciclos de \textit{clock}. Ao fim de cada estágio, cada módulo
-define os valores de um conjunto de registradores que passa os dados para o próximo estágio por
-meio de um \textit{buffer}. Na nossa implementação existem dois \textit{buffers}: Decode/Execute
-e Execute/Write Back.
-
-O estágio \textit{Decoder} (D) recebe a próxima instrução da memória de instruções e define 
-os valores dos registradores a seguir com base no \textit{Opcode} da instrução, atualizando
-o \textit{buffer} Decode/Execute:
-
-\begin{itemize}
-\item OpULA: o opcode da instrução para a ULA com 4-bits que indica a operação aritmética 
-a ser realizada. Por exemplo: ADDI e ADD tem o mesmo OpULA.
-\item OpA, OpB, OpC: os operandos A, B e C.
-\item IsImm: indica se o segundo operando da instrução é um imediato.
-\item IsJump: indica se a instrução é um \textit{Jump} (J).
-\item HasWB: indica se a instrução faz \textit{Write Back}.
-\item HasStall: indica se a instrução gera \textit{Stall}.
-\item IsMult: indica se a instrução vai utilizar a unidade multiplicadora.
-\item HiLo: indica qual registrador da multiplicação vai ser armazenado.
-\item StoreHiLo: indica que vai armazenar um registrador da unidade multiplicadora.
-\item AddrImm: endereço de memória de 12-bits para o \textit{Jump}.
-\end{itemize}
-
-O estágio \textit{Execução} (X e M) pode ocorrer em dois módulos separados: a ULA e a unidade
-multiplicadora. As entradas dos módulos são os registradores de saída da etapa anterior
-descritos acima. O resultado da ULA é armazenado no registrador Res e as flags da operação
-são armazenadas no registrador FlagReg. Já a unidade de multiplicação produz um resultado
-que é armazenado nos registradores Hi e Lo de 16-bits. O \textit{buffer} Execute/Write Back
-conta com os seguintes registradores:
-
-\begin{itemize}
-\item Res: indica o resultado da operação na ULA ou os registradores Hi ou Lo da unidade multiplicadora.
-\item FlagReg: indica as flags da ULA.
-\item RegDest: indica o registrador de destino da operação de \textit{Write Back}.
-\item HasWB: indica se o \textit{Write Back} vai ser executado.
-\item AddrImm: indica o endereço do imediato da operação \textit{Jump} (J).
-\item HasJumped: indica se um \textit{Jump} foi executado.
-\item HasStall: indica se houve \textit{Stall}.
-\end{itemize}
-
-Um multiplexador redireciona a saída da ULA e da unidade multiplexadora para o estágio de 
-\textit{WriteBack}. Perceba que a operação de multiplicação não passa efetivamente pelo estágio de 
-\textit{WriteBack} uma vez que o resultado da operação fica armazenado apenas nos registradores Hi
-e Lo, que podem ser escritos no banco de registradores por meio da execução de mais duas 
-instruções: GHI e GLO.
+Após integrado, parte-se para os testes do processador.
 
 \section{Simulação e Testes}
 
-Os testes realizados procuraram medir a melhora de desempenho após a implementação da \textit{pipeline}.
-Para isso, um programa de teste foi executado no processador antigo sem \textit{pipeline} e no processador
-novo com a \textit{pipeline} de três estágios. Perceba que a ordem dos operandos está invertida no
-\textit{Assembly}. Isso ocorre porque no nosso processador o operando 2, que pode ser um imediato, é o
-operando referente aos bits 7-4 da instrução e não 3-0. Portanto, o código foi alterado para refletir
-a característica das instruções armazenadas na memória.
+Os testes propostos tem o intuito de validar a implementação e medir a melhora de desempenho após a implementação da \textit{pipeline}. Para isso, programas de teste foram desenvolvidos para serem executados no processador do trabalho anterior, sem \textit{pipeline}, e na implementação atual com \textit{pipeline} de três estágios.
+
+O primeiro programa de teste realiza a divisão de 1024 por 100, calculando o resto por meio de um \textit{loop} e armazenando o resultado no resgistrador R3. A Tabela \ref{tab:program} mostra o código e descreve o primeiro programa desenvolvido.
 
 \begin{table}[!h]
 \centering
@@ -444,8 +372,7 @@ BEZ   -, R6, R5  &  If (R5 == 0) { jump to \#R6 }        \\
 \label{tab:program}
 \end{table}
 
-O programa de teste realiza a divisão de 1024 por 100, calculando o resto por meio de um loop e armazenando 
-o resultado no resgistrador R3. O programa está decrito na tabela \ref{tab:program}.
+<--- Final da edição Iuri --->
 
 A figura XXX mostra o resultado da simulação no processador antigo e a figura YYY mostra o resultado da 
 simulação no processador novo. Como percebemos pelos resultados, o processador novo executou o programa
